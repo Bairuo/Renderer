@@ -1,0 +1,112 @@
+#include "Cuboid.h"
+#include "ConfigUtilities.h"
+#include "basicrender.h"
+#include "Camera.h"
+#include "Light.h"
+#include "Posture.h"
+#include "Animation.h"
+#include "Object.h"
+#include <cmath>
+
+#if defined(_WIN32)
+
+#if defined(SHADOWMAP)
+const GLchar Cuboid::standardVsPath[] = ".\\shaders\\3D_Standard\\standard_s.vs";
+const GLchar Cuboid::standardFragPath[] = ".\\shaders\\3D_Standard\\standard_s.frag";
+#else
+const GLchar Cuboid::standardVsPath[] = ".\\shaders\\3D_Standard\\standard.vs";
+const GLchar Cuboid::standardFragPath[] = ".\\shaders\\3D_Standard\\standard.frag";
+#endif
+
+#else
+
+#if defined(SHADOWMAP)
+const GLchar Cuboid::standardVsPath[] = "./shaders/3D_Standard/standard_s.vs";
+const GLchar Cuboid::standardFragPath[] = "./shaders/3D_Standard/standard_s.frag";
+#else
+const GLchar Cuboid::standardVsPath[] = "./shaders/3D_Standard/standard.vs";
+const GLchar Cuboid::standardFragPath[] = "./shaders/3D_Standard/standard.frag";
+#endif
+
+#endif
+
+const Material Cuboid::defaultMaterial(
+    glm::vec3(1.0f, 0.5f, 0.31f),
+    glm::vec3(1.0f, 0.5f, 0.31f),
+    glm::vec3(0.5f, 0.5f, 0.5f),
+    32.0f
+);
+
+void Cuboid::Update()
+{
+    if(!active)
+    {
+        return;
+    }
+
+    // set
+    if(Light::depthMode && castShadow)
+    {
+        Light::startRenderDepth(obj->posture.get());
+    }
+    else
+    {
+        shader.Use();
+
+        if(obj->animation.get() != nullptr)
+        {
+            obj->posture.reset(new Posture(obj->animation->getPosture()));
+        }
+
+        shader.SetMat4("model", obj->posture->getMatrix());
+
+        Camera::setMainCamera(&shader);
+        Light::setLight(&shader);
+    }
+
+    // draw
+    glBindVertexArray(VAO);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glBindVertexArray(0);
+
+    // stop shader
+    if(Light::depthMode && castShadow)
+    {
+        Light::stopRenderDepth();
+    }
+    else
+    {
+        shader.Stop();
+    }
+}
+
+Cuboid::~Cuboid()
+{
+//    glDeleteVertexArrays(1, &VAO);
+//    glDeleteBuffers(1, &VBO);
+}
+
+Cuboid::Cuboid(const Material &material,
+               const GLchar *vertexPath, const GLchar *fragmentPath)
+{
+    shader = Shader(vertexPath, fragmentPath);
+    shader.Use();
+
+    shader.Set3f("material.ambient", material.ambient);
+    shader.Set3f("material.diffuse", material.diffuse);
+    shader.Set3f("material.specular", material.specular);
+    shader.SetFloat("material.shininess", material.shininess);
+
+    VAO = getCubeVAO();
+
+    shader.Stop();
+}
+
+double Cuboid::getSphereBoundingRadius()
+{
+    double x = obj->posture->getPosX() * obj->posture->getScaleX();
+    double y = obj->posture->getPosY() * obj->posture->getScaleY();
+    double z = obj->posture->getPosZ() * obj->posture->getScaleZ();
+
+    return sqrt(x * x + y * y + z * z);
+}
