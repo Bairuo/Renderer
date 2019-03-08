@@ -131,6 +131,7 @@ int main()
 
     /* rendering setting */
     //glEnable(GL_DEPTH_TEST);
+    glEnable(GL_MULTISAMPLE);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -241,6 +242,7 @@ void InitWindow()
 //    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+    glfwWindowHint(GLFW_SAMPLES, 4);
 
     window = glfwCreateWindow(WindowWidth, WindowHeight, WindowName, nullptr, nullptr);
 
