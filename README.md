@@ -4,16 +4,16 @@
 
 Based on opengl programmable rendering pipeline
 
-Rendering
+#### Rendering
 * Font rendering
 * Multi light source
 * Basic shadow mapping (PCF optimization)
 * MSAA
 
-Physics
+#### Physics
 * Rough contact detection based on BVH in dynamic scene
 
-Others
+#### Others
 * Frame animation of position, scale, rotate and color in 2D
 
 ![Screenshot](https://github.com/Bairuo/renderer/raw/master/meta/move1.jpg)
