@@ -17,6 +17,7 @@
 #include "Posture.h"
 #include "Animation.h"
 #include "BVH.h"
+#include "Deferred.h"
 
 #include <list>
 
@@ -135,6 +136,10 @@ int main()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+#if defined(DEFERRED)
+    GLuint gBuffer = getGBuffer();
+#endif // defined
+
 #if defined(SHADOWMAP)
     Light::openShadowMap();
 #endif // defined
@@ -177,10 +182,22 @@ int main()
         }
 
         // Render
-        glClearColor(backGround.r, backGround.g, backGround.b, backGround.a);
+        glEnable(GL_DEPTH_TEST);
+
+#if defined(DEFERRED)
+        GBufferMode = true;
+        glBindFramebuffer(GL_FRAMEBUFFER, gBuffer);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glEnable(GL_DEPTH_TEST);
+        for(size_t i = 0; i < Objects.size(); i++)
+        {
+            Objects[i]->Render();
+        }
+
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        GBufferMode = false;
+
+#endif // defined
 
 #if defined(SHADOWMAP)
         // render depth map
@@ -196,17 +213,35 @@ int main()
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-        // render normal
+        // Recovery Setting
         glViewport(0, 0, WindowWidth, WindowHeight);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         Light::depthMode = false;
 
+#endif
 
+        // Normal Render
+
+        glClearColor(backGround.r, backGround.g, backGround.b, backGround.a);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+#if defined(DEFERRED)
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, gPosition);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, gNormal);
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, gAlbedoSpec);
+
+#endif // defined
+
+
+#if defined(SHADOWMAP)
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, Light::depthMap);
 #endif
 
-        // game update
         for(size_t i = 0; i < Objects.size(); i++)
         {
             Objects[i]->Render();

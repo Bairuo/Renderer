@@ -6,29 +6,8 @@
 #include "Posture.h"
 #include "Animation.h"
 #include "Object.h"
+#include "Deferred.h"
 #include <cmath>
-
-#if defined(_WIN32)
-
-#if defined(SHADOWMAP)
-const GLchar Cuboid::standardVsPath[] = ".\\shaders\\3D_Standard\\standard_s.vs";
-const GLchar Cuboid::standardFragPath[] = ".\\shaders\\3D_Standard\\standard_s.frag";
-#else
-const GLchar Cuboid::standardVsPath[] = ".\\shaders\\3D_Standard\\standard.vs";
-const GLchar Cuboid::standardFragPath[] = ".\\shaders\\3D_Standard\\standard.frag";
-#endif
-
-#else
-
-#if defined(SHADOWMAP)
-const GLchar Cuboid::standardVsPath[] = "./shaders/3D_Standard/standard_s.vs";
-const GLchar Cuboid::standardFragPath[] = "./shaders/3D_Standard/standard_s.frag";
-#else
-const GLchar Cuboid::standardVsPath[] = "./shaders/3D_Standard/standard.vs";
-const GLchar Cuboid::standardFragPath[] = "./shaders/3D_Standard/standard.frag";
-#endif
-
-#endif
 
 const Material Cuboid::defaultMaterial(
     glm::vec3(1.0f, 0.5f, 0.31f),
@@ -45,7 +24,15 @@ void Cuboid::Update()
     }
 
     // set
-    if(Light::depthMode && castShadow)
+    if(GBufferMode)
+    {
+        deferredShader.Use();
+
+        deferredShader.SetMat4("model", obj->posture->getMatrix());
+        Camera::setMainCamera(&deferredShader);
+        setMaterial(&deferredShader);
+    }
+    else if(Light::depthMode && castShadow)
     {
         Light::startRenderDepth(obj->posture.get());
     }
@@ -59,7 +46,6 @@ void Cuboid::Update()
         }
 
         shader.SetMat4("model", obj->posture->getMatrix());
-
         Camera::setMainCamera(&shader);
         Light::setLight(&shader);
     }
@@ -74,6 +60,10 @@ void Cuboid::Update()
     {
         Light::stopRenderDepth();
     }
+    else if(GBufferMode)
+    {
+        deferredShader.Stop();
+    }
     else
     {
         shader.Stop();
@@ -86,20 +76,27 @@ Cuboid::~Cuboid()
 //    glDeleteBuffers(1, &VBO);
 }
 
+
+void Cuboid::setMaterial(Shader *shader)
+{
+    shader->Use();
+
+    shader->Set3f("material.ambient", material.ambient);
+    shader->Set3f("material.diffuse", material.diffuse);
+    shader->Set3f("material.specular", material.specular);
+    shader->SetFloat("material.shininess", material.shininess);
+
+    shader->Stop();
+}
+
 Cuboid::Cuboid(const Material &material,
                const GLchar *vertexPath, const GLchar *fragmentPath)
 {
     shader = Shader(vertexPath, fragmentPath);
-    shader.Use();
 
-    shader.Set3f("material.ambient", material.ambient);
-    shader.Set3f("material.diffuse", material.diffuse);
-    shader.Set3f("material.specular", material.specular);
-    shader.SetFloat("material.shininess", material.shininess);
+    setMaterial(shader);
 
     VAO = getCubeVAO();
-
-    shader.Stop();
 }
 
 double Cuboid::getSphereBoundingRadius()

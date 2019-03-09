@@ -3697,3 +3697,22 @@
 	"TextRenderer.h"
 	"ConfigUtilities.h"
 
+1552049428 source:d:\jzr\renderer\src\main.cpp
+	<iostream>
+	<boost/shared_ptr.hpp>
+	<GL/glew.h>
+	<GLFW/glfw3.h>
+	"TextRenderer.h"
+	"bairuofunctions.h"
+	"GameTime.h"
+	"KeyUtilities.h"
+	"ConfigUtilities.h"
+	"Cuboid.h"
+	"Camera.h"
+	"Light.h"
+	"Object.h"
+	"Posture.h"
+	"Animation.h"
+	"BVH.h"
+	<list>
+

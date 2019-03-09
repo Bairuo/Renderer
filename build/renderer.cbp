@@ -43,10 +43,16 @@
 		<Unit filename="../bin/Debug/shaders/2D_Extend/rounded.frag" />
 		<Unit filename="../bin/Debug/shaders/2D_Standard/standard.frag" />
 		<Unit filename="../bin/Debug/shaders/2D_Standard/standard.vs" />
+		<Unit filename="../bin/Debug/shaders/3D_Standard/deferred_geometry.frag" />
+		<Unit filename="../bin/Debug/shaders/3D_Standard/deferred_geometry.vs" />
+		<Unit filename="../bin/Debug/shaders/3D_Standard/deferred_lighting.frag" />
+		<Unit filename="../bin/Debug/shaders/3D_Standard/deferred_lighting.vs" />
 		<Unit filename="../bin/Debug/shaders/3D_Standard/shadowmap.frag" />
 		<Unit filename="../bin/Debug/shaders/3D_Standard/shadowmap.vs" />
 		<Unit filename="../bin/Debug/shaders/3D_Standard/standard.frag" />
 		<Unit filename="../bin/Debug/shaders/3D_Standard/standard.vs" />
+		<Unit filename="../bin/Debug/shaders/3D_Standard/standard_d.frag" />
+		<Unit filename="../bin/Debug/shaders/3D_Standard/standard_d.vs" />
 		<Unit filename="../bin/Debug/shaders/3D_Standard/standard_s.frag" />
 		<Unit filename="../bin/Debug/shaders/3D_Standard/standard_s.vs" />
 		<Unit filename="../src/AlignedText.cpp" />
@@ -65,6 +71,8 @@
 		<Unit filename="../src/ConfigUtilities.h" />
 		<Unit filename="../src/Cuboid.cpp" />
 		<Unit filename="../src/Cuboid.h" />
+		<Unit filename="../src/Deferred.cpp" />
+		<Unit filename="../src/Deferred.h" />
 		<Unit filename="../src/Frame.cpp" />
 		<Unit filename="../src/Frame.h" />
 		<Unit filename="../src/GameTime.cpp" />

@@ -27,6 +27,8 @@ public:
     Cuboid(const Material &material = defaultMaterial,
            const GLchar *vertexPath = standardVsPath, const GLchar *fragmentPath = standardFragPath);
 
+    void setMaterial(Shader *shader);
+
 
 private:
     GLuint VAO;
