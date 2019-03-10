@@ -136,6 +136,8 @@ int main()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+    glClearColor(backGround.r, backGround.g, backGround.b, backGround.a);
+
 #if defined(DEFERRED)
     GLuint gBuffer = getGBuffer();
 #endif // defined
@@ -221,8 +223,6 @@ int main()
 #endif
 
         // Normal Render
-
-        glClearColor(backGround.r, backGround.g, backGround.b, backGround.a);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 #if defined(DEFERRED)
@@ -268,6 +268,8 @@ int main()
         textRenderer->DrawText("WASD to move ", -384, -334, titleColor, 16, true);
         textRenderer->DrawText("Potential contacts: " + bairuo::uns2str(potentialDebug), -384, -358, titleColor, 16, true);
 
+        //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glfwSwapBuffers(window);
 
         mainTime.Update();

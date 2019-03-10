@@ -63,7 +63,6 @@ void main()
     material.specular = texture(gAlbedoSpec, TexCoords).rgb;
     material.shininess = texture(gAlbedoSpec, TexCoords).a;
 
-    //  Ù–‘
     vec3 norm = normalize(vNormal);
     vec3 viewDir = normalize(viewPos - FragPos);
 
@@ -75,7 +74,8 @@ void main()
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir, shadow);
 
     color = vec4(result, 1.0);
-    color = vec4(1.0, 1.0, 1.0, 1.0);
+    //color = vec4(material.ambient, 1.0);
+    //color = vec4(0.0, 0.0, 0.0, 1.0);
 }
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir, float shadow)

@@ -34,6 +34,8 @@ void deferredLightingRender()
     static GLuint quadVAO = 0;
     GLuint quadVBO;
 
+    deferredLightingsShader.Use();
+
     Light::setLight(&deferredLightingsShader);
 
     Camera::setMainCamera(&deferredLightingsShader);
@@ -61,6 +63,8 @@ void deferredLightingRender()
     glBindVertexArray(quadVAO);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     glBindVertexArray(0);
+
+    deferredLightingsShader.Stop();
 }
 
 GLuint getGBuffer()
@@ -84,7 +88,7 @@ GLuint getGBuffer()
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, WindowWidth, WindowHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, gPosLightSpace, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, gPosLightSpace, 0);
 
     // - Normal color buffer
     glGenTextures(1, &gNormal);
@@ -92,7 +96,7 @@ GLuint getGBuffer()
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, WindowWidth, WindowHeight, 0, GL_RGB, GL_FLOAT, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, gNormal, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, gNormal, 0);
 
     // - Ambient color buffer
     glGenTextures(1, &gAmbient);
@@ -100,7 +104,7 @@ GLuint getGBuffer()
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, WindowWidth, WindowHeight, 0, GL_RGB, GL_FLOAT, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, gAmbient, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT3, GL_TEXTURE_2D, gAmbient, 0);
 
     // - Diffuse color buffer
     glGenTextures(1, &gDiffuse);
@@ -108,7 +112,7 @@ GLuint getGBuffer()
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, WindowWidth, WindowHeight, 0, GL_RGB, GL_FLOAT, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, gDiffuse, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT4, GL_TEXTURE_2D, gDiffuse, 0);
 
     // - Albedo + Specular color buffer
     glGenTextures(1, &gAlbedoSpec);
@@ -116,7 +120,7 @@ GLuint getGBuffer()
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, WindowWidth, WindowHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, gAlbedoSpec, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT5, GL_TEXTURE_2D, gAlbedoSpec, 0);
 
 
     // - Tell OpenGL which color attachments we'll use (of this framebuffer) for rendering
@@ -124,14 +128,12 @@ GLuint getGBuffer()
                              GL_COLOR_ATTACHMENT3, GL_COLOR_ATTACHMENT4, GL_COLOR_ATTACHMENT5};
     glDrawBuffers(6, attachments);
 
-
     // - Create and attach depth buffer (renderbuffer)
     GLuint rboDepth;
     glGenRenderbuffers(1, &rboDepth);
     glBindRenderbuffer(GL_RENDERBUFFER, rboDepth);
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, WindowWidth, WindowHeight);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rboDepth);
-
 
     // - Finally check if framebuffer is complete
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
@@ -141,6 +143,21 @@ GLuint getGBuffer()
 
     deferredGeometryShader = Shader(deferredGeometryVSPath, deferredGeometryFragPath);
     deferredLightingsShader = Shader(deferredLightingVSPath, deferredLightingFragPath);
+
+    deferredLightingsShader.Use();
+
+    deferredLightingsShader.SetInt("gPosition", 0);
+    deferredLightingsShader.SetInt("gPosLightSpace", 1);
+    deferredLightingsShader.SetInt("gNormal", 2);
+
+    deferredLightingsShader.SetInt("gAmbient", 3);
+    deferredLightingsShader.SetInt("gDiffuse", 4);
+    deferredLightingsShader.SetInt("gAlbedoSpec", 5);
+
+#if defined(SHADOWMAP)
+    deferredLightingsShader.SetInt("shadowMap", 6);
+#endif // defined
+    deferredLightingsShader.Stop();
 
     return gBuffer;
 }

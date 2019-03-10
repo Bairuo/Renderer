@@ -22,12 +22,14 @@ in vec4 FragPosLightSpace;
 void main()
 {
     gPosition = FragPos;
+    gPosition = vec3(1.0, 0.0, 0.0);
 
     gPosLightSpace = FragPosLightSpace;
 
     gNormal = normalize(vNormal);
 
     gAmbient = material.ambient;
+    gAmbient = vec3(1.0, 0.0, 0.0);
 
     gDiffuse = material.diffuse;
 

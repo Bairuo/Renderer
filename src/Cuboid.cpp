@@ -29,6 +29,7 @@ void Cuboid::Update()
         deferredGeometryShader.Use();
 
         deferredGeometryShader.SetMat4("model", obj->posture->getMatrix());
+
         Camera::setMainCamera(&deferredGeometryShader);
         setMaterial(&deferredGeometryShader);
     }
