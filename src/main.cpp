@@ -142,10 +142,12 @@ int main()
     GLuint gBuffer = getGBuffer();
 #endif // defined
 
+
+/*
 #if defined(SHADOWMAP)
     Light::openShadowMap();
 #endif // defined
-
+*/
     // Time
     mainTime.Init();
 
@@ -188,7 +190,7 @@ int main()
 
 #if defined(DEFERRED)
         GBufferMode = true;
-        glBindFramebuffer(GL_FRAMEBUFFER, gBuffer);
+        //glBindFramebuffer(GL_FRAMEBUFFER, gBuffer);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         for(size_t i = 0; i < Objects.size(); i++)
@@ -200,7 +202,7 @@ int main()
         GBufferMode = false;
 
 #endif // defined
-
+/*
 #if defined(SHADOWMAP)
         // render depth map
         Light::depthMode = true;
@@ -260,7 +262,7 @@ int main()
         }
 
 #endif // defined DEFERRED
-
+*/
         glDisable(GL_DEPTH_TEST);
 
         textRenderer->DrawText("Fun Renderer", -384, 358, titleColor, 32, true);

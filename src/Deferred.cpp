@@ -70,7 +70,7 @@ void deferredLightingRender()
 GLuint getGBuffer()
 {
     GLuint gBuffer;
-
+/*
     glGenFramebuffers(1, &gBuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, gBuffer);
 
@@ -140,8 +140,9 @@ GLuint getGBuffer()
         std::cout << "Deferred: Framebuffer not complete!" << std::endl;
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
+*/
     deferredGeometryShader = Shader(deferredGeometryVSPath, deferredGeometryFragPath);
+    //deferredGeometryShader = Shader(".\\shaders\\3D_Standard\\standard_s.vs", ".\\shaders\\3D_Standard\\standard_s.frag");
     deferredLightingsShader = Shader(deferredLightingVSPath, deferredLightingFragPath);
 
     deferredLightingsShader.Use();

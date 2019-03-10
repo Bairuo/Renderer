@@ -28,9 +28,15 @@ void Cuboid::Update()
     {
         deferredGeometryShader.Use();
 
-        deferredGeometryShader.SetMat4("model", obj->posture->getMatrix());
+        if(obj->animation.get() != nullptr)
+        {
+            obj->posture.reset(new Posture(obj->animation->getPosture()));
+        }
 
+        deferredGeometryShader.SetMat4("model", obj->posture->getMatrix());
         Camera::setMainCamera(&deferredGeometryShader);
+        Light::setLight(&deferredGeometryShader);
+
         setMaterial(&deferredGeometryShader);
     }
     else if(Light::depthMode && castShadow)
@@ -80,14 +86,14 @@ Cuboid::~Cuboid()
 
 void Cuboid::setMaterial(Shader *shader)
 {
-    shader->Use();
+    //shader->Use();
 
     shader->Set3f("material.ambient", material.ambient);
     shader->Set3f("material.diffuse", material.diffuse);
     shader->Set3f("material.specular", material.specular);
     shader->SetFloat("material.shininess", material.shininess);
 
-    shader->Stop();
+    //shader->Stop();
 }
 
 Cuboid::Cuboid(const Material &material,
@@ -96,7 +102,9 @@ Cuboid::Cuboid(const Material &material,
 {
     shader = Shader(vertexPath, fragmentPath);
 
+    shader.Use();
     setMaterial(&shader);
+    shader.Stop();
 
     VAO = getCubeVAO();
 }

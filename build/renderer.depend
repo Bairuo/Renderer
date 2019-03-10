@@ -3590,7 +3590,7 @@
 	"ConfigUtilities.h"
 	"Cuboid.h"
 
-1552209935 source:d:\jzr\renderer\src\cuboid.cpp
+1552216257 source:d:\jzr\renderer\src\cuboid.cpp
 	"Cuboid.h"
 	"ConfigUtilities.h"
 	"basicrender.h"
@@ -3647,7 +3647,7 @@
 
 1551754228 d:\jzr\renderer\src\keyutilities.h
 
-1552062509 source:d:\jzr\renderer\src\light.cpp
+1552214719 source:d:\jzr\renderer\src\light.cpp
 	"Light.h"
 	"Posture.h"
 
@@ -3699,7 +3699,7 @@
 	"TextRenderer.h"
 	"ConfigUtilities.h"
 
-1552209716 source:d:\jzr\renderer\src\main.cpp
+1552215692 source:d:\jzr\renderer\src\main.cpp
 	<iostream>
 	<boost/shared_ptr.hpp>
 	<GL/glew.h>
@@ -3724,7 +3724,7 @@
 	<GLFW/glfw3.h>
 	"Shader.h"
 
-1552211924 source:d:\jzr\renderer\src\deferred.cpp
+1552216182 source:d:\jzr\renderer\src\deferred.cpp
 	"Deferred.h"
 	"ConfigUtilities.h"
 	"Camera.h"

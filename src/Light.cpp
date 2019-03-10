@@ -71,8 +71,6 @@ void Light::openShadowMap()
     glDrawBuffer(GL_NONE);
     glReadBuffer(GL_NONE);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 }
 
 void Light::startRenderDepth(const Posture * const posture)

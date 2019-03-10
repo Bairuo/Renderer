@@ -1,4 +1,5 @@
 #version 330 core
+/*
 layout (location = 0) out vec3 gPosition;
 layout (location = 1) out vec4 gPosLightSpace;
 layout (location = 2) out vec3 gNormal;
@@ -6,6 +7,7 @@ layout (location = 2) out vec3 gNormal;
 layout (location = 3) out vec3 gAmbient;
 layout (location = 4) out vec3 gDiffuse;
 layout (location = 5) out vec4 gAlbedoSpec;
+*/
 
 struct Material {
     vec3 ambient;
@@ -19,8 +21,11 @@ in vec3 FragPos;
 in vec3 vNormal;
 in vec4 FragPosLightSpace;
 
+out vec4 color;
+
 void main()
 {
+/*
     gPosition = FragPos;
     gPosition = vec3(1.0, 0.0, 0.0);
 
@@ -36,4 +41,6 @@ void main()
     gAlbedoSpec.rgb = material.specular;
 
     gAlbedoSpec.a = material.shininess;
+*/
+    color = vec4(0.0, 0.0, 1.0, 1.0);
 }
