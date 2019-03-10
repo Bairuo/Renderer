@@ -9,6 +9,7 @@ Based on opengl programmable rendering pipeline
 * Multi light source
 * Basic shadow mapping (PCF optimization)
 * MSAA
+* Forward Rendering and Deferred Rendering
 
 #### Physics
 * Rough contact detection based on BVH in dynamic scene
@@ -16,10 +17,9 @@ Based on opengl programmable rendering pipeline
 #### Others
 * Frame animation of position, scale, rotate and color in 2D
 
-![Screenshot](https://github.com/Bairuo/renderer/raw/master/meta/move1.jpg)
-![Screenshot](https://github.com/Bairuo/renderer/raw/master/meta/move2.jpg)
-![Screenshot](https://github.com/Bairuo/renderer/raw/master/meta/contacts4.jpg)
-![Screenshot](https://github.com/Bairuo/renderer/raw/master/meta/contacts8.jpg)
+![Screenshot](https://github.com/Bairuo/renderer/raw/master/meta/move.jpg)
+![Screenshot](https://github.com/Bairuo/renderer/raw/master/meta/contacts.jpg)
+![Screenshot](https://github.com/Bairuo/renderer/raw/master/meta/gBuffer.jpg)
 
 ### Dependencies
 opengl,  glew, glfw, freetype, boost
