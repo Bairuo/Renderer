@@ -45,34 +45,33 @@ out vec4 color;
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir, float shadow)
 {
     vec3 lightDir = normalize(-light.direction);
-    // 漫反射着色
+
     float diff = max(dot(normal, lightDir), 0.0);
-    // 镜面光着色
+
     vec3 reflectDir = reflect(-lightDir, normal);
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-    // 合并结果
+
     vec3 ambient = light.ambient * material.diffuse;
     vec3 diffuse = light.diffuse * diff * material.diffuse;
     vec3 specular = light.specular * spec * material.diffuse;
 
-    //return (1 - shadow) * (ambient + (1 - shadow) * (diffuse + specular));
-    //return ambient;
+
     return (ambient + (1 - shadow) * (diffuse + specular));
 }
 
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir, float shadow)
 {
     vec3 lightDir = normalize(light.position - fragPos);
-    // 漫反射着色
+
     float diff = max(dot(normal, lightDir), 0.0);
-    // 镜面光着色
+
     vec3 reflectDir = reflect(-lightDir, normal);
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-    // 衰减
+
     float distance    = length(light.position - fragPos);
     float attenuation = 1.0 / (light.constant + light.linear * distance +
                  light.quadratic * (distance * distance));
-    // 合并结果
+
     vec3 ambient  = light.ambient  * material.diffuse;
     vec3 diffuse  = light.diffuse  * diff * material.diffuse;
     vec3 specular = light.specular * spec * material.diffuse;
@@ -81,22 +80,19 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir, f
     diffuse  *= attenuation;
     specular *= attenuation;
 
-    //return (1 - shadow) * (ambient + (1 - shadow) * (diffuse + specular));
-    //return ambient;
     return (ambient + (1 - shadow) * (diffuse + specular));
 }
 
 float ShadowCalculation(vec4 fragPosLightSpace)
 {
-    // 执行透视除法
     vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
-    // 变换到[0,1]的范围
+
     projCoords = projCoords * 0.5 + 0.5;
-    // 取得最近点的深度(使用[0,1]范围下的fragPosLight当坐标)
+
     float closestDepth = texture(shadowMap, projCoords.xy).r;
-    // 取得当前片元在光源视角下的深度
+
     float currentDepth = projCoords.z;
-    // 检查当前片元是否在阴影中
+
     float bias = 0.008;
 
     float shadow = 0.0;
@@ -143,6 +139,4 @@ void main()
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir, shadow);
 
     color = vec4(result, 1.0);
-
-    //color = debug(FragPosLightSpace);
 }
