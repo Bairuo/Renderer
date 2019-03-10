@@ -56,14 +56,14 @@ void main()
     // Retrieve data from gbuffer
     vec3 FragPos = texture(gPosition, TexCoords).rgb;
     vec4 FragPosLightSpace = texture(gPosLightSpace, TexCoords).rgba;
-    vec3 vNormal = texture(gNormal, TexCoords).rgb;
+    vec3 norm = texture(gNormal, TexCoords).rgb;
 
     material.ambient = texture(gAmbient, TexCoords).rgb;
     material.diffuse = texture(gDiffuse, TexCoords).rgb;
     material.specular = texture(gAlbedoSpec, TexCoords).rgb;
-    material.shininess = texture(gAlbedoSpec, TexCoords).a;
+    //material.shininess = texture(gAlbedoSpec, TexCoords).a;
+    material.shininess = 32;
 
-    vec3 norm = normalize(vNormal);
     vec3 viewDir = normalize(viewPos - FragPos);
 
     float shadow = ShadowCalculation(FragPosLightSpace);
@@ -73,9 +73,7 @@ void main()
     for(int i = 0; i < NR_POINT_LIGHTS; i++)
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir, shadow);
 
-    color = vec4(result, 1.0);
-    //color = vec4(material.ambient, 1.0);
-    //color = vec4(0.0, 0.0, 0.0, 1.0);
+    color = material.ambient.g > 0.6 ? vec4(0.98, 0.972, 0.937, 1.0) : vec4(result, 1.0);
 }
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir, float shadow)
@@ -121,6 +119,7 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir, f
 float ShadowCalculation(vec4 fragPosLightSpace)
 {
     vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+    //vec3 projCoords = fragPosLightSpace.xyz;
 
     projCoords = projCoords * 0.5 + 0.5;
 

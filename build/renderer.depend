@@ -3690,7 +3690,7 @@
 	"property.h"
 	"Color.h"
 
-1552226062 source:d:\jzr\renderer\src\textrenderer.cpp
+1552227733 source:d:\jzr\renderer\src\textrenderer.cpp
 	<cstdio>
 	<string>
 	<iostream>
@@ -3699,7 +3699,7 @@
 	"TextRenderer.h"
 	"ConfigUtilities.h"
 
-1552226232 source:d:\jzr\renderer\src\main.cpp
+1552227741 source:d:\jzr\renderer\src\main.cpp
 	<iostream>
 	<boost/shared_ptr.hpp>
 	<GL/glew.h>
@@ -3724,7 +3724,7 @@
 	<GLFW/glfw3.h>
 	"Shader.h"
 
-1552225597 source:d:\jzr\renderer\src\deferred.cpp
+1552230980 source:d:\jzr\renderer\src\deferred.cpp
 	"Deferred.h"
 	"ConfigUtilities.h"
 	"Camera.h"

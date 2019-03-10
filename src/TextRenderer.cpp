@@ -168,6 +168,7 @@ void TextRenderer::DrawText(const std::string &str, float x0, float y0, const Co
     for(unsigned int i = 0; i < str.length(); i++)
     {
         CharTexture* charTex = GetTextChar(str[i], size, bold);
+        glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, charTex->texID);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);

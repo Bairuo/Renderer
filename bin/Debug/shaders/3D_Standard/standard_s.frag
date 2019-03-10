@@ -139,6 +139,4 @@ void main()
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir, shadow);
 
     color = vec4(result, 1.0);
-
-    //color = debug(FragPosLightSpace);
 }

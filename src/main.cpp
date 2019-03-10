@@ -132,6 +132,9 @@ int main()
 
     /* rendering setting */
     //glEnable(GL_DEPTH_TEST);
+    //glEnable(GL_CULL_FACE);
+    //glCullFace(GL_BACK);
+
     glEnable(GL_MULTISAMPLE);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -142,12 +145,10 @@ int main()
     GLuint gBuffer = getGBuffer();
 #endif // defined
 
-
-/*
 #if defined(SHADOWMAP)
     Light::openShadowMap();
 #endif // defined
-*/
+
     // Time
     mainTime.Init();
 
@@ -171,14 +172,9 @@ int main()
         if(BVHTree != nullptr)
         {
             // BVH Update
-            //std::cout << "before update" << std::endl;
             BVHTree->Update(BVHTree);
 
-            //std::cout << "after update" << std::endl;
-
             potentialDebug = BVHTree->getPotentialContacts(potentialContacts);
-
-            //std::cout << "after potential" << std::endl;
         }
         else
         {
@@ -190,7 +186,7 @@ int main()
 
 #if defined(DEFERRED)
         GBufferMode = true;
-        //glBindFramebuffer(GL_FRAMEBUFFER, gBuffer);
+        glBindFramebuffer(GL_FRAMEBUFFER, gBuffer);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         for(size_t i = 0; i < Objects.size(); i++)
@@ -202,7 +198,7 @@ int main()
         GBufferMode = false;
 
 #endif // defined
-/*
+
 #if defined(SHADOWMAP)
         // render depth map
         Light::depthMode = true;
@@ -219,7 +215,7 @@ int main()
 
         // Recovery Setting
         glViewport(0, 0, WindowWidth, WindowHeight);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         Light::depthMode = false;
 
 #endif
@@ -262,16 +258,15 @@ int main()
         }
 
 #endif // defined DEFERRED
-*/
+
         glDisable(GL_DEPTH_TEST);
 
-        textRenderer->DrawText("Fun Renderer", -384, 358, titleColor, 32, true);
+        //textRenderer->DrawText("Fun Renderer", -384, 358, titleColor, 32, true);
+        textRenderer->DrawText("NORMALS", -384, 358, Color(0, 0, 0, 1), 32, true);
         textRenderer->DrawText("FPS:" + bairuo::int2str(GameTime::GetFPS()), -384, 326, FPSColor, 16, true);
         textRenderer->DrawText("WASD to move ", -384, -334, titleColor, 16, true);
         textRenderer->DrawText("Potential contacts: " + bairuo::uns2str(potentialDebug), -384, -358, titleColor, 16, true);
 
-        //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glfwSwapBuffers(window);
 
         mainTime.Update();
