@@ -3492,7 +3492,7 @@
 	"ft2build.h"
 	"freetype.h"
 
-1551754228 d:\jzr\renderer\src\configutilities.h
+1552057578 d:\jzr\renderer\src\configutilities.h
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 
@@ -3545,7 +3545,7 @@
 	<sstream>
 	<iostream>
 
-1551754228 source:d:\jzr\renderer\src\basicrender.cpp
+1552143376 source:d:\jzr\renderer\src\basicrender.cpp
 	"basicrender.h"
 
 1551754228 d:\jzr\renderer\src\basicrender.h
@@ -3586,10 +3586,11 @@
 1551754228 source:d:\jzr\renderer\src\color.cpp
 	"Color.h"
 
-1551754228 source:d:\jzr\renderer\src\configutilities.cpp
+1552055229 source:d:\jzr\renderer\src\configutilities.cpp
 	"ConfigUtilities.h"
+	"Cuboid.h"
 
-1551754228 source:d:\jzr\renderer\src\cuboid.cpp
+1552200641 source:d:\jzr\renderer\src\cuboid.cpp
 	"Cuboid.h"
 	"ConfigUtilities.h"
 	"basicrender.h"
@@ -3598,9 +3599,10 @@
 	"Posture.h"
 	"Animation.h"
 	"Object.h"
+	"Deferred.h"
 	<cmath>
 
-1551754228 d:\jzr\renderer\src\cuboid.h
+1552199886 d:\jzr\renderer\src\cuboid.h
 	<GL/glew.h>
 	<boost/shared_ptr.hpp>
 	"Color.h"
@@ -3613,7 +3615,7 @@
 
 1551754228 d:\jzr\renderer\src\renderer.h
 
-1551754228 d:\jzr\renderer\src\light.h
+1552062532 d:\jzr\renderer\src\light.h
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	"Shader.h"
@@ -3645,7 +3647,7 @@
 
 1551754228 d:\jzr\renderer\src\keyutilities.h
 
-1551754228 source:d:\jzr\renderer\src\light.cpp
+1552062509 source:d:\jzr\renderer\src\light.cpp
 	"Light.h"
 	"Posture.h"
 
@@ -3697,7 +3699,7 @@
 	"TextRenderer.h"
 	"ConfigUtilities.h"
 
-1552049428 source:d:\jzr\renderer\src\main.cpp
+1552061814 source:d:\jzr\renderer\src\main.cpp
 	<iostream>
 	<boost/shared_ptr.hpp>
 	<GL/glew.h>
@@ -3714,5 +3716,18 @@
 	"Posture.h"
 	"Animation.h"
 	"BVH.h"
+	"Deferred.h"
 	<list>
+
+1552201499 d:\jzr\renderer\src\deferred.h
+	<GL/glew.h>
+	<GLFW/glfw3.h>
+	"Shader.h"
+
+1552204740 source:d:\jzr\renderer\src\deferred.cpp
+	"Deferred.h"
+	"ConfigUtilities.h"
+	"Camera.h"
+	"Light.h"
+	<iostream>
 

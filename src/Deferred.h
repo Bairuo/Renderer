@@ -7,12 +7,20 @@
 
 #include "Shader.h"
 
-class Posture;
-
 extern bool GBufferMode;
 
-extern Shader deferredShader;
+extern Shader deferredGeometryShader;
+extern Shader deferredLightingsShader;
+
+extern GLuint gPosition;
+extern GLuint gPosLightSpace;
+
+extern GLuint gNormal;
+extern GLuint gAmbient;
+extern GLuint gDiffuse;
+extern GLuint gAlbedoSpec;
 
 GLuint getGBuffer();
+void deferredLightingRender();
 
 #endif

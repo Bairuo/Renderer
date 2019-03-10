@@ -34,6 +34,7 @@ private:
     GLuint VAO;
 
     Shader shader;
+    Material material;
 
     bool active = true;
 

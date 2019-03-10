@@ -26,11 +26,11 @@ void Cuboid::Update()
     // set
     if(GBufferMode)
     {
-        deferredShader.Use();
+        deferredGeometryShader.Use();
 
-        deferredShader.SetMat4("model", obj->posture->getMatrix());
-        Camera::setMainCamera(&deferredShader);
-        setMaterial(&deferredShader);
+        deferredGeometryShader.SetMat4("model", obj->posture->getMatrix());
+        Camera::setMainCamera(&deferredGeometryShader);
+        setMaterial(&deferredGeometryShader);
     }
     else if(Light::depthMode && castShadow)
     {
@@ -62,7 +62,7 @@ void Cuboid::Update()
     }
     else if(GBufferMode)
     {
-        deferredShader.Stop();
+        deferredGeometryShader.Stop();
     }
     else
     {
@@ -91,10 +91,11 @@ void Cuboid::setMaterial(Shader *shader)
 
 Cuboid::Cuboid(const Material &material,
                const GLchar *vertexPath, const GLchar *fragmentPath)
+               : material(material)
 {
     shader = Shader(vertexPath, fragmentPath);
 
-    setMaterial(shader);
+    setMaterial(&shader);
 
     VAO = getCubeVAO();
 }

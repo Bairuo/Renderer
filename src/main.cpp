@@ -230,12 +230,24 @@ int main()
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, gPosition);
         glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, gNormal);
+        glBindTexture(GL_TEXTURE_2D, gPosLightSpace);
         glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, gNormal);
+        glActiveTexture(GL_TEXTURE3);
+        glBindTexture(GL_TEXTURE_2D, gAmbient);
+        glActiveTexture(GL_TEXTURE4);
+        glBindTexture(GL_TEXTURE_2D, gDiffuse);
+        glActiveTexture(GL_TEXTURE5);
         glBindTexture(GL_TEXTURE_2D, gAlbedoSpec);
 
-#endif // defined
+#if defined(SHADOWMAP)
+        glActiveTexture(GL_TEXTURE6);
+        glBindTexture(GL_TEXTURE_2D, Light::depthMap);
+#endif
 
+        deferredLightingRender();
+
+#else
 
 #if defined(SHADOWMAP)
         glActiveTexture(GL_TEXTURE0);
@@ -246,6 +258,8 @@ int main()
         {
             Objects[i]->Render();
         }
+
+#endif // defined DEFERRED
 
         glDisable(GL_DEPTH_TEST);
 

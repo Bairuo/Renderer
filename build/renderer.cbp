@@ -51,8 +51,6 @@
 		<Unit filename="../bin/Debug/shaders/3D_Standard/shadowmap.vs" />
 		<Unit filename="../bin/Debug/shaders/3D_Standard/standard.frag" />
 		<Unit filename="../bin/Debug/shaders/3D_Standard/standard.vs" />
-		<Unit filename="../bin/Debug/shaders/3D_Standard/standard_d.frag" />
-		<Unit filename="../bin/Debug/shaders/3D_Standard/standard_d.vs" />
 		<Unit filename="../bin/Debug/shaders/3D_Standard/standard_s.frag" />
 		<Unit filename="../bin/Debug/shaders/3D_Standard/standard_s.vs" />
 		<Unit filename="../src/AlignedText.cpp" />
