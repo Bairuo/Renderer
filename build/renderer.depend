@@ -3492,7 +3492,7 @@
 	"ft2build.h"
 	"freetype.h"
 
-1552057578 d:\jzr\renderer\src\configutilities.h
+1552227127 d:\jzr\renderer\src\configutilities.h
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 
@@ -3545,7 +3545,7 @@
 	<sstream>
 	<iostream>
 
-1552143376 source:d:\jzr\renderer\src\basicrender.cpp
+1552224445 source:d:\jzr\renderer\src\basicrender.cpp
 	"basicrender.h"
 
 1551754228 d:\jzr\renderer\src\basicrender.h
@@ -3690,7 +3690,7 @@
 	"property.h"
 	"Color.h"
 
-1551754228 source:d:\jzr\renderer\src\textrenderer.cpp
+1552226062 source:d:\jzr\renderer\src\textrenderer.cpp
 	<cstdio>
 	<string>
 	<iostream>
@@ -3699,7 +3699,7 @@
 	"TextRenderer.h"
 	"ConfigUtilities.h"
 
-1552215692 source:d:\jzr\renderer\src\main.cpp
+1552226232 source:d:\jzr\renderer\src\main.cpp
 	<iostream>
 	<boost/shared_ptr.hpp>
 	<GL/glew.h>
@@ -3724,7 +3724,7 @@
 	<GLFW/glfw3.h>
 	"Shader.h"
 
-1552216182 source:d:\jzr\renderer\src\deferred.cpp
+1552225597 source:d:\jzr\renderer\src\deferred.cpp
 	"Deferred.h"
 	"ConfigUtilities.h"
 	"Camera.h"
