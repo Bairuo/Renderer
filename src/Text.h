@@ -7,7 +7,7 @@
 #include<string>
 #include <boost/shared_ptr.hpp>
 #include "TextRenderer.h"
-#include "Posture.h"
+#include "Transform.h"
 #include "property.h"
 #include "Color.h"
 
@@ -16,7 +16,7 @@ class Animation;
 class Text
 {
 public:
-    Posture posture;
+    Transform transform;
     Color color;
     int size;
 

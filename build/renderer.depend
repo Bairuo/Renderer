@@ -2830,7 +2830,7 @@
 
 1551685312 source:d:\jzr\renderer-dev\src\rigidbody.cpp
 
-1551754228 source:d:\jzr\renderer\src\alignedtext.cpp
+1552386847 source:d:\jzr\renderer\src\alignedtext.cpp
 	"AlignedText.h"
 	"TextRenderer.h"
 	<string>
@@ -2842,12 +2842,12 @@
 	"Rectangle.h"
 	<string>
 
-1551754228 d:\jzr\renderer\src\rectangle.h
+1552386847 d:\jzr\renderer\src\rectangle.h
 	<GL/glew.h>
 	<boost/shared_ptr.hpp>
 	"Color.h"
 	"Shader.h"
-	"Posture.h"
+	"Transform.h"
 	"Animation.h"
 	"property.h"
 
@@ -3404,15 +3404,15 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
 
-1551754228 d:\jzr\renderer\src\animation.h
+1552386847 d:\jzr\renderer\src\animation.h
 	<vector>
 	<time.h>
 	"Frame.h"
 	"Color.h"
 
-1551754228 d:\jzr\renderer\src\frame.h
+1552386847 d:\jzr\renderer\src\frame.h
 	"Color.h"
-	"Posture.h"
+	"Transform.h"
 
 1551754228 d:\jzr\renderer\src\property.h
 	<functional>
@@ -3492,7 +3492,7 @@
 	"ft2build.h"
 	"freetype.h"
 
-1552227127 d:\jzr\renderer\src\configutilities.h
+1552234065 d:\jzr\renderer\src\configutilities.h
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 
@@ -3530,7 +3530,7 @@
 1551754227 d:\jzr\renderer\include\gl\glext.h
 	<windows.h>
 
-1551754228 source:d:\jzr\renderer\src\animation.cpp
+1552386847 source:d:\jzr\renderer\src\animation.cpp
 	<iostream>
 	"Animation.h"
 	"GameTime.h"
@@ -3545,13 +3545,13 @@
 	<sstream>
 	<iostream>
 
-1552224445 source:d:\jzr\renderer\src\basicrender.cpp
+1552234065 source:d:\jzr\renderer\src\basicrender.cpp
 	"basicrender.h"
 
 1551754228 d:\jzr\renderer\src\basicrender.h
 	<GL/glew.h>
 
-1551754228 source:d:\jzr\renderer\src\button.cpp
+1552386847 source:d:\jzr\renderer\src\button.cpp
 	"Button.h"
 	"ConfigUtilities.h"
 
@@ -3562,14 +3562,14 @@
 	"BVH.h"
 	<cmath>
 
-1551754228 d:\jzr\renderer\src\bvh.h
+1552386847 d:\jzr\renderer\src\bvh.h
 	<glm/vec3.hpp>
 	<list>
 	<iostream>
 	"Object.h"
-	"Posture.h"
+	"Transform.h"
 
-1551754228 d:\jzr\renderer\src\object.h
+1552386848 d:\jzr\renderer\src\object.h
 	<vector>
 	<boost/shared_ptr.hpp>
 
@@ -3586,23 +3586,23 @@
 1551754228 source:d:\jzr\renderer\src\color.cpp
 	"Color.h"
 
-1552055229 source:d:\jzr\renderer\src\configutilities.cpp
+1552234065 source:d:\jzr\renderer\src\configutilities.cpp
 	"ConfigUtilities.h"
 	"Cuboid.h"
 
-1552216257 source:d:\jzr\renderer\src\cuboid.cpp
+1552387260 source:d:\jzr\renderer\src\cuboid.cpp
 	"Cuboid.h"
 	"ConfigUtilities.h"
 	"basicrender.h"
 	"Camera.h"
 	"Light.h"
-	"Posture.h"
+	"Transform.h"
 	"Animation.h"
 	"Object.h"
 	"Deferred.h"
 	<cmath>
 
-1552199886 d:\jzr\renderer\src\cuboid.h
+1552386250 d:\jzr\renderer\src\cuboid.h
 	<GL/glew.h>
 	<boost/shared_ptr.hpp>
 	"Color.h"
@@ -3613,14 +3613,14 @@
 1551754228 d:\jzr\renderer\src\material.h
 	<GL/glew.h>
 
-1551754228 d:\jzr\renderer\src\renderer.h
+1552386222 d:\jzr\renderer\src\renderer.h
 
-1552062532 d:\jzr\renderer\src\light.h
+1552386847 d:\jzr\renderer\src\light.h
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	"Shader.h"
 
-1551754228 source:d:\jzr\renderer\src\frame.cpp
+1552386848 source:d:\jzr\renderer\src\frame.cpp
 	"Frame.h"
 
 1551754228 source:d:\jzr\renderer\src\gametime.cpp
@@ -3629,15 +3629,15 @@
 	<iostream>
 	<GLFW/glfw3.h>
 
-1551754228 source:d:\jzr\renderer\src\inputtext.cpp
+1552386847 source:d:\jzr\renderer\src\inputtext.cpp
 	"InputText.h"
 	"Rectangle.h"
 
-1551754228 d:\jzr\renderer\src\inputtext.h
+1552386847 d:\jzr\renderer\src\inputtext.h
 	<boost/shared_ptr.hpp>
 	"TextRenderer.h"
 	"Rectangle.h"
-	"Posture.h"
+	"Transform.h"
 	"property.h"
 
 1551754228 source:d:\jzr\renderer\src\keyutilities.cpp
@@ -3647,16 +3647,16 @@
 
 1551754228 d:\jzr\renderer\src\keyutilities.h
 
-1552214719 source:d:\jzr\renderer\src\light.cpp
+1552386847 source:d:\jzr\renderer\src\light.cpp
 	"Light.h"
-	"Posture.h"
+	"Transform.h"
 
-1551754228 source:d:\jzr\renderer\src\object.cpp
+1552387249 source:d:\jzr\renderer\src\object.cpp
 	"Object.h"
 	"Renderer.h"
 	"RigidBody.h"
 	"Animation.h"
-	"Posture.h"
+	"Transform.h"
 
 1551754228 d:\jzr\renderer\src\rigidbody.h
 
@@ -3664,7 +3664,7 @@
 	<iostream>
 	"Posture.h"
 
-1551754228 source:d:\jzr\renderer\src\rectangle.cpp
+1552386848 source:d:\jzr\renderer\src\rectangle.cpp
 	"Rectangle.h"
 	"ConfigUtilities.h"
 	"basicrender.h"
@@ -3678,19 +3678,19 @@
 1551754228 source:d:\jzr\renderer\src\shader.cpp
 	"Shader.h"
 
-1551754228 source:d:\jzr\renderer\src\text.cpp
+1552386847 source:d:\jzr\renderer\src\text.cpp
 	"Text.h"
 	"Animation.h"
 
-1551754228 d:\jzr\renderer\src\text.h
+1552386847 d:\jzr\renderer\src\text.h
 	<string>
 	<boost/shared_ptr.hpp>
 	"TextRenderer.h"
-	"Posture.h"
+	"Transform.h"
 	"property.h"
 	"Color.h"
 
-1552227733 source:d:\jzr\renderer\src\textrenderer.cpp
+1552234065 source:d:\jzr\renderer\src\textrenderer.cpp
 	<cstdio>
 	<string>
 	<iostream>
@@ -3699,7 +3699,7 @@
 	"TextRenderer.h"
 	"ConfigUtilities.h"
 
-1552227741 source:d:\jzr\renderer\src\main.cpp
+1552386678 source:d:\jzr\renderer\src\main.cpp
 	<iostream>
 	<boost/shared_ptr.hpp>
 	<GL/glew.h>
@@ -3713,21 +3713,30 @@
 	"Camera.h"
 	"Light.h"
 	"Object.h"
-	"Posture.h"
+	"Transform.h"
 	"Animation.h"
 	"BVH.h"
 	"Deferred.h"
 	<list>
 
-1552201499 d:\jzr\renderer\src\deferred.h
+1552234065 d:\jzr\renderer\src\deferred.h
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	"Shader.h"
 
-1552230980 source:d:\jzr\renderer\src\deferred.cpp
+1552234065 source:d:\jzr\renderer\src\deferred.cpp
 	"Deferred.h"
 	"ConfigUtilities.h"
 	"Camera.h"
 	"Light.h"
 	<iostream>
+
+1552387044 d:\jzr\renderer\src\transform.h
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+
+1552386679 source:d:\jzr\renderer\src\transform.cpp
+	<iostream>
+	"Transform.h"
 

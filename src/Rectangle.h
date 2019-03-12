@@ -10,7 +10,7 @@
 
 #include "Color.h"
 #include "Shader.h"
-#include "Posture.h"
+#include "Transform.h"
 #include "Animation.h"
 #include "property.h"
 
@@ -20,15 +20,15 @@ public:
     float radius;
     boost::shared_ptr<Animation> animation;
 
-    property_rw<Posture> posture = property_rw<Posture>(
-        property_set(Posture)
+    property_rw<Transform> transform = property_rw<Transform>(
+        property_set(Transform)
         {
-            postureChange = true;
-            _posture = value;
+            transformChange = true;
+            _transform = value;
         },
-        property_get(Posture)
+        property_get(Transform)
         {
-            return _posture;
+            return _transform;
         }
     );
 
@@ -61,12 +61,12 @@ private:
     Shader shader;
 
     Color _color;
-    Posture _posture;
+    Transform _transform;
     glm::vec3 _pos;
 
     bool active = true;
     bool colorChange = false;
-    bool postureChange = false;
+    bool transformChange = false;
 
     static const GLchar standardVsPath[];
     static const GLchar standardFragPath[];

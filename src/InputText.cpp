@@ -7,7 +7,7 @@ InputText::~InputText()
 }
 
 InputText::InputText(const std::string &text, const glm::vec3 &pos, const Color &color, int size)
-    :posture(pos, 1),
+    :transform(pos, 1),
      color(color),
      size(size)
 {
@@ -28,10 +28,10 @@ void InputText::generateCurosAnimation(const Color &color, float time)
     boost::shared_ptr<Animation> cursorAnimation(new Animation());
     cursorAnimation->setStartTime(time);
     cursorAnimation->setLoop(true);
-    cursorAnimation->addFrame(0, cursor->posture(), Color(color.r, color.g, color.b, 1));
-    cursorAnimation->addFrame(0.6f, cursor->posture(), Color(color.r, color.g, color.b, 1));
-    cursorAnimation->addFrame(0.6f, cursor->posture(), Color(color.r, color.g, color.b, 0));
-    cursorAnimation->addFrame(1.2f, cursor->posture(), Color(color.r, color.g, color.b, 0));
+    cursorAnimation->addFrame(0, cursor->transform(), Color(color.r, color.g, color.b, 1));
+    cursorAnimation->addFrame(0.6f, cursor->transform(), Color(color.r, color.g, color.b, 1));
+    cursorAnimation->addFrame(0.6f, cursor->transform(), Color(color.r, color.g, color.b, 0));
+    cursorAnimation->addFrame(1.2f, cursor->transform(), Color(color.r, color.g, color.b, 0));
     cursorAnimation->Start();
 
     cursor->animation = cursorAnimation;
@@ -44,6 +44,6 @@ void InputText::Update()
         cursor->Update();
     }
 
-    textRenderer->DrawText(text, posture.getPosX() - shift.x, posture.getPosY() - shift.y, color, size, true);
+    textRenderer->DrawText(text, transform.getPosX() - shift.x, transform.getPosY() - shift.y, color, size, true);
 
 }

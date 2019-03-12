@@ -1,5 +1,5 @@
 #include "Light.h"
-#include "Posture.h"
+#include "Transform.h"
 
 #if defined(_WIN32)
 const GLchar shadowmapVSPath[] = ".\\shaders\\3D_Standard\\shadowmap.vs";
@@ -73,7 +73,7 @@ void Light::openShadowMap()
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Light::startRenderDepth(const Posture * const posture)
+void Light::startRenderDepth(const Transform * const transform)
 {
     glm::mat4 lightProjection, lightView;
     glm::mat4 lightSpaceMatrix;
@@ -84,7 +84,7 @@ void Light::startRenderDepth(const Posture * const posture)
 
 
     depthShader.Use();
-    glUniformMatrix4fv(glGetUniformLocation(depthShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(posture->getMatrix()));
+    glUniformMatrix4fv(glGetUniformLocation(depthShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(transform->getMatrix()));
     glUniformMatrix4fv(glGetUniformLocation(depthShader.ID, "lightSpaceMatrix"), 1, GL_FALSE, glm::value_ptr(lightSpaceMatrix));
 
     return;

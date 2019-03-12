@@ -84,8 +84,6 @@
 		<Unit filename="../src/Material.h" />
 		<Unit filename="../src/Object.cpp" />
 		<Unit filename="../src/Object.h" />
-		<Unit filename="../src/Posture.cpp" />
-		<Unit filename="../src/Posture.h" />
 		<Unit filename="../src/Rectangle.cpp" />
 		<Unit filename="../src/Rectangle.h" />
 		<Unit filename="../src/Renderer.cpp" />
@@ -98,6 +96,8 @@
 		<Unit filename="../src/Text.h" />
 		<Unit filename="../src/TextRenderer.cpp" />
 		<Unit filename="../src/TextRenderer.h" />
+		<Unit filename="../src/Transform.cpp" />
+		<Unit filename="../src/Transform.h" />
 		<Unit filename="../src/bairuofunctions.cpp" />
 		<Unit filename="../src/bairuofunctions.h" />
 		<Unit filename="../src/basicrender.cpp" />

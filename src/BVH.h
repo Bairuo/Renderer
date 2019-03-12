@@ -8,7 +8,7 @@
 #define MAXDETECTNUM 100
 
 #include "Object.h"
-#include "Posture.h"
+#include "Transform.h"
 
 struct BoundingSphere
 {
@@ -186,7 +186,7 @@ void BVHNode<BoundingVolumeClass>::Update(BVHNode<BoundingVolumeClass>* &root)
     if(RemoveDirty(removeObjs, removeVolumes))
     {
         auto volume = *(removeVolumes.begin());
-        volume.centre = (*(removeObjs.begin()))->posture->transVec3;
+        volume.centre = (*(removeObjs.begin()))->transform->transVec3;
 
         root = new BVHNode<BoundingVolumeClass>(NULL, volume, *(removeObjs.begin()));
 
@@ -199,7 +199,7 @@ void BVHNode<BoundingVolumeClass>::Update(BVHNode<BoundingVolumeClass>* &root)
 
     while(it1 != removeObjs.end() && it2 != removeVolumes.end())
     {
-        (*it2).centre = (*it1)->posture->transVec3;
+        (*it2).centre = (*it1)->transform->transVec3;
 
         root->insert(*it1, *it2);
 

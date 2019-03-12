@@ -6,7 +6,7 @@
 #include <GLFW/glfw3.h>
 
 #include "Shader.h"
-class Posture;
+class Transform;
 
 class Light
 {
@@ -26,7 +26,7 @@ public:
 
     static void openShadowMap();
 
-    static void startRenderDepth(const Posture * const posture);
+    static void startRenderDepth(const Transform * const transform);
     static void stopRenderDepth();
 
 private:

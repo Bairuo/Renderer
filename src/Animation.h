@@ -13,16 +13,16 @@ class Animation
 {
 public:
     Color getColor() const;
-    Posture getPosture() const;
+    Transform getTransform() const;
     Color getEndColor() const;
-    Posture getEndPosture() const;
+    Transform getEndTransform() const;
 
     void Start();
     void Update();
 
-    void addFrame(float time, const Posture &posture);
-    void addFrame(float time, const Posture &posture, const Color &color);
-    void moveAllFramesTo(const Posture &posture);
+    void addFrame(float time, const Transform &transform);
+    void addFrame(float time, const Transform &transform, const Color &color);
+    void moveAllFramesTo(const Transform &transform);
 
     bool getActive() const;
     void setActive(bool active);

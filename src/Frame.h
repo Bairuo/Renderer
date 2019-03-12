@@ -5,17 +5,17 @@
 #define FRAME_H_
 
 #include "Color.h"
-#include "Posture.h"
+#include "Transform.h"
 
 class Frame
 {
 public:
     float time;
-    Posture posture;
+    Transform transform;
     Color color;
 
     Frame();
-    Frame(float time, const Posture &posture, const Color &color);
+    Frame(float time, const Transform &transform, const Color &color);
 };
 
 #endif // FRAME_H_

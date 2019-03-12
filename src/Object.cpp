@@ -2,16 +2,16 @@
 #include "Renderer.h"
 #include "RigidBody.h"
 #include "Animation.h"
-#include "Posture.h"
+#include "Transform.h"
 
 int ObjectID = 0;
 
 std::vector<boost::shared_ptr<Object> > Objects;
 
-Object::Object(int id, Posture *posture, Renderer *renderer, RigidBody *rigidbody, Animation *animation)
+Object::Object(int id, Transform *transform, Renderer *renderer, RigidBody *rigidbody, Animation *animation)
     :id(id)
 {
-    this->posture.reset(posture);
+    this->transform.reset(transform);
     this->renderer.reset(renderer);
     this->rigidbody.reset(rigidbody);
     this->animation.reset(animation);
@@ -43,6 +43,11 @@ void Object::Update()
         dirty = true;
     }
 
+    if(transform.get() != nullptr)
+    {
+        transform->Update();
+    }
+
     // other components
     // ...
 }
@@ -51,13 +56,18 @@ void Object::Render()
 {
     if(renderer.get() != nullptr)
     {
-        renderer->Update();
+        renderer->Render();
     }
 }
 
-boost::shared_ptr<Object> generateObject(Posture *posture, Renderer *renderer, RigidBody *rigidbody, Animation *animation)
+boost::shared_ptr<Object> generateObject(Transform *transform, Renderer *renderer, RigidBody *rigidbody, Animation *animation)
 {
-    boost::shared_ptr<Object> newObj(new Object(ObjectID, posture, renderer, rigidbody, animation));
+    boost::shared_ptr<Object> newObj(new Object(ObjectID, transform, renderer, rigidbody, animation));
+
+    if(transform != nullptr)
+    {
+        newObj->transform->obj = newObj.get();
+    }
 
     if(renderer != nullptr)
     {

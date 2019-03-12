@@ -3,7 +3,7 @@
 #include "basicrender.h"
 #include "Camera.h"
 #include "Light.h"
-#include "Posture.h"
+#include "Transform.h"
 #include "Animation.h"
 #include "Object.h"
 #include "Deferred.h"
@@ -16,7 +16,7 @@ const Material Cuboid::defaultMaterial(
     32.0f
 );
 
-void Cuboid::Update()
+void Cuboid::Render()
 {
     if(!active)
     {
@@ -28,12 +28,12 @@ void Cuboid::Update()
     {
         deferredGeometryShader.Use();
 
-        if(obj->animation.get() != nullptr)
-        {
-            obj->posture.reset(new Posture(obj->animation->getPosture()));
-        }
+//        if(obj->animation.get() != nullptr)
+//        {
+//            obj->transform.reset(new Transform(obj->animation->getTransform()));
+//        }
 
-        deferredGeometryShader.SetMat4("model", obj->posture->getMatrix());
+        deferredGeometryShader.SetMat4("model", obj->transform->getMatrix());
         Camera::setMainCamera(&deferredGeometryShader);
         Light::setLight(&deferredGeometryShader);
 
@@ -41,18 +41,18 @@ void Cuboid::Update()
     }
     else if(Light::depthMode && castShadow)
     {
-        Light::startRenderDepth(obj->posture.get());
+        Light::startRenderDepth(obj->transform.get());
     }
     else
     {
         shader.Use();
 
-        if(obj->animation.get() != nullptr)
-        {
-            obj->posture.reset(new Posture(obj->animation->getPosture()));
-        }
+//        if(obj->animation.get() != nullptr)
+//        {
+//            obj->transform.reset(new Transform(obj->animation->getTransform()));
+//        }
 
-        shader.SetMat4("model", obj->posture->getMatrix());
+        shader.SetMat4("model", obj->transform->getMatrix());
         Camera::setMainCamera(&shader);
         Light::setLight(&shader);
     }
@@ -111,9 +111,9 @@ Cuboid::Cuboid(const Material &material,
 
 double Cuboid::getSphereBoundingRadius()
 {
-    double x = obj->posture->getPosX() * obj->posture->getScaleX();
-    double y = obj->posture->getPosY() * obj->posture->getScaleY();
-    double z = obj->posture->getPosZ() * obj->posture->getScaleZ();
+    double x = obj->transform->getPosX() * obj->transform->getScaleX();
+    double y = obj->transform->getPosY() * obj->transform->getScaleY();
+    double z = obj->transform->getPosZ() * obj->transform->getScaleZ();
 
     return sqrt(x * x + y * y + z * z);
 }

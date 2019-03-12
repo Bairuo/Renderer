@@ -4,7 +4,7 @@
 #include <vector>
 #include <boost/shared_ptr.hpp>
 
-class Posture;
+class Transform;
 class Renderer;
 class RigidBody;
 class Animation;
@@ -18,12 +18,12 @@ public:
     // Components
     // Can change to array
     // RigidBody *rigidbody[MAXSIZE]
-    boost::shared_ptr<Posture> posture;     // History problem, may it need to be called 'Transform'
+    boost::shared_ptr<Transform> transform;     // History problem, may it need to be called 'Transform'
     boost::shared_ptr<Renderer> renderer;
     boost::shared_ptr<RigidBody> rigidbody;
     boost::shared_ptr<Animation> animation;
 
-    Object(int id, Posture *posture, Renderer *renderer, RigidBody *rigidbody, Animation *animation);
+    Object(int id, Transform *transform, Renderer *renderer, RigidBody *rigidbody, Animation *animation);
     ~Object();
 
     void Update();
@@ -35,7 +35,7 @@ public:
 extern std::vector<boost::shared_ptr<Object> > Objects;
 
 boost::shared_ptr<Object> generateObject(
-            Posture *posture,
+            Transform *transform,
             Renderer *renderer = nullptr, RigidBody *rigidbody = nullptr, Animation *animation = nullptr);
 
 #endif // OBJECT_H

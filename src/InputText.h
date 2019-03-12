@@ -8,7 +8,7 @@
 
 #include "TextRenderer.h"
 #include "Rectangle.h"
-#include "Posture.h"
+#include "Transform.h"
 #include "property.h"
 
 class Animation;
@@ -16,7 +16,7 @@ class Animation;
 class InputText
 {
 public:
-    Posture posture;
+    Transform transform;
     Color color;
     int size;
     boost::shared_ptr<Rectangle> cursor;
@@ -30,15 +30,15 @@ public:
 
             shift.y = textRenderer->GetTexHeight(_text, size, true) * 0.74f / 2;
 
-            glm::vec3 cursorPos = glm::vec3(posture.getPosX() + shift.x - cursorWight / 2, posture.getPosY() - cursorShift, posture.getPosZ());
+            glm::vec3 cursorPos = glm::vec3(transform.getPosX() + shift.x - cursorWight / 2, transform.getPosY() - cursorShift, transform.getPosZ());
 
             if(cursor != nullptr)
             {
-                cursor->posture = Posture(cursorPos, cursor->posture().scaleVec3);
+                cursor->transform = Transform(cursorPos, cursor->transform().scaleVec3);
 
                 if(cursor->animation != nullptr)
                 {
-                    cursor->animation->moveAllFramesTo(cursor->posture);
+                    cursor->animation->moveAllFramesTo(cursor->transform);
                 }
             }
 

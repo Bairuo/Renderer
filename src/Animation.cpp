@@ -20,21 +20,21 @@ Color Animation::getColor() const
     }
 }
 
-Posture Animation::getPosture() const
+Transform Animation::getTransform() const
 {
     if(timer < 0)
     {
-        return Posture(frames[pointer].posture.transVec3, 0);
+        return Transform(frames[pointer].transform.transVec3, 0);
     }
 
     if(pointer < frames.size() - 1)
     {
         float k = (timer - frames[pointer].time) / (frames[pointer + 1].time - frames[pointer].time);
-        return Posture::Lerp(frames[pointer].posture, frames[pointer + 1].posture, k);
+        return Transform::Lerp(frames[pointer].transform, frames[pointer + 1].transform, k);
     }
     else
     {
-        return frames[pointer].posture;
+        return frames[pointer].transform;
     }
 
 }
@@ -47,12 +47,12 @@ Color Animation::getEndColor() const
         return Color();
 }
 
-Posture Animation::getEndPosture() const
+Transform Animation::getEndTransform() const
 {
     if(frames.size() > 0)
-        return frames[frames.size() - 1].posture;
+        return frames[frames.size() - 1].transform;
     else
-        return Posture();
+        return Transform();
 }
 
 void Animation::Start()
@@ -118,21 +118,21 @@ void Animation::setTimer(float t)
     }
 }
 
-void Animation::addFrame(float time, const Posture &posture)
+void Animation::addFrame(float time, const Transform &transform)
 {
-    addFrame(time, posture, Color());
+    addFrame(time, transform, Color());
 }
 
-void Animation::addFrame(float time, const Posture &posture, const Color &color)
+void Animation::addFrame(float time, const Transform &transform, const Color &color)
 {
-    frames.push_back(Frame(time, posture, color));
+    frames.push_back(Frame(time, transform, color));
 }
 
-void Animation::moveAllFramesTo(const Posture &posture)
+void Animation::moveAllFramesTo(const Transform &transform)
 {
     for(unsigned int i = 0; i < frames.size(); i++)
     {
-        frames[i].posture = posture;
+        frames[i].transform = transform;
     }
 }
 

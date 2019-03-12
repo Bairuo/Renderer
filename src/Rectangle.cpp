@@ -23,7 +23,7 @@ void Rectangle::Update()
     if(animation.get() != nullptr)
     {
         color = animation->getColor();
-        posture = animation->getPosture();
+        transform = animation->getTransform();
 
         if(animation->getActive() == false)
         {
@@ -41,12 +41,12 @@ void Rectangle::Update()
         colorChange = false;
     }
 
-    if(postureChange)
+    if(transformChange)
     {
-        shader.SetMat4("model", posture().getMatrix());
-        shader.SetFloat("recWidth", posture().getScaleX());
-        shader.SetFloat("recHeight", posture().getScaleY());
-        postureChange = false;
+        shader.SetMat4("model", transform().getMatrix());
+        shader.SetFloat("recWidth", transform().getScaleX());
+        shader.SetFloat("recHeight", transform().getScaleY());
+        transformChange = false;
     }
 
     shader.SetMat4("projection", Camera::MainCamera->GetPersMatrix());
@@ -72,7 +72,7 @@ Rectangle::Rectangle(const glm::vec3 &pos, const Color &color, const Color &roun
           const GLchar *vertexPath, const GLchar *fragmentPath)
           :radius(radius)
 {
-    posture = Posture(pos.x, pos.y, pos.z, scaleX, scaleY, 1);
+    transform = Transform(pos.x, pos.y, pos.z, scaleX, scaleY, 1);
 
     this->color = color;
 
@@ -91,10 +91,10 @@ void Rectangle::Init(const GLchar *vertexPath, const GLchar *fragmentPath, const
 
     shader.SetFloat("radius", radius);
 
-    shader.SetFloat("recWidth", posture().getScaleX());
-    shader.SetFloat("recHeight", posture().getScaleX());
+    shader.SetFloat("recWidth", transform().getScaleX());
+    shader.SetFloat("recHeight", transform().getScaleX());
 
-    shader.SetMat4("model", posture().getMatrix());
+    shader.SetMat4("model", transform().getMatrix());
 
     VAO = getSquareVAO();
 

@@ -20,6 +20,8 @@ public:
 
     virtual double getSphereBoundingRadius();
 
+    virtual void Render();
+
     virtual void Update();
 
     virtual ~Cuboid();

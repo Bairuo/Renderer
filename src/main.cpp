@@ -14,7 +14,7 @@
 #include "Camera.h"
 #include "Light.h"
 #include "Object.h"
-#include "Posture.h"
+#include "Transform.h"
 #include "Animation.h"
 #include "BVH.h"
 #include "Deferred.h"
@@ -79,7 +79,7 @@ int main()
 
     for(int i = 0; i < OBJNUM; i++)
     {
-        auto obj = generateObject(new Posture(objPos[i], objScale[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
+        auto obj = generateObject(new Transform(objPos[i], objScale[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
                                   new Cuboid());
 
         // BVH Build
@@ -110,8 +110,8 @@ int main()
     }
 
     // Animation Demo set
-    Posture start(objPos[3], objScale[3], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
-    Posture end(glm::vec3(0, 0.4f, 0), objScale[3], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
+    Transform start(objPos[3], objScale[3], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
+    Transform end(glm::vec3(0, 0.4f, 0), objScale[3], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
 
     Objects[3]->animation.reset(new Animation());
     Objects[3]->animation->addFrame(0, start);
@@ -120,8 +120,8 @@ int main()
     Objects[3]->animation->setLoop(true);
     Objects[3]->animation->Start();
 
-    start = Posture(objPos[5], objScale[5], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
-    end = Posture(glm::vec3(0.4f, 0, 0), objScale[5], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
+    start = Transform(objPos[5], objScale[5], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
+    end = Transform(glm::vec3(0.4f, 0, 0), objScale[5], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
 
     Objects[5]->animation.reset(new Animation());
     Objects[5]->animation->addFrame(0, start);
@@ -261,8 +261,8 @@ int main()
 
         glDisable(GL_DEPTH_TEST);
 
-        //textRenderer->DrawText("Fun Renderer", -384, 358, titleColor, 32, true);
-        textRenderer->DrawText("NORMALS", -384, 358, Color(0, 0, 0, 1), 32, true);
+        textRenderer->DrawText("Fun Renderer", -384, 358, titleColor, 32, true);
+        //textRenderer->DrawText("NORMALS", -384, 358, Color(0, 0, 0, 1), 32, true);
         textRenderer->DrawText("FPS:" + bairuo::int2str(GameTime::GetFPS()), -384, 326, FPSColor, 16, true);
         textRenderer->DrawText("WASD to move ", -384, -334, titleColor, 16, true);
         textRenderer->DrawText("Potential contacts: " + bairuo::uns2str(potentialDebug), -384, -358, titleColor, 16, true);

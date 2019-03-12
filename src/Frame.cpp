@@ -2,9 +2,9 @@
 
 Frame::Frame() = default;
 
-Frame::Frame(float time, const Posture &posture, const Color &color)
+Frame::Frame(float time, const Transform &transform, const Color &color)
 {
     this->time = time;
-    this->posture = posture;
+    this->transform = transform;
     this->color = color;
 }
