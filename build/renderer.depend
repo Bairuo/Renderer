@@ -3640,8 +3640,11 @@
 	"Transform.h"
 	"property.h"
 
-1551754228 source:d:\jzr\renderer\src\keyutilities.cpp
+1552394191 source:d:\jzr\renderer\src\keyutilities.cpp
 	"KeyUtilities.h"
+	"Camera.h"
+	"GameTime.h"
+	"ConfigUtilities.h"
 	<windows.h>
 	<X11/XKBlib.h>
 
@@ -3744,4 +3747,134 @@
 	"Transform.h"
 	"Object.h"
 	"Animation.h"
+
+1551754228 d:\jzr\renderer\include\alignedtext.h
+	"Rectangle.h"
+	<string>
+
+1552386847 d:\jzr\renderer\include\rectangle.h
+	<GL/glew.h>
+	<boost/shared_ptr.hpp>
+	"Color.h"
+	"Shader.h"
+	"Transform.h"
+	"Animation.h"
+	"property.h"
+
+1551754228 d:\jzr\renderer\include\color.h
+
+1551754228 d:\jzr\renderer\include\shader.h
+	<GL/glew.h>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	<string>
+	<fstream>
+	<sstream>
+	<iostream>
+
+1552387044 d:\jzr\renderer\include\transform.h
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+
+1552386847 d:\jzr\renderer\include\animation.h
+	<vector>
+	<time.h>
+	"Frame.h"
+	"Color.h"
+
+1552386847 d:\jzr\renderer\include\frame.h
+	"Color.h"
+	"Transform.h"
+
+1551754228 d:\jzr\renderer\include\property.h
+	<functional>
+
+1551754228 d:\jzr\renderer\include\textrenderer.h
+	<GL/glew.h>
+	<freetype/ft2build.h>
+	<freetype/freetype.h>
+	<freetype/ftglyph.h>
+	<freetype/ftoutln.h>
+	<freetype/fttrigon.h>
+	<freetype/ftbitmap.h>
+	<iostream>
+
+1552234065 d:\jzr\renderer\include\configutilities.h
+	<GL/glew.h>
+	<GLFW/glfw3.h>
+
+1551754228 d:\jzr\renderer\include\gametime.h
+
+1551754228 d:\jzr\renderer\include\bairuofunctions.h
+	<string>
+	<sstream>
+	<iostream>
+
+1551754228 d:\jzr\renderer\include\basicrender.h
+	<GL/glew.h>
+
+1551754228 d:\jzr\renderer\include\button.h
+	"Rectangle.h"
+
+1552386847 d:\jzr\renderer\include\bvh.h
+	<glm/vec3.hpp>
+	<list>
+	<iostream>
+	"Object.h"
+	"Transform.h"
+
+1552393320 d:\jzr\renderer\include\object.h
+	<vector>
+	<boost/shared_ptr.hpp>
+
+1551754228 d:\jzr\renderer\include\camera.h
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<vector>
+
+1552393310 d:\jzr\renderer\include\cuboid.h
+	<GL/glew.h>
+	<boost/shared_ptr.hpp>
+	"Color.h"
+	"Shader.h"
+	"Material.h"
+	"Renderer.h"
+
+1551754228 d:\jzr\renderer\include\material.h
+	<GL/glew.h>
+
+1552393370 d:\jzr\renderer\include\renderer.h
+
+1552388584 d:\jzr\renderer\include\light.h
+	<GL/glew.h>
+	<GLFW/glfw3.h>
+	"Shader.h"
+
+1552234065 d:\jzr\renderer\include\deferred.h
+	<GL/glew.h>
+	<GLFW/glfw3.h>
+	"Shader.h"
+
+1552386847 d:\jzr\renderer\include\inputtext.h
+	<boost/shared_ptr.hpp>
+	"TextRenderer.h"
+	"Rectangle.h"
+	"Transform.h"
+	"property.h"
+
+1552394171 d:\jzr\renderer\include\keyutilities.h
+	<GL/glew.h>
+	<GLFW/glfw3.h>
+
+1551754228 d:\jzr\renderer\include\rigidbody.h
+
+1552386847 d:\jzr\renderer\include\text.h
+	<string>
+	<boost/shared_ptr.hpp>
+	"TextRenderer.h"
+	"Transform.h"
+	"property.h"
+	"Color.h"
 
