@@ -7,8 +7,10 @@ void Transform::Update()
 {
     if(obj != nullptr && obj->animation.get() != nullptr)
     {
-        obj->transform.reset(new Transform(obj->animation->getTransform()));
-        obj->transform->obj = obj;
+		auto newTrans = new Transform(obj->animation->getTransform());
+		newTrans->obj = obj;
+
+        obj->transform.reset(newTrans);
     }
 }
 
