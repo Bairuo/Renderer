@@ -3,6 +3,7 @@
 #include "RigidBody.h"
 #include "Animation.h"
 #include "Transform.h"
+#include "Shader.h"
 
 int ObjectID = 0;
 
@@ -50,6 +51,14 @@ void Object::Update()
 
     // other components
     // ...
+}
+
+void Object::Render(Shader &shader)
+{
+    if(renderer.get() != nullptr)
+    {
+        renderer->Render(shader);
+    }
 }
 
 void Object::Render()

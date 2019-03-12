@@ -8,6 +8,7 @@ class Transform;
 class Renderer;
 class RigidBody;
 class Animation;
+class Shader;
 
 class Object
 {
@@ -18,7 +19,7 @@ public:
     // Components
     // Can change to array
     // RigidBody *rigidbody[MAXSIZE]
-    boost::shared_ptr<Transform> transform;     // History problem, may it need to be called 'Transform'
+    boost::shared_ptr<Transform> transform;
     boost::shared_ptr<Renderer> renderer;
     boost::shared_ptr<RigidBody> rigidbody;
     boost::shared_ptr<Animation> animation;
@@ -27,7 +28,10 @@ public:
     ~Object();
 
     void Update();
+
     void Render();
+
+    void Render(Shader &shader);
 
     // ...
 };

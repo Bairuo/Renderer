@@ -6,7 +6,10 @@
 #include <GLFW/glfw3.h>
 
 #include "Shader.h"
+
 class Transform;
+
+extern Shader depthShader;
 
 class Light
 {
@@ -25,12 +28,6 @@ public:
     static void setLight(Shader *shader);
 
     static void openShadowMap();
-
-    static void startRenderDepth(const Transform * const transform);
-    static void stopRenderDepth();
-
-private:
-    static Shader depthShader;
 };
 
 #endif

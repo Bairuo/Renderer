@@ -3569,7 +3569,7 @@
 	"Object.h"
 	"Transform.h"
 
-1552386848 d:\jzr\renderer\src\object.h
+1552393320 d:\jzr\renderer\src\object.h
 	<vector>
 	<boost/shared_ptr.hpp>
 
@@ -3590,7 +3590,7 @@
 	"ConfigUtilities.h"
 	"Cuboid.h"
 
-1552387260 source:d:\jzr\renderer\src\cuboid.cpp
+1552393303 source:d:\jzr\renderer\src\cuboid.cpp
 	"Cuboid.h"
 	"ConfigUtilities.h"
 	"basicrender.h"
@@ -3602,7 +3602,7 @@
 	"Deferred.h"
 	<cmath>
 
-1552386250 d:\jzr\renderer\src\cuboid.h
+1552393310 d:\jzr\renderer\src\cuboid.h
 	<GL/glew.h>
 	<boost/shared_ptr.hpp>
 	"Color.h"
@@ -3613,9 +3613,9 @@
 1551754228 d:\jzr\renderer\src\material.h
 	<GL/glew.h>
 
-1552386222 d:\jzr\renderer\src\renderer.h
+1552393370 d:\jzr\renderer\src\renderer.h
 
-1552386847 d:\jzr\renderer\src\light.h
+1552388584 d:\jzr\renderer\src\light.h
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	"Shader.h"
@@ -3645,18 +3645,21 @@
 	<windows.h>
 	<X11/XKBlib.h>
 
-1551754228 d:\jzr\renderer\src\keyutilities.h
+1552394171 d:\jzr\renderer\src\keyutilities.h
+	<GL/glew.h>
+	<GLFW/glfw3.h>
 
-1552386847 source:d:\jzr\renderer\src\light.cpp
+1552388581 source:d:\jzr\renderer\src\light.cpp
 	"Light.h"
 	"Transform.h"
 
-1552387249 source:d:\jzr\renderer\src\object.cpp
+1552393315 source:d:\jzr\renderer\src\object.cpp
 	"Object.h"
 	"Renderer.h"
 	"RigidBody.h"
 	"Animation.h"
 	"Transform.h"
+	"Shader.h"
 
 1551754228 d:\jzr\renderer\src\rigidbody.h
 
@@ -3699,7 +3702,7 @@
 	"TextRenderer.h"
 	"ConfigUtilities.h"
 
-1552386678 source:d:\jzr\renderer\src\main.cpp
+1552394045 source:d:\jzr\renderer\src\main.cpp
 	<iostream>
 	<boost/shared_ptr.hpp>
 	<GL/glew.h>
@@ -3736,7 +3739,9 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
 
-1552386679 source:d:\jzr\renderer\src\transform.cpp
+1552387381 source:d:\jzr\renderer\src\transform.cpp
 	<iostream>
 	"Transform.h"
+	"Object.h"
+	"Animation.h"
 

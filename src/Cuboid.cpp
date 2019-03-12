@@ -16,65 +16,31 @@ const Material Cuboid::defaultMaterial(
     32.0f
 );
 
-void Cuboid::Render()
+void Cuboid::Render(Shader &shader)
 {
     if(!active)
     {
         return;
     }
 
-    // set
-    if(GBufferMode)
-    {
-        deferredGeometryShader.Use();
+    shader.Use();
 
-//        if(obj->animation.get() != nullptr)
-//        {
-//            obj->transform.reset(new Transform(obj->animation->getTransform()));
-//        }
+    shader.SetMat4("model", obj->transform->getMatrix());
+    Camera::setMainCamera(&shader);
+    Light::setLight(&shader);
 
-        deferredGeometryShader.SetMat4("model", obj->transform->getMatrix());
-        Camera::setMainCamera(&deferredGeometryShader);
-        Light::setLight(&deferredGeometryShader);
+    setMaterial(&shader);
 
-        setMaterial(&deferredGeometryShader);
-    }
-    else if(Light::depthMode && castShadow)
-    {
-        Light::startRenderDepth(obj->transform.get());
-    }
-    else
-    {
-        shader.Use();
-
-//        if(obj->animation.get() != nullptr)
-//        {
-//            obj->transform.reset(new Transform(obj->animation->getTransform()));
-//        }
-
-        shader.SetMat4("model", obj->transform->getMatrix());
-        Camera::setMainCamera(&shader);
-        Light::setLight(&shader);
-    }
-
-    // draw
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     glBindVertexArray(0);
 
-    // stop shader
-    if(Light::depthMode && castShadow)
-    {
-        Light::stopRenderDepth();
-    }
-    else if(GBufferMode)
-    {
-        deferredGeometryShader.Stop();
-    }
-    else
-    {
-        shader.Stop();
-    }
+    shader.Stop();
+}
+
+void Cuboid::Render()
+{
+    Render(shader);
 }
 
 Cuboid::~Cuboid()
@@ -86,14 +52,10 @@ Cuboid::~Cuboid()
 
 void Cuboid::setMaterial(Shader *shader)
 {
-    //shader->Use();
-
     shader->Set3f("material.ambient", material.ambient);
     shader->Set3f("material.diffuse", material.diffuse);
     shader->Set3f("material.specular", material.specular);
     shader->SetFloat("material.shininess", material.shininess);
-
-    //shader->Stop();
 }
 
 Cuboid::Cuboid(const Material &material,

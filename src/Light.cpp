@@ -14,7 +14,7 @@ const GLuint Light::SHADOW_HEIGHT = 4096;
 const GLfloat Light::near_plane = 1.0f;
 const GLfloat Light::far_plane = 7.5f;
 
-Shader Light::depthShader;
+Shader depthShader;
 
 GLuint Light::depthMapFBO;
 GLuint Light::depthMap;
@@ -71,28 +71,4 @@ void Light::openShadowMap()
     glDrawBuffer(GL_NONE);
     glReadBuffer(GL_NONE);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-}
-
-void Light::startRenderDepth(const Transform * const transform)
-{
-    glm::mat4 lightProjection, lightView;
-    glm::mat4 lightSpaceMatrix;
-
-    lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
-    lightView = glm::lookAt(pos, glm::vec3(0.0f), glm::vec3(0.0, 1.0, 0.0));
-    lightSpaceMatrix = lightProjection * lightView;
-
-
-    depthShader.Use();
-    glUniformMatrix4fv(glGetUniformLocation(depthShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(transform->getMatrix()));
-    glUniformMatrix4fv(glGetUniformLocation(depthShader.ID, "lightSpaceMatrix"), 1, GL_FALSE, glm::value_ptr(lightSpaceMatrix));
-
-    return;
-}
-
-void Light::stopRenderDepth()
-{
-    depthShader.Stop();
-
-    return;
 }

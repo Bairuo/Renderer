@@ -1,4 +1,7 @@
 #include "KeyUtilities.h"
+#include "Camera.h"
+#include "GameTime.h"
+#include "ConfigUtilities.h"
 
 #if defined(_WIN32)
 // No include "wingdi.h", name conflict
@@ -67,3 +70,41 @@ bool isCapsActive()
 #endif
     return capital;
 }
+
+void processInput(GLFWwindow *window, Camera &camera)
+{
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        camera.ProcessKeyboard(FORWARD, GameTime::deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        camera.ProcessKeyboard(BACKWARD, GameTime::deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        camera.ProcessKeyboard(LEFT, GameTime::deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        camera.ProcessKeyboard(RIGHT, GameTime::deltaTime);
+}
+
+void mouse_callback(GLFWwindow* window, Camera &camera, double xpos, double ypos)
+{
+    static bool firstMouse = true;
+    static float lastX = WindowWidth / 2.0f;
+    static float lastY = WindowHeight / 2.0f;
+
+    if (firstMouse)
+    {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+
+    lastX = xpos;
+    lastY = ypos;
+
+    camera.ProcessMouseMovement(xoffset, yoffset);
+}
+

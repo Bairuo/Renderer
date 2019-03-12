@@ -61,8 +61,6 @@ static GameTime mainTime;
 static BVHNode<BoundingSphere> *BVHTree = nullptr;
 static PotentialContact potentialContacts[MAXDETECTNUM];
 
-static void processInput(GLFWwindow *window);
-static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 static void InitWindow();
 
@@ -156,7 +154,7 @@ int main()
     while(!glfwWindowShouldClose(window))
     {
         // Input
-        processInput(window);
+        processInput(window, camera);
 
         // Event
         glfwPollEvents();
@@ -191,7 +189,7 @@ int main()
 
         for(size_t i = 0; i < Objects.size(); i++)
         {
-            Objects[i]->Render();
+            Objects[i]->Render(deferredGeometryShader);
         }
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -208,7 +206,7 @@ int main()
 
         for(size_t i = 0; i < Objects.size(); i++)
         {
-            Objects[i]->Render();
+            Objects[i]->Render(depthShader);
         }
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -306,44 +304,6 @@ void InitWindow()
     int width, height;
     glfwGetFramebufferSize(window, &width, &height);
     glViewport(0, 0, width, height);
-}
-
-
-void processInput(GLFWwindow *window)
-{
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera.ProcessKeyboard(FORWARD, GameTime::deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera.ProcessKeyboard(BACKWARD, GameTime::deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera.ProcessKeyboard(LEFT, GameTime::deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera.ProcessKeyboard(RIGHT, GameTime::deltaTime);
-}
-
-void mouse_callback(GLFWwindow* window, double xpos, double ypos)
-{
-    static bool firstMouse = true;
-    static float lastX = WindowWidth / 2.0f;
-    static float lastY = WindowHeight / 2.0f;
-
-    if (firstMouse)
-    {
-        lastX = xpos;
-        lastY = ypos;
-        firstMouse = false;
-    }
-
-    float xoffset = xpos - lastX;
-    float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
-
-    lastX = xpos;
-    lastY = ypos;
-
-    camera.ProcessMouseMovement(xoffset, yoffset);
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
