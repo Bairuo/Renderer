@@ -64,6 +64,7 @@
 		<Unit filename="../include/Deferred.h" />
 		<Unit filename="../include/Frame.h" />
 		<Unit filename="../include/GameTime.h" />
+		<Unit filename="../include/GraphNode.h" />
 		<Unit filename="../include/InputText.h" />
 		<Unit filename="../include/KeyUtilities.h" />
 		<Unit filename="../include/Light.h" />
@@ -90,6 +91,7 @@
 		<Unit filename="../src/Deferred.cpp" />
 		<Unit filename="../src/Frame.cpp" />
 		<Unit filename="../src/GameTime.cpp" />
+		<Unit filename="../src/GraphNode.cpp" />
 		<Unit filename="../src/InputText.cpp" />
 		<Unit filename="../src/KeyUtilities.cpp" />
 		<Unit filename="../src/Light.cpp" />
