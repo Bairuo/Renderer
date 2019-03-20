@@ -37,11 +37,11 @@ void InputText::generateCurosAnimation(const Color &color, float time)
     cursor->animation = cursorAnimation;
 }
 
-void InputText::Update()
+void InputText::update()
 {
     if(cursor.get() != nullptr)
     {
-        cursor->Update();
+        cursor->update();
     }
 
     textRenderer->DrawText(text, transform.getPosX() - shift.x, transform.getPosY() - shift.y, color, size, true);

@@ -162,15 +162,15 @@ int main()
         // Game update
         for(size_t i = 0; i < Objects.size(); i++)
         {
-            Objects[i]->Update();
+            Objects[i]->update();
         }
 
         unsigned potentialDebug;
 
         if(BVHTree != nullptr)
         {
-            // BVH Update
-            BVHTree->Update(BVHTree);
+            // BVH update
+            BVHTree->update(BVHTree);
 
             potentialDebug = BVHTree->getPotentialContacts(potentialContacts);
         }
@@ -179,7 +179,7 @@ int main()
             potentialDebug = 0;
         }
 
-        // Render
+        // render
         glEnable(GL_DEPTH_TEST);
 
 #if defined(DEFERRED)
@@ -189,7 +189,7 @@ int main()
 
         for(size_t i = 0; i < Objects.size(); i++)
         {
-            Objects[i]->Render(deferredGeometryShader);
+            Objects[i]->render(deferredGeometryShader);
         }
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -206,7 +206,7 @@ int main()
 
         for(size_t i = 0; i < Objects.size(); i++)
         {
-            Objects[i]->Render(depthShader);
+            Objects[i]->render(depthShader);
         }
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -218,7 +218,7 @@ int main()
 
 #endif
 
-        // Normal Render
+        // Normal render
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 #if defined(DEFERRED)
@@ -252,7 +252,7 @@ int main()
 
         for(size_t i = 0; i < Objects.size(); i++)
         {
-            Objects[i]->Render();
+            Objects[i]->render();
         }
 
 #endif // defined DEFERRED
@@ -267,7 +267,7 @@ int main()
 
         glfwSwapBuffers(window);
 
-        mainTime.Update();
+        mainTime.update();
 
     }
 

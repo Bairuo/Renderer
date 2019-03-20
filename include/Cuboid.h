@@ -20,9 +20,9 @@ public:
 
     virtual double getSphereBoundingRadius();
 
-    virtual void Render();
+    virtual void render();
 
-    virtual void Render(Shader &shader);
+    virtual void render(Shader &shader);
 
     virtual ~Cuboid();
 

@@ -71,7 +71,7 @@ void Camera::ProcessMouseMovement(float xoffset, float yoffset, bool constrainPi
             Pitch = -89.0f;
     }
 
-    // Update Front, Right and Up Vectors using the updated Euler angles
+    // update Front, Right and Up Vectors using the updated Euler angles
     updateCameraVectors();
 }
 

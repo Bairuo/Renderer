@@ -62,7 +62,7 @@ void Animation::Start()
     setTimer(startTime);
 }
 
-void Animation::Update()
+void Animation::update()
 {
     if(pause)
     {

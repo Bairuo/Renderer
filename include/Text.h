@@ -37,7 +37,7 @@ public:
 
     boost::shared_ptr<Animation> animation;
 
-    void Update();
+    void update();
 
     ~Text();
 

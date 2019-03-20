@@ -45,7 +45,7 @@ int GameTime::GetFPS()
     }
 }
 
-void GameTime::Update()
+void GameTime::update()
 {
     float curTime = glfwGetTime();
     deltaTime = curTime - lastTime;

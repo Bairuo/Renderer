@@ -50,9 +50,9 @@ AlignedText::AlignedText(const std::string &title, int value, float radius,
 }
 
 
-void AlignedText::Update()
+void AlignedText::update()
 {
-    Rectangle::Update();
+    Rectangle::update();
 
     textRenderer->DrawText(title, transform().getPosX() - textRenderer->GetTexLength(title, titleSize, titleBold) / 2, titleHeight, titleColor, titleSize, titleBold);
     textRenderer->DrawText(value, transform().getPosX() - textRenderer->GetTexLength(value, valueSize, valueBold) / 2, valueHeight, valueColor, valueSize, valueBold);

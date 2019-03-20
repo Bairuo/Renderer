@@ -47,7 +47,7 @@ public:
 
     static void setMainCamera(Shader *shader);
 
-    void Update();
+    void update();
 
     glm::mat4 GetPersMatrix() const;
 

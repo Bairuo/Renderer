@@ -75,7 +75,7 @@ public:
 
     bool RemoveDirty(std::list<Object *> &removeObjs, std::list<BoundingVolumeClass> &removeVolumes);
 
-    void Update(BVHNode<BoundingVolumeClass>* &root);
+    void update(BVHNode<BoundingVolumeClass>* &root);
 
     ~BVHNode();
 
@@ -178,7 +178,7 @@ void debug(BVHNode<BoundingVolumeClass>* node)
 }
 
 template<class BoundingVolumeClass>
-void BVHNode<BoundingVolumeClass>::Update(BVHNode<BoundingVolumeClass>* &root)
+void BVHNode<BoundingVolumeClass>::update(BVHNode<BoundingVolumeClass>* &root)
 {
     std::list<Object *> removeObjs;
     std::list<BoundingVolumeClass> removeVolumes;

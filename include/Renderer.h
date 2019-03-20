@@ -9,9 +9,9 @@ class Renderer
 public:
     Object *obj = nullptr;
 
-    virtual void Render() = 0;
+    virtual void render() = 0;
 
-    virtual void Render(Shader &shader) = 0;
+    virtual void render(Shader &shader) = 0;
 
     virtual ~Renderer() {}
 

@@ -10,7 +10,7 @@ public:
     static float deltaTime;
 
     void Init();
-    void Update();
+    void update();
 
     static GameTime* GetInstance();
     static int GetFPS();

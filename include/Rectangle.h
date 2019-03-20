@@ -44,7 +44,7 @@ public:
         }
     );
 
-    virtual void Update();
+    virtual void update();
     Rectangle();
     virtual ~Rectangle();
 

@@ -30,7 +30,7 @@ public:
 
     Object *obj = nullptr;
 
-    void Update();
+    void update();
 
     Transform(float posX, float posY, float posZ, float scaleX, float scaleY, float scaleZ,
             float angle = 0, glm::vec3 axis = glm::vec3(0, 0, 1.0f));

@@ -49,7 +49,7 @@ public:
         }
     );
 
-    void Update();
+    void update();
 
     ~InputText();
 

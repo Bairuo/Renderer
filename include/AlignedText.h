@@ -15,7 +15,7 @@ public:
     std::string title;
     std::string value;
 
-    void Update();
+    void update();
 
     void SetValue(int value);
 

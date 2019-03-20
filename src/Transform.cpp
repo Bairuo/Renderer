@@ -3,7 +3,7 @@
 #include "Object.h"
 #include "Animation.h"
 
-void Transform::Update()
+void Transform::update()
 {
     if(obj != nullptr && obj->animation.get() != nullptr)
     {

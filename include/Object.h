@@ -27,11 +27,11 @@ public:
     Object(int id, Transform *transform, Renderer *renderer, RigidBody *rigidbody, Animation *animation);
     ~Object();
 
-    void Update();
+    void update();
 
-    void Render();
+    void render();
 
-    void Render(Shader &shader);
+    void render(Shader &shader);
 
     // ...
 };

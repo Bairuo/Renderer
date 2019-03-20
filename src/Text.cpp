@@ -15,7 +15,7 @@ Text::Text(const std::string &text, const glm::vec3 &pos, const Color &color, in
     this->text = text;
 }
 
-void Text::Update()
+void Text::update()
 {
     if(animation.get() != nullptr)
     {
@@ -28,7 +28,7 @@ void Text::Update()
         }
         else
         {
-            animation->Update();
+            animation->update();
         }
     }
 

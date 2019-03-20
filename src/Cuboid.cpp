@@ -16,7 +16,7 @@ const Material Cuboid::defaultMaterial(
     32.0f
 );
 
-void Cuboid::Render(Shader &shader)
+void Cuboid::render(Shader &shader)
 {
     if(!active)
     {
@@ -38,9 +38,9 @@ void Cuboid::Render(Shader &shader)
     shader.Stop();
 }
 
-void Cuboid::Render()
+void Cuboid::render()
 {
-    Render(shader);
+    render(shader);
 }
 
 Cuboid::~Cuboid()

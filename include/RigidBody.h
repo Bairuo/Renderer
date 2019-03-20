@@ -8,7 +8,7 @@ class RigidBody
 public:
     Object *obj = nullptr;
 
-    virtual void Update() = 0;
+    virtual void update() = 0;
 
     virtual ~RigidBody() {}
 };

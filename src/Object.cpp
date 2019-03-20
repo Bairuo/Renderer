@@ -23,11 +23,11 @@ Object::~Object()
 
 }
 
-void Object::Update()
+void Object::update()
 {
     if(rigidbody.get() != nullptr)
     {
-        rigidbody->Update();
+        rigidbody->update();
     }
 
     if(animation.get() != nullptr)
@@ -38,7 +38,7 @@ void Object::Update()
         }
         else
         {
-            animation->Update();
+            animation->update();
         }
 
         dirty = true;
@@ -46,26 +46,26 @@ void Object::Update()
 
     if(transform.get() != nullptr)
     {
-        transform->Update();
+        transform->update();
     }
 
     // other components
     // ...
 }
 
-void Object::Render(Shader &shader)
+void Object::render(Shader &shader)
 {
     if(renderer.get() != nullptr)
     {
-        renderer->Render(shader);
+        renderer->render(shader);
     }
 }
 
-void Object::Render()
+void Object::render()
 {
     if(renderer.get() != nullptr)
     {
-        renderer->Render();
+        renderer->render();
     }
 }
 

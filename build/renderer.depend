@@ -3590,7 +3590,7 @@
 	"ConfigUtilities.h"
 	"Cuboid.h"
 
-1552393303 source:d:\jzr\renderer\src\cuboid.cpp
+1553055075 source:d:\jzr\renderer\src\cuboid.cpp
 	"Cuboid.h"
 	"ConfigUtilities.h"
 	"basicrender.h"
@@ -3752,7 +3752,7 @@
 	"Rectangle.h"
 	<string>
 
-1552386847 d:\jzr\renderer\include\rectangle.h
+1553055217 d:\jzr\renderer\include\rectangle.h
 	<GL/glew.h>
 	<boost/shared_ptr.hpp>
 	"Color.h"
@@ -3773,12 +3773,12 @@
 	<sstream>
 	<iostream>
 
-1552387044 d:\jzr\renderer\include\transform.h
+1553055217 d:\jzr\renderer\include\transform.h
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
 
-1552386847 d:\jzr\renderer\include\animation.h
+1553055217 d:\jzr\renderer\include\animation.h
 	<vector>
 	<time.h>
 	"Frame.h"
@@ -3805,7 +3805,7 @@
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 
-1551754228 d:\jzr\renderer\include\gametime.h
+1553055217 d:\jzr\renderer\include\gametime.h
 
 1551754228 d:\jzr\renderer\include\bairuofunctions.h
 	<string>
@@ -3818,23 +3818,23 @@
 1551754228 d:\jzr\renderer\include\button.h
 	"Rectangle.h"
 
-1552386847 d:\jzr\renderer\include\bvh.h
+1553055217 d:\jzr\renderer\include\bvh.h
 	<glm/vec3.hpp>
 	<list>
 	<iostream>
 	"Object.h"
 	"Transform.h"
 
-1552393320 d:\jzr\renderer\include\object.h
+1553055217 d:\jzr\renderer\include\object.h
 	<vector>
 	<boost/shared_ptr.hpp>
 
-1551754228 d:\jzr\renderer\include\camera.h
+1553055217 d:\jzr\renderer\include\camera.h
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	<vector>
 
-1552393310 d:\jzr\renderer\include\cuboid.h
+1553055070 d:\jzr\renderer\include\cuboid.h
 	<GL/glew.h>
 	<boost/shared_ptr.hpp>
 	"Color.h"
@@ -3845,7 +3845,7 @@
 1551754228 d:\jzr\renderer\include\material.h
 	<GL/glew.h>
 
-1552393370 d:\jzr\renderer\include\renderer.h
+1553055075 d:\jzr\renderer\include\renderer.h
 
 1552388584 d:\jzr\renderer\include\light.h
 	<GL/glew.h>
@@ -3877,4 +3877,11 @@
 	"Transform.h"
 	"property.h"
 	"Color.h"
+
+1553054844 source:d:\jzr\renderer\src\graphnode.cpp
+	"GraphNode.h"
+	"Shader.h"
+
+1553054765 d:\jzr\renderer\include\graphnode.h
+	<list>
 

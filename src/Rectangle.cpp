@@ -11,7 +11,7 @@ const GLchar Rectangle::standardVsPath[] = "./shaders/2D_Standard/standard.vs";
 const GLchar Rectangle::standardFragPath[] = "./shaders/2D_Extend/rounded.frag";
 #endif
 
-void Rectangle::Update()
+void Rectangle::update()
 {
     if(!active)
     {
@@ -31,7 +31,7 @@ void Rectangle::Update()
         }
         else
         {
-            animation->Update();
+            animation->update();
         }
     }
 
