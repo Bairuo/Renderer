@@ -186,7 +186,7 @@ void BVHNode<BoundingVolumeClass>::update(BVHNode<BoundingVolumeClass>* &root)
     if(RemoveDirty(removeObjs, removeVolumes))
     {
         auto volume = *(removeVolumes.begin());
-        volume.centre = (*(removeObjs.begin()))->transform->transVec3;
+        volume.centre = (*(removeObjs.begin()))->transform->getPosition();
 
         root = new BVHNode<BoundingVolumeClass>(NULL, volume, *(removeObjs.begin()));
 
@@ -199,7 +199,7 @@ void BVHNode<BoundingVolumeClass>::update(BVHNode<BoundingVolumeClass>* &root)
 
     while(it1 != removeObjs.end() && it2 != removeVolumes.end())
     {
-        (*it2).centre = (*it1)->transform->transVec3;
+        (*it2).centre = (*it1)->transform->getPosition();
 
         root->insert(*it1, *it2);
 

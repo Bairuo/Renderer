@@ -16,12 +16,10 @@ void Transform::update()
 
 Transform::Transform(float posX, float posY, float posZ, float scaleX, float scaleY, float scaleZ,
                  float angle, glm::vec3 axis)
-    :transVec3(posX, posY, posZ),
-     scaleVec3(scaleX, scaleY, scaleZ),
-     angle(angle),
+    :angle(angle),
      axis(axis),
-     transMatrix(glm::translate(glm::mat4(1), transVec3)),
-     scaleMatrix(glm::scale(glm::mat4(1), scaleVec3)),
+     transMatrix(glm::translate(glm::mat4(1), glm::vec3(posX, posY, posZ))),
+     scaleMatrix(glm::scale(glm::mat4(1), glm::vec3(scaleX, scaleY, scaleZ))),
      rotateMatrix(glm::rotate(glm::mat4(1), angle, axis))
 {
 
@@ -68,32 +66,42 @@ Transform::Transform()
 
 float Transform::getPosX() const
 {
-    return transVec3.x;
+    return transMatrix[3][0];
 }
 
 float Transform::getPosY() const
 {
-    return transVec3.y;
+    return transMatrix[3][1];
 }
 
 float Transform::getPosZ() const
 {
-    return transVec3.z;
+    return transMatrix[3][2];
+}
+
+glm::vec3 Transform::getPosition() const
+{
+    return glm::vec3(transMatrix[3][0], transMatrix[3][1], transMatrix[3][2]);
 }
 
 float Transform::getScaleX() const
 {
-    return scaleVec3.x;
+    return scaleMatrix[0][0];
 }
 
 float Transform::getScaleY() const
 {
-    return scaleVec3.y;
+    return scaleMatrix[1][1];
 }
 
 float Transform::getScaleZ() const
 {
-    return scaleVec3.z;
+    return scaleMatrix[2][2];
+}
+
+glm::vec3 Transform::getScale() const
+{
+    return glm::vec3(scaleMatrix[0][0], scaleMatrix[1][1], scaleMatrix[2][2]);
 }
 
 glm::mat4 Transform::getMatrix() const
@@ -103,13 +111,13 @@ glm::mat4 Transform::getMatrix() const
 
 Transform Transform::Lerp(const Transform &start, const Transform &end, float k)
 {
-    float posX = start.transVec3.x + (end.transVec3.x - start.transVec3.x) * k;
-    float posY = start.transVec3.y + (end.transVec3.y - start.transVec3.y) * k;
-    float posZ = start.transVec3.z + (end.transVec3.z - start.transVec3.z) * k;
+    float posX = start.getPosX() + (end.getPosX() - start.getPosX()) * k;
+    float posY = start.getPosY() + (end.getPosY() - start.getPosY()) * k;
+    float posZ = start.getPosZ() + (end.getPosZ() - start.getPosZ()) * k;
 
-    float scaleX = start.scaleVec3.x + (end.scaleVec3.x - start.scaleVec3.x) * k;
-    float scaleY = start.scaleVec3.y + (end.scaleVec3.y - start.scaleVec3.y) * k;
-    float scaleZ = start.scaleVec3.z + (end.scaleVec3.z - start.scaleVec3.z) * k;
+    float scaleX = start.getScaleX() + (end.getScaleX() - start.getScaleX()) * k;
+    float scaleY = start.getScaleY() + (end.getScaleY() - start.getScaleY()) * k;
+    float scaleZ = start.getScaleZ() + (end.getScaleZ() - start.getScaleZ()) * k;
 
     float angle = start.angle + (end.angle - start.angle) * k;
 

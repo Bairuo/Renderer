@@ -116,7 +116,7 @@ int main()
     Objects[3]->animation->addFrame(3.0f, end);
     Objects[3]->animation->addFrame(6.0f, start);
     Objects[3]->animation->setLoop(true);
-    Objects[3]->animation->Start();
+    Objects[3]->animation->start();
 
     start = Transform(objPos[5], objScale[5], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
     end = Transform(glm::vec3(0.4f, 0, 0), objScale[5], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
@@ -126,7 +126,7 @@ int main()
     Objects[5]->animation->addFrame(3.0f, end);
     Objects[5]->animation->addFrame(6.0f, start);
     Objects[5]->animation->setLoop(true);
-    Objects[5]->animation->Start();
+    Objects[5]->animation->start();
 
     /* rendering setting */
     //glEnable(GL_DEPTH_TEST);

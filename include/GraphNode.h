@@ -7,6 +7,7 @@
 #include <list>
 
 class Shader;
+class Object;
 
 class GraphNode
 {
@@ -21,9 +22,11 @@ public:
 
     GraphNode();
 
-    void addObject(int objID);
+    GraphNode(const Object &obj);
 
     void addSon(GraphNode *son);
+
+    void addSubObject(const Object &obj);
 
     void update();
 

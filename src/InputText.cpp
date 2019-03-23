@@ -32,7 +32,7 @@ void InputText::generateCurosAnimation(const Color &color, float time)
     cursorAnimation->addFrame(0.6f, cursor->transform(), Color(color.r, color.g, color.b, 1));
     cursorAnimation->addFrame(0.6f, cursor->transform(), Color(color.r, color.g, color.b, 0));
     cursorAnimation->addFrame(1.2f, cursor->transform(), Color(color.r, color.g, color.b, 0));
-    cursorAnimation->Start();
+    cursorAnimation->start();
 
     cursor->animation = cursorAnimation;
 }

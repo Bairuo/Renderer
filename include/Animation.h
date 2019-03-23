@@ -17,7 +17,7 @@ public:
     Color getEndColor() const;
     Transform getEndTransform() const;
 
-    void Start();
+    void start();
     void update();
 
     void addFrame(float time, const Transform &transform);

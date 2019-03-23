@@ -34,7 +34,7 @@ public:
 
             if(cursor != nullptr)
             {
-                cursor->transform = Transform(cursorPos, cursor->transform().scaleVec3);
+                cursor->transform = Transform(cursorPos, cursor->transform().getScale());
 
                 if(cursor->animation != nullptr)
                 {

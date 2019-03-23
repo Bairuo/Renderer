@@ -24,7 +24,8 @@ Transform Animation::getTransform() const
 {
     if(timer < 0)
     {
-        return Transform(frames[pointer].transform.transVec3, 0);
+        //return Transform(frames[pointer].transform.transVec3, 0);
+        return Transform(0, 0, 0, 0);
     }
 
     if(pointer < frames.size() - 1)
@@ -55,7 +56,7 @@ Transform Animation::getEndTransform() const
         return Transform();
 }
 
-void Animation::Start()
+void Animation::start()
 {
     active = true;
     pointer = 0;

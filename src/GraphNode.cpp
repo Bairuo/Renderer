@@ -1,14 +1,18 @@
 #include "GraphNode.h"
 #include "Shader.h"
+#include "Object.h"
+#include <queue>
 
 GraphNode::GraphNode()
-    :dirty(false),
+    :dirty(true),
      objID(-1)
 {
 
 }
 
-void GraphNode::addObject(int objID)
+GraphNode::GraphNode(const Object &obj)
+    :dirty(true),
+     objID(obj.id)
 {
 
 }
@@ -20,9 +24,21 @@ void GraphNode::addSon(GraphNode *son)
     sons.push_back(son);
 }
 
+void GraphNode::addSubObject(const Object &obj)
+{
+    addSon(new GraphNode(obj));
+}
+
 void GraphNode::update()
 {
+    std::queue<GraphNode *> updateQueue;
 
+    updateQueue.push(this);
+
+    while(updateQueue.size() > 0)
+    {
+
+    }
 }
 
 void GraphNode::render()

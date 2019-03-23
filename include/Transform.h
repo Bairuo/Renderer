@@ -17,14 +17,16 @@ public:
     float getPosY() const;
     float getPosZ() const;
 
+    glm::vec3 getPosition() const;
+
     float getScaleX() const;
     float getScaleY() const;
     float getScaleZ() const;
 
+    glm::vec3 getScale() const;
+
     glm::mat4 getMatrix() const;
 
-    glm::vec3 transVec3;
-    glm::vec3 scaleVec3;
     float angle;
     glm::vec3 axis;
 
