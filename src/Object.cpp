@@ -4,6 +4,7 @@
 #include "Animation.h"
 #include "Transform.h"
 #include "Shader.h"
+#include "GraphNode.h"
 
 int ObjectID = 0;
 
@@ -69,6 +70,14 @@ void Object::render()
     }
 }
 
+void Object::addSubObject(boost::shared_ptr<Object> obj)
+{
+    if(graphNode != nullptr)
+    {
+        graphNode->addSubObject(obj.get());
+    }
+}
+
 boost::shared_ptr<Object> generateObject(Transform *transform, Renderer *renderer, RigidBody *rigidbody, Animation *animation)
 {
     boost::shared_ptr<Object> newObj(new Object(ObjectID, transform, renderer, rigidbody, animation));
@@ -91,6 +100,8 @@ boost::shared_ptr<Object> generateObject(Transform *transform, Renderer *rendere
     Objects.push_back(
         newObj
     );
+
+    ObjectID++;
 
     return newObj;
 }

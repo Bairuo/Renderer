@@ -1,20 +1,22 @@
 #include "GraphNode.h"
 #include "Shader.h"
 #include "Object.h"
+#include "Transform.h"
 #include <queue>
+#include <iostream>
+
+GraphNode SceneGraph;
 
 GraphNode::GraphNode()
-    :dirty(true),
-     objID(-1)
+    :objID(-1)
 {
 
 }
 
-GraphNode::GraphNode(const Object &obj)
-    :dirty(true),
-     objID(obj.id)
+GraphNode::GraphNode(Object *obj)
+    :objID(obj->id)
 {
-
+    obj->graphNode = this;
 }
 
 void GraphNode::addSon(GraphNode *son)
@@ -24,29 +26,35 @@ void GraphNode::addSon(GraphNode *son)
     sons.push_back(son);
 }
 
-void GraphNode::addSubObject(const Object &obj)
+void GraphNode::addSubObject(Object *obj)
 {
+    if(objID != -1)
+    {
+        obj->transform->setParentMatrix(Objects[objID]->transform->getMatrix());
+    }
+
     addSon(new GraphNode(obj));
 }
 
-void GraphNode::update()
+void GraphNode::update(const glm::mat4 &parentMatrix, bool dirty)
 {
-    std::queue<GraphNode *> updateQueue;
+    glm::mat4 thisMatrix = glm::mat4(1);
 
-    updateQueue.push(this);
-
-    while(updateQueue.size() > 0)
+    if(objID != -1)
     {
+        if(dirty)
+        {
+            Objects[objID]->transform->setParentMatrix(parentMatrix);
+        }
 
+        Objects[objID]->update();
+        thisMatrix = Objects[objID]->transform->getMatrix();
+
+        dirty |= Objects[objID]->dirty;
     }
-}
 
-void GraphNode::render()
-{
-
-}
-
-void GraphNode::render(Shader &shader)
-{
-
+    for(auto iter = sons.begin(); iter != sons.end(); ++iter)
+    {
+        (*iter)->update(thisMatrix, dirty);
+    }
 }

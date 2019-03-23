@@ -18,6 +18,7 @@
 #include "Animation.h"
 #include "BVH.h"
 #include "Deferred.h"
+#include "GraphNode.h"
 
 #include <list>
 
@@ -80,6 +81,9 @@ int main()
         auto obj = generateObject(new Transform(objPos[i], objScale[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
                                   new Cuboid());
 
+        SceneGraph.addSubObject(obj.get());
+
+
         // BVH Build
         if(obj->renderer.get() != nullptr)
         {
@@ -117,6 +121,9 @@ int main()
     Objects[3]->animation->addFrame(6.0f, start);
     Objects[3]->animation->setLoop(true);
     Objects[3]->animation->start();
+
+    // Sub object example
+    //Objects[3]->addSubObject(generateObject(new Transform(glm::vec3(0, 0.8f, 0), glm::vec3(1)), new Cuboid()));
 
     start = Transform(objPos[5], objScale[5], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
     end = Transform(glm::vec3(0.4f, 0, 0), objScale[5], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
@@ -160,10 +167,7 @@ int main()
         glfwPollEvents();
 
         // Game update
-        for(size_t i = 0; i < Objects.size(); i++)
-        {
-            Objects[i]->update();
-        }
+        SceneGraph.update(glm::mat4(1), false);
 
         unsigned potentialDebug;
 

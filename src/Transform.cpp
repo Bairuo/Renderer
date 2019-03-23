@@ -15,12 +15,15 @@ void Transform::update()
 }
 
 Transform::Transform(float posX, float posY, float posZ, float scaleX, float scaleY, float scaleZ,
-                 float angle, glm::vec3 axis)
+                 float angle, const glm::vec3 &axis, const glm::mat4 &parentMatrix)
     :angle(angle),
      axis(axis),
      transMatrix(glm::translate(glm::mat4(1), glm::vec3(posX, posY, posZ))),
      scaleMatrix(glm::scale(glm::mat4(1), glm::vec3(scaleX, scaleY, scaleZ))),
-     rotateMatrix(glm::rotate(glm::mat4(1), angle, axis))
+     rotateMatrix(glm::rotate(glm::mat4(1), angle, axis)),
+     localMatrix(rotateMatrix * transMatrix * scaleMatrix),
+     parentMatrix(parentMatrix),
+     worldMatrix(localMatrix * parentMatrix)
 {
 
 }
@@ -32,26 +35,26 @@ Transform::Transform(float x, float y, float z, float s)
 
 }
 
-Transform::Transform(float x, float y, float z, glm::vec3 scaleVec3)
+Transform::Transform(float x, float y, float z, const glm::vec3 &scaleVec3)
     :Transform(x, y, z, scaleVec3.x, scaleVec3.y, scaleVec3.z)
 {
 
 }
 
 
-Transform::Transform(glm::vec3 transVec3, float s)
+Transform::Transform(const glm::vec3 &transVec3, float s)
     :Transform(transVec3.x, transVec3.y, transVec3.z, s, s, s)
 {
 
 }
 
-Transform::Transform(glm::vec3 transVec3, glm::vec3 scaleVec3)
+Transform::Transform(const glm::vec3 &transVec3, const glm::vec3 &scaleVec3)
     :Transform(transVec3.x, transVec3.y, transVec3.z, scaleVec3.x, scaleVec3.y, scaleVec3.z)
 {
 
 }
 
-Transform::Transform(glm::vec3 transVec3, glm::vec3 scaleVec3, float angle, glm::vec3 axis)
+Transform::Transform(const glm::vec3 &transVec3, const glm::vec3 &scaleVec3, float angle, const glm::vec3 &axis)
     :Transform(transVec3.x, transVec3.y, transVec3.z, scaleVec3.x, scaleVec3.y, scaleVec3.z, angle, axis)
 {
 
@@ -106,7 +109,14 @@ glm::vec3 Transform::getScale() const
 
 glm::mat4 Transform::getMatrix() const
 {
-    return rotateMatrix * transMatrix * scaleMatrix;
+    return worldMatrix;
+}
+
+void Transform::setParentMatrix(const glm::mat4 &parentMatrix)
+{
+    this->parentMatrix = parentMatrix;
+
+    worldMatrix = localMatrix * parentMatrix;
 }
 
 Transform Transform::Lerp(const Transform &start, const Transform &end, float k)
@@ -123,5 +133,5 @@ Transform Transform::Lerp(const Transform &start, const Transform &end, float k)
 
     glm::vec3 axis = start.axis + (end.axis - start.axis) * k;
 
-    return Transform(posX, posY, posZ, scaleX, scaleY, scaleZ, angle, axis);
+    return Transform(posX, posY, posZ, scaleX, scaleY, scaleZ, angle, axis, start.parentMatrix);
 }

@@ -4,6 +4,9 @@
 #ifndef GRAPHNODE_H_
 #define GRAPHNODE_H_
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <list>
 
 class Shader;
@@ -12,8 +15,6 @@ class Object;
 class GraphNode
 {
 public:
-    bool dirty;
-
     int objID;
 
     GraphNode* parent = nullptr;
@@ -22,17 +23,20 @@ public:
 
     GraphNode();
 
-    GraphNode(const Object &obj);
+    GraphNode(Object *obj);
 
+    void addSubObject(Object *obj);
+
+    void update(const glm::mat4 &parentMatrix, bool dirty);
+
+    // clear
+
+    // delete
+
+private:
     void addSon(GraphNode *son);
-
-    void addSubObject(const Object &obj);
-
-    void update();
-
-    void render();
-
-    void render(Shader &shader);
 };
+
+extern GraphNode SceneGraph;
 
 #endif // GRAPHNODE_H_

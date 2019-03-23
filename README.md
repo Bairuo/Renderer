@@ -10,11 +10,12 @@ Based on opengl programmable rendering pipeline
 * Basic shadow mapping (PCF optimization)
 * MSAA
 * Forward Rendering and Deferred Rendering
+* Scene Graph (Dirty flag if parent world has changed)
 
 #### Physics
 * Rough contact detection based on BVH in dynamic scene
 
-#### Others
+#### Animation
 * Frame animation of position, scale, rotate and color in 2D
 
 ![Screenshot](https://github.com/Bairuo/renderer/raw/master/meta/move.jpg)

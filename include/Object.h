@@ -9,12 +9,14 @@ class Renderer;
 class RigidBody;
 class Animation;
 class Shader;
+class GraphNode;
 
 class Object
 {
 public:
     int id;
     bool dirty = false;     // If true, object need to be updated in Spatial Data Structure
+    GraphNode *graphNode = nullptr;
 
     // Components
     // Can change to array
@@ -32,6 +34,10 @@ public:
     void render();
 
     void render(Shader &shader);
+
+    //void setParent(boost::shared_ptr<Object> &obj);
+
+    void addSubObject(boost::shared_ptr<Object> obj);
 
     // ...
 };

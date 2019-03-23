@@ -139,7 +139,7 @@ bool BVHNode<BoundingVolumeClass>::RemoveDirty(std::list<Object *> &removeObjs, 
 {
     if(isLeaf() && body->dirty)
     {
-        body->dirty = false;
+        //body->dirty = false;
 
         removeObjs.push_back(body);
         removeVolumes.push_back(volume);
