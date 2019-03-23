@@ -3590,7 +3590,7 @@
 	"ConfigUtilities.h"
 	"Cuboid.h"
 
-1553319558 source:d:\jzr\renderer\src\cuboid.cpp
+1553320919 source:d:\jzr\renderer\src\cuboid.cpp
 	"Cuboid.h"
 	"ConfigUtilities.h"
 	"basicrender.h"
@@ -3656,13 +3656,14 @@
 	"Light.h"
 	"Transform.h"
 
-1553055217 source:d:\jzr\renderer\src\object.cpp
+1553328776 source:d:\jzr\renderer\src\object.cpp
 	"Object.h"
 	"Renderer.h"
 	"RigidBody.h"
 	"Animation.h"
 	"Transform.h"
 	"Shader.h"
+	"GraphNode.h"
 
 1551754228 d:\jzr\renderer\src\rigidbody.h
 
@@ -3705,7 +3706,7 @@
 	"TextRenderer.h"
 	"ConfigUtilities.h"
 
-1553055873 source:d:\jzr\renderer\src\main.cpp
+1553328765 source:d:\jzr\renderer\src\main.cpp
 	<iostream>
 	<boost/shared_ptr.hpp>
 	<GL/glew.h>
@@ -3723,6 +3724,7 @@
 	"Animation.h"
 	"BVH.h"
 	"Deferred.h"
+	"GraphNode.h"
 	<list>
 
 1552234065 d:\jzr\renderer\src\deferred.h
@@ -3742,7 +3744,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
 
-1553320416 source:d:\jzr\renderer\src\transform.cpp
+1553323535 source:d:\jzr\renderer\src\transform.cpp
 	<iostream>
 	"Transform.h"
 	"Object.h"
@@ -3773,7 +3775,7 @@
 	<sstream>
 	<iostream>
 
-1553320221 d:\jzr\renderer\include\transform.h
+1553323626 d:\jzr\renderer\include\transform.h
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
@@ -3818,14 +3820,14 @@
 1551754228 d:\jzr\renderer\include\button.h
 	"Rectangle.h"
 
-1553320184 d:\jzr\renderer\include\bvh.h
+1553325350 d:\jzr\renderer\include\bvh.h
 	<glm/vec3.hpp>
 	<list>
 	<iostream>
 	"Object.h"
 	"Transform.h"
 
-1553055217 d:\jzr\renderer\include\object.h
+1553328756 d:\jzr\renderer\include\object.h
 	<vector>
 	<boost/shared_ptr.hpp>
 
@@ -3878,12 +3880,17 @@
 	"property.h"
 	"Color.h"
 
-1553319507 source:d:\jzr\renderer\src\graphnode.cpp
+1553328252 source:d:\jzr\renderer\src\graphnode.cpp
 	"GraphNode.h"
 	"Shader.h"
 	"Object.h"
+	"Transform.h"
 	<queue>
+	<iostream>
 
-1553316628 d:\jzr\renderer\include\graphnode.h
+1553328262 d:\jzr\renderer\include\graphnode.h
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
 	<list>
 
