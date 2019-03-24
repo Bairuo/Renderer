@@ -10,7 +10,7 @@ Based on opengl programmable rendering pipeline
 * Basic shadow mapping (PCF optimization)
 * MSAA
 * Forward Rendering and Deferred Rendering
-* Scene Graph (Dirty flag if parent world has changed)
+* Scene Graph
 
 #### Physics
 * Rough contact detection based on BVH in dynamic scene
