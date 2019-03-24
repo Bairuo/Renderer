@@ -26,6 +26,24 @@ void GraphNode::addSon(GraphNode *son)
     sons.push_back(son);
 }
 
+void GraphNode::setParentObject(Object *obj)
+{
+    for(auto iter = parent->sons.begin(); iter != parent->sons.end(); ++iter)
+    {
+        if(*iter == this)
+        {
+            parent->sons.erase(iter);
+            break;
+        }
+    }
+
+    parent = obj->graphNode;
+
+    parent->sons.push_back(this);
+
+    Objects[objID]->transform->setParentMatrix(obj->transform->getMatrix());
+}
+
 void GraphNode::addSubObject(Object *obj)
 {
     if(objID != -1)

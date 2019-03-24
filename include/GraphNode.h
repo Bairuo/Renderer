@@ -25,6 +25,8 @@ public:
 
     GraphNode(Object *obj);
 
+    void setParentObject(Object *obj);
+
     void addSubObject(Object *obj);
 
     void update(const glm::mat4 &parentMatrix, bool dirty);

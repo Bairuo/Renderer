@@ -81,9 +81,6 @@ int main()
         auto obj = generateObject(new Transform(objPos[i], objScale[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
                                   new Cuboid());
 
-        SceneGraph.addSubObject(obj.get());
-
-
         // BVH Build
         if(obj->renderer.get() != nullptr)
         {
@@ -191,9 +188,9 @@ int main()
         glBindFramebuffer(GL_FRAMEBUFFER, gBuffer);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        for(size_t i = 0; i < Objects.size(); i++)
+        for(auto iter = Objects.begin(); iter != Objects.end(); ++iter)
         {
-            Objects[i]->render(deferredGeometryShader);
+            iter->second->render(deferredGeometryShader);
         }
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -208,9 +205,9 @@ int main()
         glBindFramebuffer(GL_FRAMEBUFFER, Light::depthMapFBO);
         glClear(GL_DEPTH_BUFFER_BIT);
 
-        for(size_t i = 0; i < Objects.size(); i++)
+        for(auto iter = Objects.begin(); iter != Objects.end(); ++iter)
         {
-            Objects[i]->render(depthShader);
+            iter->second->render(depthShader);
         }
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);

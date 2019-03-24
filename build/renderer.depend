@@ -3656,7 +3656,7 @@
 	"Light.h"
 	"Transform.h"
 
-1553328776 source:d:\jzr\renderer\src\object.cpp
+1553407850 source:d:\jzr\renderer\src\object.cpp
 	"Object.h"
 	"Renderer.h"
 	"RigidBody.h"
@@ -3706,7 +3706,7 @@
 	"TextRenderer.h"
 	"ConfigUtilities.h"
 
-1553328765 source:d:\jzr\renderer\src\main.cpp
+1553407365 source:d:\jzr\renderer\src\main.cpp
 	<iostream>
 	<boost/shared_ptr.hpp>
 	<GL/glew.h>
@@ -3827,8 +3827,8 @@
 	"Object.h"
 	"Transform.h"
 
-1553328756 d:\jzr\renderer\include\object.h
-	<vector>
+1553407169 d:\jzr\renderer\include\object.h
+	<map>
 	<boost/shared_ptr.hpp>
 
 1553055217 d:\jzr\renderer\include\camera.h
@@ -3880,7 +3880,7 @@
 	"property.h"
 	"Color.h"
 
-1553328252 source:d:\jzr\renderer\src\graphnode.cpp
+1553407956 source:d:\jzr\renderer\src\graphnode.cpp
 	"GraphNode.h"
 	"Shader.h"
 	"Object.h"
@@ -3888,7 +3888,7 @@
 	<queue>
 	<iostream>
 
-1553328262 d:\jzr\renderer\include\graphnode.h
+1553407947 d:\jzr\renderer\include\graphnode.h
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>

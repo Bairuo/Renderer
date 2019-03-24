@@ -8,7 +8,7 @@
 
 int ObjectID = 0;
 
-std::vector<boost::shared_ptr<Object> > Objects;
+std::map<int, boost::shared_ptr<Object> > Objects;
 
 Object::Object(int id, Transform *transform, Renderer *renderer, RigidBody *rigidbody, Animation *animation)
     :id(id)
@@ -70,12 +70,14 @@ void Object::render()
     }
 }
 
+void Object::setParent(boost::shared_ptr<Object> obj)
+{
+    graphNode->setParentObject(obj.get());
+}
+
 void Object::addSubObject(boost::shared_ptr<Object> obj)
 {
-    if(graphNode != nullptr)
-    {
-        graphNode->addSubObject(obj.get());
-    }
+    obj->graphNode->setParentObject(this);
 }
 
 boost::shared_ptr<Object> generateObject(Transform *transform, Renderer *renderer, RigidBody *rigidbody, Animation *animation)
@@ -97,9 +99,8 @@ boost::shared_ptr<Object> generateObject(Transform *transform, Renderer *rendere
         newObj->rigidbody->obj = newObj.get();
     }
 
-    Objects.push_back(
-        newObj
-    );
+    Objects.insert(std::pair<int, boost::shared_ptr<Object> >(ObjectID, newObj));
+    SceneGraph.addSubObject(newObj.get());
 
     ObjectID++;
 

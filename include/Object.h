@@ -1,7 +1,7 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include <vector>
+#include <map>
 #include <boost/shared_ptr.hpp>
 
 class Transform;
@@ -35,14 +35,14 @@ public:
 
     void render(Shader &shader);
 
-    //void setParent(boost::shared_ptr<Object> &obj);
+    void setParent(boost::shared_ptr<Object> obj);
 
     void addSubObject(boost::shared_ptr<Object> obj);
 
     // ...
 };
 
-extern std::vector<boost::shared_ptr<Object> > Objects;
+extern std::map<int, boost::shared_ptr<Object> > Objects;
 
 boost::shared_ptr<Object> generateObject(
             Transform *transform,
