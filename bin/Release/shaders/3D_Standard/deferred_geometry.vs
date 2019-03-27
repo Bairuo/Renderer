@@ -20,5 +20,5 @@ void main()
 
     FragPosLightSpace = lightSpaceMatrix * vec4(FragPos, 1.0);
 
-    vNormal = normal;
+    vNormal = normalize(transpose(inverse(mat3(model))) * normal);
 }
