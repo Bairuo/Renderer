@@ -11,6 +11,7 @@
 #include "KeyUtilities.h"
 #include "ConfigUtilities.h"
 #include "Cuboid.h"
+#include "IcoSphere.h"
 #include "Camera.h"
 #include "Light.h"
 #include "Object.h"
@@ -78,8 +79,11 @@ int main()
 
     for(int i = 0; i < OBJNUM; i++)
     {
-        auto obj = generateObject(new Transform(objPos[i], objScale[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
-                                  new Cuboid());
+        //auto obj = generateObject(new Transform(objPos[i], objScale[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
+        //                          new Cuboid());
+
+		auto obj = generateObject(new Transform(objPos[i], objScale[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
+			new IcoSphere());
 
         // BVH Build
         if(obj->renderer.get() != nullptr)
@@ -261,7 +265,7 @@ int main()
         glDisable(GL_DEPTH_TEST);
 
         textRenderer->DrawText("Fun Renderer", -384, 358, titleColor, 32, true);
-        //textRenderer->DrawText("NORMALS", -384, 358, Color(0, 0, 0, 1), 32, true);
+
         textRenderer->DrawText("FPS:" + bairuo::int2str(GameTime::GetFPS()), -384, 326, FPSColor, 16, true);
         textRenderer->DrawText("WASD to move ", -384, -334, titleColor, 16, true);
         textRenderer->DrawText("Potential contacts: " + bairuo::uns2str(potentialDebug), -384, -358, titleColor, 16, true);

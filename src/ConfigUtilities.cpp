@@ -1,5 +1,6 @@
 #include "ConfigUtilities.h"
 #include "Cuboid.h"
+#include "IcoSphere.h"
 
 GLFWwindow *window;
 char WindowName[] = "Renderer";
@@ -15,9 +16,13 @@ extern const float c_mergeBornTime = 0.2f;
 #if defined(SHADOWMAP)
 const GLchar Cuboid::standardVsPath[] = ".\\shaders\\3D_Standard\\standard_s.vs";
 const GLchar Cuboid::standardFragPath[] = ".\\shaders\\3D_Standard\\standard_s.frag";
+const GLchar IcoSphere::standardVsPath[] = ".\\shaders\\3D_Standard\\standard_s.vs";
+const GLchar IcoSphere::standardFragPath[] = ".\\shaders\\3D_Standard\\standard_s.frag";
 #else
 const GLchar Cuboid::standardVsPath[] = ".\\shaders\\3D_Standard\\standard.vs";
 const GLchar Cuboid::standardFragPath[] = ".\\shaders\\3D_Standard\\standard.frag";
+const GLchar IcoSphere::standardVsPath[] = ".\\shaders\\3D_Standard\\standard.vs";
+const GLchar IcoSphere::standardFragPath[] = ".\\shaders\\3D_Standard\\standard.frag";
 #endif
 
 #else
@@ -25,9 +30,13 @@ const GLchar Cuboid::standardFragPath[] = ".\\shaders\\3D_Standard\\standard.fra
 #if defined(SHADOWMAP)
 const GLchar Cuboid::standardVsPath[] = "./shaders/3D_Standard/standard_s.vs";
 const GLchar Cuboid::standardFragPath[] = "./shaders/3D_Standard/standard_s.frag";
+const GLchar IcoSphere::standardVsPath[] = "./shaders/3D_Standard/standard_s.vs";
+const GLchar IcoSphere::standardFragPath[] = "./shaders/3D_Standard/standard_s.frag";
 #else
 const GLchar Cuboid::standardVsPath[] = "./shaders/3D_Standard/standard.vs";
 const GLchar Cuboid::standardFragPath[] = "./shaders/3D_Standard/standard.frag";
+const GLchar IcoSphere::standardVsPath[] = "./shaders/3D_Standard/standard.vs";
+const GLchar IcoSphere::standardFragPath[] = "./shaders/3D_Standard/standard.frag";
 #endif
 
 #endif
