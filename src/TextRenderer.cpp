@@ -4,7 +4,7 @@
 #include <algorithm>
 #include "Rectangle.h"
 #include "TextRenderer.h"
-#include "ConfigUtilities.h"
+#include "BasicConfig.h"
 
 TextRenderer* TextRenderer::instance = nullptr;
 

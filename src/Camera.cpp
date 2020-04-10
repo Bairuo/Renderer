@@ -1,5 +1,5 @@
 #include "Camera.h"
-#include "ConfigUtilities.h"
+#include "BasicConfig.h"
 #include "Shader.h"
 
 Camera* Camera::MainCamera = nullptr;

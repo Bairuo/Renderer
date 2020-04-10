@@ -9,7 +9,7 @@
 #include "bairuofunctions.h"
 #include "GameTime.h"
 #include "KeyUtilities.h"
-#include "ConfigUtilities.h"
+#include "BasicConfig.h"
 #include "Cuboid.h"
 #include "IcoSphere.h"
 #include "Camera.h"
@@ -27,11 +27,6 @@ static const Color titleColor(0.464f, 0.43f, 0.395f, 1.0f);
 static const Color FPSColor(1, 0, 0, 1.0f);
 static const Color backGround(0.98f, 0.972f, 0.937f, 1.0f);
 
-#if defined(_WIN32)
-static const char ttfFile[] = ".\\res\\Arial.ttf";
-#else
-static const char ttfFile[] = "./res/Arial.ttf";
-#endif
 
 #define OBJNUM 8
 static const glm::vec3 objPos[OBJNUM] = {
@@ -79,11 +74,11 @@ int main()
 
     for(int i = 0; i < OBJNUM; i++)
     {
-        //auto obj = generateObject(new Transform(objPos[i], objScale[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
-        //                          new Cuboid());
+        auto obj = generateObject(new Transform(objPos[i], objScale[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
+                                  new Cuboid());
 
-		auto obj = generateObject(new Transform(objPos[i], objScale[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
-			new IcoSphere());
+		//auto obj = generateObject(new Transform(objPos[i], objScale[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
+		//	new IcoSphere());
 
         // BVH Build
         if(obj->renderer.get() != nullptr)

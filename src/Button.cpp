@@ -1,5 +1,5 @@
 #include "Button.h"
-#include "ConfigUtilities.h"
+#include "BasicConfig.h"
 
 #if defined(_WIN32)
 const GLchar Button::standardVsPath[] = ".\\res\\standard.vs";

@@ -1,5 +1,5 @@
 #include "Deferred.h"
-#include "ConfigUtilities.h"
+#include "BasicConfig.h"
 #include "Camera.h"
 #include "Light.h"
 #include <iostream>

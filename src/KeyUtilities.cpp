@@ -1,7 +1,7 @@
 #include "KeyUtilities.h"
 #include "Camera.h"
 #include "GameTime.h"
-#include "ConfigUtilities.h"
+#include "BasicConfig.h"
 
 #if defined(_WIN32)
 // No include "wingdi.h", name conflict

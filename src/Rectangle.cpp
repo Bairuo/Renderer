@@ -1,5 +1,5 @@
 #include "Rectangle.h"
-#include "ConfigUtilities.h"
+#include "BasicConfig.h"
 #include "basicrender.h"
 #include "Camera.h"
 

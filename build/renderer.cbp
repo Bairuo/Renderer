@@ -56,10 +56,10 @@
 		<Unit filename="../include/AlignedText.h" />
 		<Unit filename="../include/Animation.h" />
 		<Unit filename="../include/BVH.h" />
+		<Unit filename="../include/BasicConfig.h" />
 		<Unit filename="../include/Button.h" />
 		<Unit filename="../include/Camera.h" />
 		<Unit filename="../include/Color.h" />
-		<Unit filename="../include/ConfigUtilities.h" />
 		<Unit filename="../include/Cuboid.h" />
 		<Unit filename="../include/Deferred.h" />
 		<Unit filename="../include/Frame.h" />
@@ -84,10 +84,10 @@
 		<Unit filename="../src/AlignedText.cpp" />
 		<Unit filename="../src/Animation.cpp" />
 		<Unit filename="../src/BVH.cpp" />
+		<Unit filename="../src/BasicConfig.cpp" />
 		<Unit filename="../src/Button.cpp" />
 		<Unit filename="../src/Camera.cpp" />
 		<Unit filename="../src/Color.cpp" />
-		<Unit filename="../src/ConfigUtilities.cpp" />
 		<Unit filename="../src/Cuboid.cpp" />
 		<Unit filename="../src/Deferred.cpp" />
 		<Unit filename="../src/Frame.cpp" />

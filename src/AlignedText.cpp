@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#include "ConfigUtilities.h"
+#include "BasicConfig.h"
 
 static const float boundary = 0.5f;
 

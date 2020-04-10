@@ -1,5 +1,5 @@
 #include "IcoSphere.h"
-#include "ConfigUtilities.h"
+#include "BasicConfig.h"
 #include "basicrender.h"
 #include "Camera.h"
 #include "Light.h"
@@ -15,6 +15,28 @@ const Material IcoSphere::defaultMaterial(
 	glm::vec3(0.5f, 0.5f, 0.5f),
 	32.0f
 );
+
+#if defined(_WIN32)
+
+#if defined(SHADOWMAP)
+const GLchar IcoSphere::standardVsPath[] = ".\\shaders\\3D_Standard\\standard_s.vs";
+const GLchar IcoSphere::standardFragPath[] = ".\\shaders\\3D_Standard\\standard_s.frag";
+#else
+const GLchar IcoSphere::standardVsPath[] = ".\\shaders\\3D_Standard\\standard.vs";
+const GLchar IcoSphere::standardFragPath[] = ".\\shaders\\3D_Standard\\standard.frag";
+#endif
+
+#else
+
+#if defined(SHADOWMAP)
+const GLchar IcoSphere::standardVsPath[] = "./shaders/3D_Standard/standard_s.vs";
+const GLchar IcoSphere::standardFragPath[] = "./shaders/3D_Standard/standard_s.frag";
+#else
+const GLchar IcoSphere::standardVsPath[] = "./shaders/3D_Standard/standard.vs";
+const GLchar IcoSphere::standardFragPath[] = "./shaders/3D_Standard/standard.frag";
+#endif
+
+#endif
 
 static int triNums;
 

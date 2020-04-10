@@ -3894,13 +3894,13 @@
 	<glm/gtc/type_ptr.hpp>
 	<list>
 
-1584786872 source:d:\renderer\src\alignedtext.cpp
+1586508724 source:d:\renderer\src\alignedtext.cpp
 	"AlignedText.h"
 	"TextRenderer.h"
 	<string>
 	<iostream>
 	<sstream>
-	"ConfigUtilities.h"
+	"BasicConfig.h"
 
 1584786872 d:\renderer\include\alignedtext.h
 	"Rectangle.h"
@@ -4609,9 +4609,9 @@
 	<sstream>
 	<iostream>
 
-1584786872 source:d:\renderer\src\button.cpp
+1586508724 source:d:\renderer\src\button.cpp
 	"Button.h"
-	"ConfigUtilities.h"
+	"BasicConfig.h"
 
 1584786872 d:\renderer\include\button.h
 	"Rectangle.h"
@@ -4631,9 +4631,9 @@
 	<map>
 	<boost/shared_ptr.hpp>
 
-1584786872 source:d:\renderer\src\camera.cpp
+1586508724 source:d:\renderer\src\camera.cpp
 	"Camera.h"
-	"ConfigUtilities.h"
+	"BasicConfig.h"
 	"Shader.h"
 
 1584786872 d:\renderer\include\camera.h
@@ -4670,9 +4670,9 @@
 	"Material.h"
 	"Renderer.h"
 
-1584786872 source:d:\renderer\src\cuboid.cpp
+1586508738 source:d:\renderer\src\cuboid.cpp
 	"Cuboid.h"
-	"ConfigUtilities.h"
+	"BasicConfig.h"
 	"basicrender.h"
 	"Camera.h"
 	"Light.h"
@@ -4695,9 +4695,9 @@
 	<GLFW/glfw3.h>
 	"Shader.h"
 
-1584786872 source:d:\renderer\src\deferred.cpp
+1586508724 source:d:\renderer\src\deferred.cpp
 	"Deferred.h"
-	"ConfigUtilities.h"
+	"BasicConfig.h"
 	"Camera.h"
 	"Light.h"
 	<iostream>
@@ -4725,9 +4725,9 @@
 	<glm/gtc/type_ptr.hpp>
 	<list>
 
-1586505701 source:d:\renderer\src\icosphere.cpp
+1586508738 source:d:\renderer\src\icosphere.cpp
 	"IcoSphere.h"
-	"ConfigUtilities.h"
+	"BasicConfig.h"
 	"basicrender.h"
 	"Camera.h"
 	"Light.h"
@@ -4748,11 +4748,11 @@
 	"Transform.h"
 	"property.h"
 
-1584786872 source:d:\renderer\src\keyutilities.cpp
+1586508724 source:d:\renderer\src\keyutilities.cpp
 	"KeyUtilities.h"
 	"Camera.h"
 	"GameTime.h"
-	"ConfigUtilities.h"
+	"BasicConfig.h"
 	<windows.h>
 	<X11/XKBlib.h>
 
@@ -4764,7 +4764,7 @@
 	"Light.h"
 	"Transform.h"
 
-1586507189 source:d:\renderer\src\main.cpp
+1586508738 source:d:\renderer\src\main.cpp
 	<iostream>
 	<boost/shared_ptr.hpp>
 	<GL/glew.h>
@@ -4773,7 +4773,7 @@
 	"bairuofunctions.h"
 	"GameTime.h"
 	"KeyUtilities.h"
-	"ConfigUtilities.h"
+	"BasicConfig.h"
 	"Cuboid.h"
 	"IcoSphere.h"
 	"Camera.h"
@@ -4797,9 +4797,9 @@
 
 1584786872 d:\renderer\include\rigidbody.h
 
-1584786872 source:d:\renderer\src\rectangle.cpp
+1586508724 source:d:\renderer\src\rectangle.cpp
 	"Rectangle.h"
-	"ConfigUtilities.h"
+	"BasicConfig.h"
 	"basicrender.h"
 	"Camera.h"
 
@@ -4823,18 +4823,30 @@
 	"property.h"
 	"Color.h"
 
-1584786872 source:d:\renderer\src\textrenderer.cpp
+1586508724 source:d:\renderer\src\textrenderer.cpp
 	<cstdio>
 	<string>
 	<iostream>
 	<algorithm>
 	"Rectangle.h"
 	"TextRenderer.h"
-	"ConfigUtilities.h"
+	"BasicConfig.h"
 
 1584786872 source:d:\renderer\src\transform.cpp
 	<iostream>
 	"Transform.h"
 	"Object.h"
 	"Animation.h"
+
+1586507597 source:d:\renderer\src\basicrender.cpp
+	"basicrender.h"
+	<glm/glm.hpp>
+	<cmath>
+	<map>
+	<vector>
+	<algorithm>
+
+1586509197 d:\renderer\include\basicconfig.h
+	<GL/glew.h>
+	<GLFW/glfw3.h>
 

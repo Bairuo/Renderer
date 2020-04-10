@@ -1,8 +1,8 @@
 // ConfigUtilities.h
 // Author: Bairuo
 
-#ifndef CONFIGUTILITIES_H_
-#define CONFIGUTILITIES_H_
+#ifndef BASICCONFIG_H_
+#define BASICCONFIG_H_
 
 #define GLEW_STATIC
 #include <GL/glew.h>
@@ -16,8 +16,10 @@ extern char WindowName[];
 extern const GLuint WindowWidth;
 extern const GLuint WindowHeight;
 
-extern const float c_cardRadius;
-extern const float c_refreshTime;
-extern const float c_mergeBornTime;
+extern const float kCardRadius;
+extern const float kRefreshTime;
+extern const float kMergeBornTime;
 
-#endif // CONFIGUTILITIES_H_
+extern const char ttfFile[];
+
+#endif // BASICCONFIG_H_

@@ -1,5 +1,5 @@
 #include "Cuboid.h"
-#include "ConfigUtilities.h"
+#include "BasicConfig.h"
 #include "basicrender.h"
 #include "Camera.h"
 #include "Light.h"
@@ -15,6 +15,28 @@ const Material Cuboid::defaultMaterial(
     glm::vec3(0.5f, 0.5f, 0.5f),
     32.0f
 );
+
+#if defined(_WIN32)
+
+#if defined(SHADOWMAP)
+const GLchar Cuboid::standardVsPath[] = ".\\shaders\\3D_Standard\\standard_s.vs";
+const GLchar Cuboid::standardFragPath[] = ".\\shaders\\3D_Standard\\standard_s.frag";
+#else
+const GLchar Cuboid::standardVsPath[] = ".\\shaders\\3D_Standard\\standard.vs";
+const GLchar Cuboid::standardFragPath[] = ".\\shaders\\3D_Standard\\standard.frag";
+#endif
+
+#else
+
+#if defined(SHADOWMAP)
+const GLchar Cuboid::standardVsPath[] = "./shaders/3D_Standard/standard_s.vs";
+const GLchar Cuboid::standardFragPath[] = "./shaders/3D_Standard/standard_s.frag";
+#else
+const GLchar Cuboid::standardVsPath[] = "./shaders/3D_Standard/standard.vs";
+const GLchar Cuboid::standardFragPath[] = "./shaders/3D_Standard/standard.frag";
+#endif
+
+#endif
 
 void Cuboid::render(Shader &shader)
 {
