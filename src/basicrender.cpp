@@ -66,6 +66,7 @@ static const GLfloat cubeVertices[] =
 
 static int icoSpIndex = 0;
 static std::vector<glm::vec3> icoSpPositions;
+static std::vector<GLfloat> icoSpVertices;
 static std::vector<int> icoSpIndices;
 static std::map<int64_t, int> middlePointIndexCache;
 
@@ -164,7 +165,20 @@ static void createIcoSphere(const int level)
 		faces = faces2;
 	}
 
-	for (auto tri : faces)
+	for (const auto &pos : icoSpPositions) 
+	{
+		icoSpVertices.push_back(pos.x);
+		icoSpVertices.push_back(pos.y);
+		icoSpVertices.push_back(pos.z);
+
+		glm::vec3 nor = glm::normalize(pos);
+
+		icoSpVertices.push_back(nor.x);
+		icoSpVertices.push_back(nor.y);
+		icoSpVertices.push_back(nor.z);
+	}
+
+	for (const auto &tri : faces)
 	{
 		icoSpIndices.push_back(tri.v1);
 		icoSpIndices.push_back(tri.v2);
@@ -196,7 +210,7 @@ GLuint getIcoSphereVAO(const unsigned int level, unsigned int &triNum)
 
 	// copy to vertex buffer objects
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 3 * icoSpPositions.size(), &icoSpPositions[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 6 * icoSpVertices.size(), &icoSpVertices[0], GL_STATIC_DRAW);
 
 	// Element Buffer Object
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
@@ -204,9 +218,13 @@ GLuint getIcoSphereVAO(const unsigned int level, unsigned int &triNum)
 
 	triNum = icoSpIndices.size();
 
-	// Set the vertex attribute pointer
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FLAT, 3 * sizeof(GLfloat), (GLvoid *)0);
+	// position attribute
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
+
+	// Set the vertex attribute pointer
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);

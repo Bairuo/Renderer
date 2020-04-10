@@ -9,8 +9,12 @@
 #include <GLFW/glfw3.h>
 
 #define SHADOWMAP
-#define PBRTEST
+//#define PBRTEST
+
+#ifndef PBRTEST
 #define DEFERRED
+#endif // !PBRTEST
+
 
 extern GLFWwindow *window;
 extern char WindowName[];
