@@ -11,11 +11,11 @@ static const Color titleColor(0.98f, 0.972f, 0.937f, 1.0f);
 static const Color valueColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 #if defined(_WIN32)
-const GLchar AlignedText::standardVsPath[] = ".\\res\\standard.vs";
-const GLchar AlignedText::standardFragPath[] = ".\\res\\rounded.frag";
+const GLchar AlignedText::kStandardVsPath[] = ".\\res\\standard.vs";
+const GLchar AlignedText::kStandardFragPath[] = ".\\res\\rounded.frag";
 #else
-const GLchar AlignedText::standardVsPath[] = "./res/standard.vs";
-const GLchar AlignedText::standardFragPath[] = "./res/rounded.frag";
+const GLchar AlignedText::kStandardVsPath[] = "./res/standard.vs";
+const GLchar AlignedText::kStandardFragPath[] = "./res/rounded.frag";
 #endif
 
 void AlignedText::SetValue(int value)

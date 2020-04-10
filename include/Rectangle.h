@@ -50,7 +50,7 @@ public:
 
     Rectangle(const glm::vec3 &pos, const Color &color, const Color &roundColor,
               float radius, float scaleX, float scaleY,
-              const GLchar *vertexPath = standardVsPath, const GLchar *fragmentPath = standardFragPath);
+              const GLchar *vertexPath = kStandardVsPath, const GLchar *fragmentPath = kStandardFragPath);
 
     void Init(const GLchar *vertexPath, const GLchar *fragmentPath, const Color &roundColor);
 
@@ -68,8 +68,8 @@ private:
     bool colorChange = false;
     bool transformChange = false;
 
-    static const GLchar standardVsPath[];
-    static const GLchar standardFragPath[];
+    static const GLchar kStandardVsPath[];
+    static const GLchar kStandardFragPath[];
 };
 
 

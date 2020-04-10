@@ -9,36 +9,37 @@
 #include "Deferred.h"
 #include <cmath>
 
-const Material IcoSphere::defaultMaterial(
+const Material IcoSphere::kDefaultMaterial(
 	glm::vec3(1.0f, 0.5f, 0.31f),
 	glm::vec3(1.0f, 0.5f, 0.31f),
 	glm::vec3(0.5f, 0.5f, 0.5f),
 	32.0f
 );
 
+static unsigned int triNums;
+static const unsigned int kRecursionLevel = 3;
+
 #if defined(_WIN32)
 
 #if defined(SHADOWMAP)
-const GLchar IcoSphere::standardVsPath[] = ".\\shaders\\3D_Standard\\standard_s.vs";
-const GLchar IcoSphere::standardFragPath[] = ".\\shaders\\3D_Standard\\standard_s.frag";
+const GLchar IcoSphere::kStandardVsPath[] = ".\\shaders\\3D_Standard\\standard_s.vs";
+const GLchar IcoSphere::kStandardFragPath[] = ".\\shaders\\3D_Standard\\standard_s.frag";
 #else
-const GLchar IcoSphere::standardVsPath[] = ".\\shaders\\3D_Standard\\standard.vs";
-const GLchar IcoSphere::standardFragPath[] = ".\\shaders\\3D_Standard\\standard.frag";
+const GLchar IcoSphere::kStandardVsPath[] = ".\\shaders\\3D_Standard\\standard.vs";
+const GLchar IcoSphere::kStandardFragPath[] = ".\\shaders\\3D_Standard\\standard.frag";
 #endif
 
 #else
 
 #if defined(SHADOWMAP)
-const GLchar IcoSphere::standardVsPath[] = "./shaders/3D_Standard/standard_s.vs";
-const GLchar IcoSphere::standardFragPath[] = "./shaders/3D_Standard/standard_s.frag";
+const GLchar IcoSphere::kStandardVsPath[] = "./shaders/3D_Standard/standard_s.vs";
+const GLchar IcoSphere::kStandardFragPath[] = "./shaders/3D_Standard/standard_s.frag";
 #else
-const GLchar IcoSphere::standardVsPath[] = "./shaders/3D_Standard/standard.vs";
-const GLchar IcoSphere::standardFragPath[] = "./shaders/3D_Standard/standard.frag";
+const GLchar IcoSphere::kStandardVsPath[] = "./shaders/3D_Standard/standard.vs";
+const GLchar IcoSphere::kStandardFragPath[] = "./shaders/3D_Standard/standard.frag";
 #endif
 
 #endif
-
-static int triNums;
 
 void IcoSphere::render(Shader &shader)
 {
@@ -92,7 +93,7 @@ IcoSphere::IcoSphere(const Material &material,
 	setMaterial(&shader);
 	shader.Stop();
 
-	VAO = getIcoSphereVAO(2, triNums);
+	VAO = getIcoSphereVAO(kRecursionLevel, triNums);
 }
 
 double IcoSphere::getSphereBoundingRadius()

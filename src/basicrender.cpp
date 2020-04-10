@@ -172,7 +172,7 @@ static void createIcoSphere(const int level)
 	}
 }
 
-GLuint getIcoSphereVAO(const int level, int &triNum)
+GLuint getIcoSphereVAO(const unsigned int level, unsigned int &triNum)
 {
 	static bool init = false;
 

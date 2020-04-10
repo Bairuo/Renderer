@@ -9,8 +9,7 @@
 
 GLuint getSquareVAO();
 GLuint getCubeVAO();
-//GLuint getSphereVAO(unsigned int longPart, unsigned int latPart, float radius);
-GLuint getIcoSphereVAO(const int level, int &triNum);
+GLuint getIcoSphereVAO(const unsigned int level, unsigned int &triNum);
 
 struct TriangleIndices
 {

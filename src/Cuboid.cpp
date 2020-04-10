@@ -9,7 +9,7 @@
 #include "Deferred.h"
 #include <cmath>
 
-const Material Cuboid::defaultMaterial(
+const Material Cuboid::kDefaultMaterial(
     glm::vec3(1.0f, 0.5f, 0.31f),
     glm::vec3(1.0f, 0.5f, 0.31f),
     glm::vec3(0.5f, 0.5f, 0.5f),
@@ -19,21 +19,21 @@ const Material Cuboid::defaultMaterial(
 #if defined(_WIN32)
 
 #if defined(SHADOWMAP)
-const GLchar Cuboid::standardVsPath[] = ".\\shaders\\3D_Standard\\standard_s.vs";
-const GLchar Cuboid::standardFragPath[] = ".\\shaders\\3D_Standard\\standard_s.frag";
+const GLchar Cuboid::kStandardVsPath[] = ".\\shaders\\3D_Standard\\standard_s.vs";
+const GLchar Cuboid::kStandardFragPath[] = ".\\shaders\\3D_Standard\\standard_s.frag";
 #else
-const GLchar Cuboid::standardVsPath[] = ".\\shaders\\3D_Standard\\standard.vs";
-const GLchar Cuboid::standardFragPath[] = ".\\shaders\\3D_Standard\\standard.frag";
+const GLchar Cuboid::kStandardVsPath[] = ".\\shaders\\3D_Standard\\standard.vs";
+const GLchar Cuboid::kStandardFragPath[] = ".\\shaders\\3D_Standard\\standard.frag";
 #endif
 
 #else
 
 #if defined(SHADOWMAP)
-const GLchar Cuboid::standardVsPath[] = "./shaders/3D_Standard/standard_s.vs";
-const GLchar Cuboid::standardFragPath[] = "./shaders/3D_Standard/standard_s.frag";
+const GLchar Cuboid::kStandardVsPath[] = "./shaders/3D_Standard/standard_s.vs";
+const GLchar Cuboid::kStandardFragPath[] = "./shaders/3D_Standard/standard_s.frag";
 #else
-const GLchar Cuboid::standardVsPath[] = "./shaders/3D_Standard/standard.vs";
-const GLchar Cuboid::standardFragPath[] = "./shaders/3D_Standard/standard.frag";
+const GLchar Cuboid::kStandardVsPath[] = "./shaders/3D_Standard/standard.vs";
+const GLchar Cuboid::kStandardFragPath[] = "./shaders/3D_Standard/standard.frag";
 #endif
 
 #endif

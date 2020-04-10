@@ -2,11 +2,11 @@
 #include "BasicConfig.h"
 
 #if defined(_WIN32)
-const GLchar Button::standardVsPath[] = ".\\res\\standard.vs";
-const GLchar Button::standardFragPath[] = ".\\res\\rounded.frag";
+const GLchar Button::kStandardVsPath[] = ".\\res\\standard.vs";
+const GLchar Button::kStandardFragPath[] = ".\\res\\rounded.frag";
 #else
-const GLchar Button::standardVsPath[] = "./res/standard.vs";
-const GLchar Button::standardFragPath[] = "./res/rounded.frag";
+const GLchar Button::kStandardVsPath[] = "./res/standard.vs";
+const GLchar Button::kStandardFragPath[] = "./res/rounded.frag";
 #endif
 
 Button::Button(const glm::vec3 &pos, const Color &color, const Color &roundColor,

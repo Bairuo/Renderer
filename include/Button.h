@@ -16,11 +16,11 @@ public:
 
     Button(const glm::vec3 &pos, const Color &color, const Color &roundColor,
               float radius, float width, float height,
-              const GLchar *vertexPath = standardVsPath, const GLchar *fragmentPath = standardFragPath);
+              const GLchar *vertexPath = kStandardVsPath, const GLchar *fragmentPath = kStandardFragPath);
 
 private:
-    static const GLchar standardVsPath[];
-    static const GLchar standardFragPath[];
+    static const GLchar kStandardVsPath[];
+    static const GLchar kStandardFragPath[];
 };
 
 #endif // BUTTON_H_

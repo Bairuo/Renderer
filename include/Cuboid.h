@@ -26,8 +26,8 @@ public:
 
     virtual ~Cuboid();
 
-    Cuboid(const Material &material = defaultMaterial,
-           const GLchar *vertexPath = standardVsPath, const GLchar *fragmentPath = standardFragPath);
+    Cuboid(const Material &material = kDefaultMaterial,
+           const GLchar *vertexPath = kStandardVsPath, const GLchar *fragmentPath = kStandardFragPath);
 
     void setMaterial(Shader *shader);
 
@@ -40,9 +40,9 @@ private:
 
     bool active = true;
 
-    static const GLchar standardVsPath[];
-    static const GLchar standardFragPath[];
-    static const Material defaultMaterial;
+    static const GLchar kStandardVsPath[];
+    static const GLchar kStandardFragPath[];
+    static const Material kDefaultMaterial;
 };
 
 

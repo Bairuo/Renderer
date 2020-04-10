@@ -21,7 +21,7 @@ public:
 
     AlignedText(const std::string &title, int value, float radius,
                 const glm::vec3 &pos, const Color &color, const Color &roundColor, float width, float height,
-                const GLchar *vertexPath = standardVsPath, const GLchar *fragmentPath = standardFragPath);
+                const GLchar *vertexPath = kStandardVsPath, const GLchar *fragmentPath = kStandardFragPath);
 
 private:
     TextRenderer *textRenderer;
@@ -33,8 +33,8 @@ private:
     bool titleBold;
     bool valueBold;
 
-    static const GLchar standardVsPath[];
-    static const GLchar standardFragPath[];
+    static const GLchar kStandardVsPath[];
+    static const GLchar kStandardFragPath[];
 };
 
 #endif // ALIGNEDTEXT_H_
