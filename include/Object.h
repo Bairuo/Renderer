@@ -42,10 +42,4 @@ public:
     // ...
 };
 
-extern std::map<int, boost::shared_ptr<Object> > Objects;
-
-boost::shared_ptr<Object> generateObject(
-            Transform *transform,
-            Renderer *renderer = nullptr, RigidBody *rigidbody = nullptr, Animation *animation = nullptr);
-
 #endif // OBJECT_H

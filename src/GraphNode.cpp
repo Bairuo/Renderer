@@ -3,9 +3,8 @@
 #include "Object.h"
 #include "Transform.h"
 #include <queue>
+#include "SceneConfig.h"
 #include <iostream>
-
-GraphNode SceneGraph;
 
 GraphNode::GraphNode()
     :objID(-1)

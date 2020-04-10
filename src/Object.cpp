@@ -6,10 +6,6 @@
 #include "Shader.h"
 #include "GraphNode.h"
 
-int ObjectID = 0;
-
-std::map<int, boost::shared_ptr<Object> > Objects;
-
 Object::Object(int id, Transform *transform, Renderer *renderer, RigidBody *rigidbody, Animation *animation)
     :id(id)
 {
@@ -78,31 +74,4 @@ void Object::setParent(boost::shared_ptr<Object> obj)
 void Object::addSubObject(boost::shared_ptr<Object> obj)
 {
     obj->graphNode->setParentObject(this);
-}
-
-boost::shared_ptr<Object> generateObject(Transform *transform, Renderer *renderer, RigidBody *rigidbody, Animation *animation)
-{
-    boost::shared_ptr<Object> newObj(new Object(ObjectID, transform, renderer, rigidbody, animation));
-
-    if(transform != nullptr)
-    {
-        newObj->transform->obj = newObj.get();
-    }
-
-    if(renderer != nullptr)
-    {
-        newObj->renderer->obj = newObj.get();
-    }
-
-    if(rigidbody != nullptr)
-    {
-        newObj->rigidbody->obj = newObj.get();
-    }
-
-    Objects.insert(std::pair<int, boost::shared_ptr<Object> >(ObjectID, newObj));
-    SceneGraph.addSubObject(newObj.get());
-
-    ObjectID++;
-
-    return newObj;
 }

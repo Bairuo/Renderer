@@ -4627,7 +4627,7 @@
 	"Object.h"
 	"Transform.h"
 
-1584786872 d:\renderer\include\object.h
+1586509940 d:\renderer\include\object.h
 	<map>
 	<boost/shared_ptr.hpp>
 
@@ -4846,7 +4846,12 @@
 	<vector>
 	<algorithm>
 
-1586509197 d:\renderer\include\basicconfig.h
+1586514792 d:\renderer\include\basicconfig.h
 	<GL/glew.h>
 	<GLFW/glfw3.h>
+
+1586509131 source:d:\renderer\src\basicconfig.cpp
+	"BasicConfig.h"
+	"Cuboid.h"
+	"IcoSphere.h"
 

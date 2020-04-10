@@ -4,7 +4,6 @@
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-
 #include "TextRenderer.h"
 #include "bairuofunctions.h"
 #include "GameTime.h"
@@ -15,47 +14,64 @@
 #include "Camera.h"
 #include "Light.h"
 #include "Object.h"
+#include "SceneConfig.h"
 #include "Transform.h"
 #include "Animation.h"
 #include "BVH.h"
 #include "Deferred.h"
 #include "GraphNode.h"
-
+#include "SceneConfig.h"
+#include "Color.h"
 #include <list>
 
-static const Color titleColor(0.464f, 0.43f, 0.395f, 1.0f);
-static const Color FPSColor(1, 0, 0, 1.0f);
-static const Color backGround(0.98f, 0.972f, 0.937f, 1.0f);
+static const Color kTitleColor(0.464f, 0.43f, 0.395f, 1.0f);
+static const Color kFPSColor(1, 0, 0, 1.0f);
+static const Color kBackColor(0.98f, 0.972f, 0.937f, 1.0f);
 
+#if defined(PBRTEST)
+#define OBJNUM 4
+static const glm::vec3 kObjPosConfig[OBJNUM] = {
+	glm::vec3(-0.5f, -0.5f, 0),
+	glm::vec3(-0.5f, 0.5f, 0),
+	glm::vec3(0.5f, -0.5f, 0),
+	glm::vec3(0.5f, 0.5f, 0)
+};
 
+static const glm::vec3 kObjScaleConfig[OBJNUM] = {
+	glm::vec3(0.35f, 0.35f, 0.35f),
+	glm::vec3(0.35f, 0.35f, 0.35f),
+	glm::vec3(0.35f, 0.35f, 0.35f),
+	glm::vec3(0.35f, 0.35f, 0.35f)
+};
+#else
 #define OBJNUM 8
-static const glm::vec3 objPos[OBJNUM] = {
-    glm::vec3(0, -0.4f, 1.0f),
-    glm::vec3(-0.4f, 0, 1.0f),
-    glm::vec3(0.4f, 0, 1.0f),
-    glm::vec3(0, 0.4f, 1.0f),
-    glm::vec3(0, 0.4f, -1.0f),
-    glm::vec3(0.4f, 0, -1.0f),
-    glm::vec3(-0.4f, 0, -1.0f),
-    glm::vec3(0, -0.4f, -1.0f)
+static const glm::vec3 kObjPosConfig[OBJNUM] = {
+	glm::vec3(0, -0.4f, 1.0f),
+	glm::vec3(-0.4f, 0, 1.0f),
+	glm::vec3(0.4f, 0, 1.0f),
+	glm::vec3(0, 0.4f, 1.0f),
+	glm::vec3(0, 0.4f, -1.0f),
+	glm::vec3(0.4f, 0, -1.0f),
+	glm::vec3(-0.4f, 0, -1.0f),
+	glm::vec3(0, -0.4f, -1.0f)
 };
 
-static const glm::vec3 objScale[OBJNUM] = {
-    glm::vec3(0.35f, 0.35f, 0.35f),
-    glm::vec3(0.35f, 0.6f, 0.35f),
-    glm::vec3(0.35f, 0.35f, 0.35f),
-    glm::vec3(0.35f, 0.35f, 0.35f),
-    glm::vec3(0.35f, 0.35f, 0.35f),
-    glm::vec3(0.35f, 0.6f, 0.35f),
-    glm::vec3(0.35f, 0.35f, 0.35f),
-    glm::vec3(0.35f, 0.35f, 0.35f)
+static const glm::vec3 kObjScaleConfig[OBJNUM] = {
+	glm::vec3(0.35f, 0.35f, 0.35f),
+	glm::vec3(0.35f, 0.6f, 0.35f),
+	glm::vec3(0.35f, 0.35f, 0.35f),
+	glm::vec3(0.35f, 0.35f, 0.35f),
+	glm::vec3(0.35f, 0.35f, 0.35f),
+	glm::vec3(0.35f, 0.6f, 0.35f),
+	glm::vec3(0.35f, 0.35f, 0.35f),
+	glm::vec3(0.35f, 0.35f, 0.35f)
 };
+#endif
 
 static Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
-
 static GameTime mainTime;
 
-static BVHNode<BoundingSphere> *BVHTree = nullptr;
+// for contact test
 static PotentialContact potentialContacts[MAXDETECTNUM];
 
 static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
@@ -74,62 +90,41 @@ int main()
 
     for(int i = 0; i < OBJNUM; i++)
     {
-        auto obj = generateObject(new Transform(objPos[i], objScale[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
-                                  new Cuboid());
+#if defined(PBRTEST)
+		auto obj = generateObject(new Transform(kObjPosConfig[i], kObjScaleConfig[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
+			new IcoSphere());
+#else
+		auto obj = generateObject(new Transform(kObjPosConfig[i], kObjScaleConfig[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
+			new Cuboid());
+#endif
 
-		//auto obj = generateObject(new Transform(objPos[i], objScale[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
-		//	new IcoSphere());
-
-        // BVH Build
-        if(obj->renderer.get() != nullptr)
-        {
-            /**
-             * Default Contact test. Note even the object has not a rigidbody,
-             * it can also being tested(like Trigger test).
-             */
-            double bRadius = obj->renderer->getSphereBoundingRadius();
-
-            if(bRadius > 0)
-            {
-                double debug = 1;     // debug
-
-                BoundingSphere bSphere(objPos[i], bRadius * debug);
-
-                if(BVHTree == nullptr)
-                {
-                    BVHTree = new BVHNode<BoundingSphere>(NULL, bSphere, obj.get());
-                }
-                else
-                {
-                    BVHTree->insert(obj.get(), bSphere);
-                }
-            }
-        }
+		BVHTreeBuild(BVHTree, obj);
     }
+#ifndef PBRTEST
+	// Animation Demo set
+	Transform start(kObjPosConfig[3], kObjScaleConfig[3], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
+	Transform end(glm::vec3(0, 0.4f, 0), kObjScaleConfig[3], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
 
-    // Animation Demo set
-    Transform start(objPos[3], objScale[3], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
-    Transform end(glm::vec3(0, 0.4f, 0), objScale[3], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
+	Objects[3]->animation.reset(new Animation());
+	Objects[3]->animation->addFrame(0, start);
+	Objects[3]->animation->addFrame(3.0f, end);
+	Objects[3]->animation->addFrame(6.0f, start);
+	Objects[3]->animation->setLoop(true);
+	Objects[3]->animation->start();
 
-    Objects[3]->animation.reset(new Animation());
-    Objects[3]->animation->addFrame(0, start);
-    Objects[3]->animation->addFrame(3.0f, end);
-    Objects[3]->animation->addFrame(6.0f, start);
-    Objects[3]->animation->setLoop(true);
-    Objects[3]->animation->start();
+	// Sub object example
+	//Objects[3]->addSubObject(generateObject(new Transform(glm::vec3(0, 0.8f, 0), glm::vec3(1)), new Cuboid()));
 
-    // Sub object example
-    //Objects[3]->addSubObject(generateObject(new Transform(glm::vec3(0, 0.8f, 0), glm::vec3(1)), new Cuboid()));
+	start = Transform(kObjPosConfig[5], kObjScaleConfig[5], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
+	end = Transform(glm::vec3(0.4f, 0, 0), kObjScaleConfig[5], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
 
-    start = Transform(objPos[5], objScale[5], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
-    end = Transform(glm::vec3(0.4f, 0, 0), objScale[5], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
-
-    Objects[5]->animation.reset(new Animation());
-    Objects[5]->animation->addFrame(0, start);
-    Objects[5]->animation->addFrame(3.0f, end);
-    Objects[5]->animation->addFrame(6.0f, start);
-    Objects[5]->animation->setLoop(true);
-    Objects[5]->animation->start();
+	Objects[5]->animation.reset(new Animation());
+	Objects[5]->animation->addFrame(0, start);
+	Objects[5]->animation->addFrame(3.0f, end);
+	Objects[5]->animation->addFrame(6.0f, start);
+	Objects[5]->animation->setLoop(true);
+	Objects[5]->animation->start();
+#endif // !PBRTEST
 
     /* rendering setting */
     //glEnable(GL_DEPTH_TEST);
@@ -140,7 +135,7 @@ int main()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glClearColor(backGround.r, backGround.g, backGround.b, backGround.a);
+    glClearColor(kBackColor.r, kBackColor.g, kBackColor.b, kBackColor.a);
 
 #if defined(DEFERRED)
     GLuint gBuffer = getGBuffer();
@@ -259,11 +254,10 @@ int main()
 
         glDisable(GL_DEPTH_TEST);
 
-        textRenderer->DrawText("Fun Renderer", -384, 358, titleColor, 32, true);
-
-        textRenderer->DrawText("FPS:" + bairuo::int2str(GameTime::GetFPS()), -384, 326, FPSColor, 16, true);
-        textRenderer->DrawText("WASD to move ", -384, -334, titleColor, 16, true);
-        textRenderer->DrawText("Potential contacts: " + bairuo::uns2str(potentialDebug), -384, -358, titleColor, 16, true);
+        textRenderer->DrawText("Fun Renderer", -384, 358, kTitleColor, 32, true);
+        textRenderer->DrawText("FPS:" + bairuo::int2str(GameTime::GetFPS()), -384, 326, kFPSColor, 16, true);
+        textRenderer->DrawText("WASD to move ", -384, -334, kTitleColor, 16, true);
+        textRenderer->DrawText("Potential contacts: " + bairuo::uns2str(potentialDebug), -384, -358, kTitleColor, 16, true);
 
         glfwSwapBuffers(window);
 

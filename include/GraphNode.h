@@ -39,6 +39,4 @@ private:
     void addSon(GraphNode *son);
 };
 
-extern GraphNode SceneGraph;
-
 #endif // GRAPHNODE_H_
