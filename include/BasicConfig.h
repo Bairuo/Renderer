@@ -10,6 +10,11 @@
 
 //#define PBRTEST
 
+#ifdef PBRTEST
+#define CAMERAROTATE
+#endif // PBRTEST
+
+
 #ifndef PBRTEST
 #define SHADOWMAP
 #define DEFERRED

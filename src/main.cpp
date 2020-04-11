@@ -65,12 +65,18 @@ static const glm::vec3 kObjScaleConfig[OBJNUM] = {
 #endif
 
 static Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+static float lastX = WindowWidth / 2.0f;
+static float lastY = WindowHeight / 2.0f;
+static bool firstMouse = true;
+
+
 static GameTime mainTime;
 
 // for contact test
 static PotentialContact potentialContacts[MAXDETECTNUM];
 
 static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 static void InitWindow();
 
 int main()
@@ -283,7 +289,9 @@ void InitWindow()
     window = glfwCreateWindow(WindowWidth, WindowHeight, WindowName, nullptr, nullptr);
 
     glfwMakeContextCurrent(window);
-    //glfwSetCursorPosCallback(window, mouse_callback);
+#ifdef CAMERAROTATE
+	glfwSetCursorPosCallback(window, mouse_callback);
+#endif // CAMERAROTATE
     glfwSetScrollCallback(window, scroll_callback);
 
     //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -295,6 +303,25 @@ void InitWindow()
     glfwGetFramebufferSize(window, &width, &height);
     glViewport(0, 0, width, height);
 }
+
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	if (firstMouse)
+	{
+		lastX = xpos;
+		lastY = ypos;
+		firstMouse = false;
+	}
+
+	float xoffset = xpos - lastX;
+	float yoffset = lastY - ypos;
+
+	lastX = xpos;
+	lastY = ypos;
+
+	camera.ProcessMouseMovement(xoffset, yoffset);
+}
+
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
