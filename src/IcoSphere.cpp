@@ -8,14 +8,24 @@
 #include "Object.h"
 #include "Deferred.h"
 #include "BasicMaterial.h"
+#include "PBRMaterial.h"
 #include <cmath>
 
+//const boost::shared_ptr<Material> IcoSphere::kDefaultMaterial(
+//	new BASICMaterial(
+//	glm::vec3(1.0f, 0.5f, 0.31f),
+//	glm::vec3(1.0f, 0.5f, 0.31f),
+//	glm::vec3(0.5f, 0.5f, 0.5f),
+//	32.0f)
+//);
+
 const boost::shared_ptr<Material> IcoSphere::kDefaultMaterial(
-	new BASICMaterial(
-	glm::vec3(1.0f, 0.5f, 0.31f),
-	glm::vec3(1.0f, 0.5f, 0.31f),
-	glm::vec3(0.5f, 0.5f, 0.5f),
-	32.0f)
+	new PBRMaterial(
+		glm::vec3(1.0f, 0.5f, 0.31f),	// albedo
+		0.03f,	// metallic
+		0.2f,	// roughness
+		0.1f	// ao
+	)	
 );
 
 static unsigned int triNums;
@@ -24,21 +34,23 @@ static const unsigned int kRecursionLevel = 3;
 #if defined(_WIN32)
 
 #if defined(SHADOWMAP)
+// pbr shader in shadowmap need to write
 const GLchar IcoSphere::kStandardVsPath[] = ".\\shaders\\3D_Standard\\standard_shadow.vs";
 const GLchar IcoSphere::kStandardFragPath[] = ".\\shaders\\3D_Standard\\standard_shadow.frag";
 #else
-const GLchar IcoSphere::kStandardVsPath[] = ".\\shaders\\3D_Standard\\standard.vs";
-const GLchar IcoSphere::kStandardFragPath[] = ".\\shaders\\3D_Standard\\standard.frag";
+const GLchar IcoSphere::kStandardVsPath[] = ".\\shaders\\3D_Standard\\pbr.vs";
+const GLchar IcoSphere::kStandardFragPath[] = ".\\shaders\\3D_Standard\\pbr.frag";
 #endif
 
 #else
 
 #if defined(SHADOWMAP)
+// pbr shader in shadowmap need to write
 const GLchar IcoSphere::kStandardVsPath[] = "./shaders/3D_Standard/standard_shadow.vs";
 const GLchar IcoSphere::kStandardFragPath[] = "./shaders/3D_Standard/standard_shadow.frag";
 #else
-const GLchar IcoSphere::kStandardVsPath[] = "./shaders/3D_Standard/standard.vs";
-const GLchar IcoSphere::kStandardFragPath[] = "./shaders/3D_Standard/standard.frag";
+const GLchar IcoSphere::kStandardVsPath[] = "./shaders/3D_Standard/pbr.vs";
+const GLchar IcoSphere::kStandardFragPath[] = "./shaders/3D_Standard/pbr.frag";
 #endif
 
 #endif

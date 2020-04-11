@@ -10,8 +10,19 @@ uniform float roughness;
 uniform float ao;
 
 // lights
-uniform vec3 lightPositions[4];
-uniform vec3 lightColors[4];
+struct PointLight {
+    vec3 position;
+
+    float constant;
+    float linear;
+    float quadratic;
+
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+};
+#define NR_POINT_LIGHTS 1
+uniform PointLight pointLights[NR_POINT_LIGHTS];
 
 uniform vec3 camPos;
 
@@ -33,14 +44,17 @@ void main()
 
     // reflectance equation
     vec3 Lo = vec3(0.0);
-    for(int i = 0; i < 4; ++i) 
+    for(int i = 0; i < NR_POINT_LIGHTS; ++i) 
     {
         // calculate per-light radiance
-        vec3 L = normalize(lightPositions[i] - WorldPos);
+        vec3 L = normalize(pointLights[i].position - WorldPos);
         vec3 H = normalize(V + L);
-        float distance    = length(lightPositions[i] - WorldPos);
-        float attenuation = 1.0 / (distance * distance);
-        vec3 radiance     = lightColors[i] * attenuation;        
+        float distance    = length(pointLights[i].position - WorldPos);
+
+        float attenuation = 1.0 / (pointLights[i].constant + pointLights[i].linear * distance +
+                 pointLights[i].quadratic * (distance * distance));
+		vec3 lightColor = (pointLights[i].ambient + pointLights[i].diffuse + pointLights[i].specular);
+        vec3 radiance     = lightColor * attenuation;        
 
         // cook-torrance brdf
         float NDF = DistributionGGX(N, H, roughness);        

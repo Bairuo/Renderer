@@ -29,17 +29,13 @@ static const Color kFPSColor(1, 0, 0, 1.0f);
 static const Color kBackColor(0.98f, 0.972f, 0.937f, 1.0f);
 
 #if defined(PBRTEST)
-#define OBJNUM 4
+#define OBJNUM 2
 static const glm::vec3 kObjPosConfig[OBJNUM] = {
 	glm::vec3(-0.5f, -0.5f, 0),
-	glm::vec3(-0.5f, 0.5f, 0),
-	glm::vec3(0.5f, -0.5f, 0),
-	glm::vec3(0.5f, 0.5f, 0)
+	glm::vec3(0.5f, -0.5f, 0)
 };
 
 static const glm::vec3 kObjScaleConfig[OBJNUM] = {
-	glm::vec3(0.35f, 0.35f, 0.35f),
-	glm::vec3(0.35f, 0.35f, 0.35f),
 	glm::vec3(0.35f, 0.35f, 0.35f),
 	glm::vec3(0.35f, 0.35f, 0.35f)
 };

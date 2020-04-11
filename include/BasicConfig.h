@@ -8,10 +8,10 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#define SHADOWMAP
 //#define PBRTEST
 
 #ifndef PBRTEST
+#define SHADOWMAP
 #define DEFERRED
 #endif // !PBRTEST
 
