@@ -10,8 +10,9 @@
 
 #include "Color.h"
 #include "Shader.h"
-#include "Material.h"
 #include "Renderer.h"
+
+class Material;
 
 class Cuboid : public Renderer
 {
@@ -26,23 +27,20 @@ public:
 
     virtual ~Cuboid();
 
-    Cuboid(const Material &material = kDefaultMaterial,
+    Cuboid(const boost::shared_ptr<Material> &material = kDefaultMaterial,
            const GLchar *vertexPath = kStandardVsPath, const GLchar *fragmentPath = kStandardFragPath);
-
-    void setMaterial(Shader *shader);
-
 
 private:
     GLuint VAO;
 
     Shader shader;
-    Material material;
+	boost::shared_ptr<Material> material;
 
     bool active = true;
 
     static const GLchar kStandardVsPath[];
     static const GLchar kStandardFragPath[];
-    static const Material kDefaultMaterial;
+    static const boost::shared_ptr<Material>  kDefaultMaterial;
 };
 
 

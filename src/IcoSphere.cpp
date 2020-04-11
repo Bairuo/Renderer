@@ -7,13 +7,15 @@
 #include "Animation.h"
 #include "Object.h"
 #include "Deferred.h"
+#include "BasicMaterial.h"
 #include <cmath>
 
-const Material IcoSphere::kDefaultMaterial(
+const boost::shared_ptr<Material> IcoSphere::kDefaultMaterial(
+	new BASICMaterial(
 	glm::vec3(1.0f, 0.5f, 0.31f),
 	glm::vec3(1.0f, 0.5f, 0.31f),
 	glm::vec3(0.5f, 0.5f, 0.5f),
-	32.0f
+	32.0f)
 );
 
 static unsigned int triNums;
@@ -22,8 +24,8 @@ static const unsigned int kRecursionLevel = 3;
 #if defined(_WIN32)
 
 #if defined(SHADOWMAP)
-const GLchar IcoSphere::kStandardVsPath[] = ".\\shaders\\3D_Standard\\standard_s.vs";
-const GLchar IcoSphere::kStandardFragPath[] = ".\\shaders\\3D_Standard\\standard_s.frag";
+const GLchar IcoSphere::kStandardVsPath[] = ".\\shaders\\3D_Standard\\standard_shadow.vs";
+const GLchar IcoSphere::kStandardFragPath[] = ".\\shaders\\3D_Standard\\standard_shadow.frag";
 #else
 const GLchar IcoSphere::kStandardVsPath[] = ".\\shaders\\3D_Standard\\standard.vs";
 const GLchar IcoSphere::kStandardFragPath[] = ".\\shaders\\3D_Standard\\standard.frag";
@@ -32,8 +34,8 @@ const GLchar IcoSphere::kStandardFragPath[] = ".\\shaders\\3D_Standard\\standard
 #else
 
 #if defined(SHADOWMAP)
-const GLchar IcoSphere::kStandardVsPath[] = "./shaders/3D_Standard/standard_s.vs";
-const GLchar IcoSphere::kStandardFragPath[] = "./shaders/3D_Standard/standard_s.frag";
+const GLchar IcoSphere::kStandardVsPath[] = "./shaders/3D_Standard/standard_shadow.vs";
+const GLchar IcoSphere::kStandardFragPath[] = "./shaders/3D_Standard/standard_shadow.frag";
 #else
 const GLchar IcoSphere::kStandardVsPath[] = "./shaders/3D_Standard/standard.vs";
 const GLchar IcoSphere::kStandardFragPath[] = "./shaders/3D_Standard/standard.frag";
@@ -54,7 +56,7 @@ void IcoSphere::render(Shader &shader)
 	Camera::setMainCamera(&shader);
 	Light::setLight(&shader);
 
-	setMaterial(&shader);
+	material->set(shader);
 
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, triNums, GL_UNSIGNED_INT, 0);
@@ -74,23 +76,14 @@ IcoSphere::~IcoSphere()
 	//    glDeleteBuffers(1, &VBO);
 }
 
-
-void IcoSphere::setMaterial(Shader *shader)
-{
-	shader->Set3f("material.ambient", material.ambient);
-	shader->Set3f("material.diffuse", material.diffuse);
-	shader->Set3f("material.specular", material.specular);
-	shader->SetFloat("material.shininess", material.shininess);
-}
-
-IcoSphere::IcoSphere(const Material &material,
+IcoSphere::IcoSphere(const boost::shared_ptr<Material> &material,
 	const GLchar *vertexPath, const GLchar *fragmentPath)
 	: material(material)
 {
 	shader = Shader(vertexPath, fragmentPath);
 
 	shader.Use();
-	setMaterial(&shader);
+	material->set(shader);
 	shader.Stop();
 
 	VAO = getIcoSphereVAO(kRecursionLevel, triNums);
@@ -98,6 +91,7 @@ IcoSphere::IcoSphere(const Material &material,
 
 double IcoSphere::getSphereBoundingRadius()
 {
+	// Temporary code, to be modified
 	double x = obj->transform->getPosX() * obj->transform->getScaleX();
 	double y = obj->transform->getPosY() * obj->transform->getScaleY();
 	double z = obj->transform->getPosZ() * obj->transform->getScaleZ();

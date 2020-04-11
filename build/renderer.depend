@@ -3894,7 +3894,7 @@
 	<glm/gtc/type_ptr.hpp>
 	<list>
 
-1586508724 source:d:\renderer\src\alignedtext.cpp
+1586520848 source:d:\renderer\src\alignedtext.cpp
 	"AlignedText.h"
 	"TextRenderer.h"
 	<string>
@@ -3902,11 +3902,11 @@
 	<sstream>
 	"BasicConfig.h"
 
-1584786872 d:\renderer\include\alignedtext.h
+1586520849 d:\renderer\include\alignedtext.h
 	"Rectangle.h"
 	<string>
 
-1584786872 d:\renderer\include\rectangle.h
+1586520854 d:\renderer\include\rectangle.h
 	<GL/glew.h>
 	<boost/shared_ptr.hpp>
 	"Color.h"
@@ -4609,11 +4609,11 @@
 	<sstream>
 	<iostream>
 
-1586508724 source:d:\renderer\src\button.cpp
+1586520849 source:d:\renderer\src\button.cpp
 	"Button.h"
 	"BasicConfig.h"
 
-1584786872 d:\renderer\include\button.h
+1586520854 d:\renderer\include\button.h
 	"Rectangle.h"
 
 1584786872 source:d:\renderer\src\bvh.cpp
@@ -4649,28 +4649,25 @@
 	"Cuboid.h"
 	"IcoSphere.h"
 
-1584786872 d:\renderer\include\cuboid.h
+1586581671 d:\renderer\include\cuboid.h
 	<GL/glew.h>
 	<boost/shared_ptr.hpp>
 	"Color.h"
 	"Shader.h"
-	"Material.h"
 	"Renderer.h"
 
-1584786872 d:\renderer\include\material.h
-	<GL/glew.h>
+1586582630 d:\renderer\include\material.h
 
 1584786872 d:\renderer\include\renderer.h
 
-1586253750 d:\renderer\include\icosphere.h
+1586581746 d:\renderer\include\icosphere.h
 	<GL/glew.h>
 	<boost/shared_ptr.hpp>
 	"Color.h"
 	"Shader.h"
-	"Material.h"
 	"Renderer.h"
 
-1586508738 source:d:\renderer\src\cuboid.cpp
+1586581666 source:d:\renderer\src\cuboid.cpp
 	"Cuboid.h"
 	"BasicConfig.h"
 	"basicrender.h"
@@ -4680,9 +4677,10 @@
 	"Animation.h"
 	"Object.h"
 	"Deferred.h"
+	"BasicMaterial.h"
 	<cmath>
 
-1586507603 d:\renderer\include\basicrender.h
+1586521145 d:\renderer\include\basicrender.h
 	<GL/glew.h>
 
 1584786872 d:\renderer\include\light.h
@@ -4695,7 +4693,7 @@
 	<GLFW/glfw3.h>
 	"Shader.h"
 
-1586508724 source:d:\renderer\src\deferred.cpp
+1586528956 source:d:\renderer\src\deferred.cpp
 	"Deferred.h"
 	"BasicConfig.h"
 	"Camera.h"
@@ -4711,21 +4709,22 @@
 	<iostream>
 	<GLFW/glfw3.h>
 
-1584786872 source:d:\renderer\src\graphnode.cpp
+1586510390 source:d:\renderer\src\graphnode.cpp
 	"GraphNode.h"
 	"Shader.h"
 	"Object.h"
 	"Transform.h"
 	<queue>
+	"SceneConfig.h"
 	<iostream>
 
-1584786872 d:\renderer\include\graphnode.h
+1586510366 d:\renderer\include\graphnode.h
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
 	<list>
 
-1586508738 source:d:\renderer\src\icosphere.cpp
+1586581959 source:d:\renderer\src\icosphere.cpp
 	"IcoSphere.h"
 	"BasicConfig.h"
 	"basicrender.h"
@@ -4735,6 +4734,7 @@
 	"Animation.h"
 	"Object.h"
 	"Deferred.h"
+	"BasicMaterial.h"
 	<cmath>
 
 1584786872 source:d:\renderer\src\inputtext.cpp
@@ -4764,7 +4764,7 @@
 	"Light.h"
 	"Transform.h"
 
-1586508738 source:d:\renderer\src\main.cpp
+1586514577 source:d:\renderer\src\main.cpp
 	<iostream>
 	<boost/shared_ptr.hpp>
 	<GL/glew.h>
@@ -4779,14 +4779,17 @@
 	"Camera.h"
 	"Light.h"
 	"Object.h"
+	"SceneConfig.h"
 	"Transform.h"
 	"Animation.h"
 	"BVH.h"
 	"Deferred.h"
 	"GraphNode.h"
+	"SceneConfig.h"
+	"Color.h"
 	<list>
 
-1586336400 source:d:\renderer\src\object.cpp
+1586510128 source:d:\renderer\src\object.cpp
 	"Object.h"
 	"Renderer.h"
 	"RigidBody.h"
@@ -4797,7 +4800,7 @@
 
 1584786872 d:\renderer\include\rigidbody.h
 
-1586508724 source:d:\renderer\src\rectangle.cpp
+1586520854 source:d:\renderer\src\rectangle.cpp
 	"Rectangle.h"
 	"BasicConfig.h"
 	"basicrender.h"
@@ -4838,7 +4841,7 @@
 	"Object.h"
 	"Animation.h"
 
-1586507597 source:d:\renderer\src\basicrender.cpp
+1586522571 source:d:\renderer\src\basicrender.cpp
 	"basicrender.h"
 	<glm/glm.hpp>
 	<cmath>
@@ -4846,7 +4849,7 @@
 	<vector>
 	<algorithm>
 
-1586514792 d:\renderer\include\basicconfig.h
+1586523472 d:\renderer\include\basicconfig.h
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 
@@ -4854,4 +4857,27 @@
 	"BasicConfig.h"
 	"Cuboid.h"
 	"IcoSphere.h"
+
+1586512082 d:\renderer\include\sceneconfig.h
+	<map>
+	<boost/shared_ptr.hpp>
+	"BVH.h"
+
+1586581090 source:d:\renderer\src\basicmaterial.cpp
+	"BasicMaterial.h"
+	"Shader.h"
+
+1586582656 d:\renderer\include\basicmaterial.h
+	<GL/glew.h>
+	<glm/glm.hpp>
+	"Material.h"
+
+1586520530 source:d:\renderer\src\sceneconfig.cpp
+	"SceneConfig.h"
+	"Object.h"
+	"Transform.h"
+	"Renderer.h"
+	"RigidBody.h"
+	"Animation.h"
+	"GraphNode.h"
 

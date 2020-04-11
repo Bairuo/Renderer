@@ -145,7 +145,7 @@ GLuint getGBuffer()
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
     deferredGeometryShader = Shader(deferredGeometryVSPath, deferredGeometryFragPath);
-    //deferredGeometryShader = Shader(".\\shaders\\3D_Standard\\standard_s.vs", ".\\shaders\\3D_Standard\\standard_s.frag");
+    //deferredGeometryShader = Shader(".\\shaders\\3D_Standard\\standard_shadow.vs", ".\\shaders\\3D_Standard\\standard_shadow.frag");
     deferredLightingsShader = Shader(deferredLightingVSPath, deferredLightingFragPath);
 
     deferredLightingsShader.Use();

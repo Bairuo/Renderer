@@ -1,3 +1,3 @@
 /[Oo]bj/
-/vs2017/
 *.exe
+build/vs2017

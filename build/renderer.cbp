@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../bin/Debug/2048" prefix_auto="1" extension_auto="1" />
+				<Option output="../bin/Debug/renderer" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="../bin/Debug/" />
 				<Option object_output="../obj/Debug/" />
 				<Option type="1" />
@@ -17,7 +17,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="../bin/Release/2048" prefix_auto="1" extension_auto="1" />
+				<Option output="../bin/Release/renderer" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="../bin/Release/" />
 				<Option object_output="../obj/Release/" />
 				<Option type="0" />
@@ -57,6 +57,7 @@
 		<Unit filename="../include/Animation.h" />
 		<Unit filename="../include/BVH.h" />
 		<Unit filename="../include/BasicConfig.h" />
+		<Unit filename="../include/BasicMaterial.h" />
 		<Unit filename="../include/Button.h" />
 		<Unit filename="../include/Camera.h" />
 		<Unit filename="../include/Color.h" />
@@ -86,6 +87,7 @@
 		<Unit filename="../src/Animation.cpp" />
 		<Unit filename="../src/BVH.cpp" />
 		<Unit filename="../src/BasicConfig.cpp" />
+		<Unit filename="../src/BasicMaterial.cpp" />
 		<Unit filename="../src/Button.cpp" />
 		<Unit filename="../src/Camera.cpp" />
 		<Unit filename="../src/Color.cpp" />

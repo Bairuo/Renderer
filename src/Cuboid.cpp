@@ -7,20 +7,22 @@
 #include "Animation.h"
 #include "Object.h"
 #include "Deferred.h"
+#include "BasicMaterial.h"
 #include <cmath>
 
-const Material Cuboid::kDefaultMaterial(
+const boost::shared_ptr<Material> Cuboid::kDefaultMaterial(
+	new BASICMaterial(
     glm::vec3(1.0f, 0.5f, 0.31f),
     glm::vec3(1.0f, 0.5f, 0.31f),
     glm::vec3(0.5f, 0.5f, 0.5f),
-    32.0f
+    32.0f)
 );
 
 #if defined(_WIN32)
 
 #if defined(SHADOWMAP)
-const GLchar Cuboid::kStandardVsPath[] = ".\\shaders\\3D_Standard\\standard_s.vs";
-const GLchar Cuboid::kStandardFragPath[] = ".\\shaders\\3D_Standard\\standard_s.frag";
+const GLchar Cuboid::kStandardVsPath[] = ".\\shaders\\3D_Standard\\standard_shadow.vs";
+const GLchar Cuboid::kStandardFragPath[] = ".\\shaders\\3D_Standard\\standard_shadow.frag";
 #else
 const GLchar Cuboid::kStandardVsPath[] = ".\\shaders\\3D_Standard\\standard.vs";
 const GLchar Cuboid::kStandardFragPath[] = ".\\shaders\\3D_Standard\\standard.frag";
@@ -29,8 +31,8 @@ const GLchar Cuboid::kStandardFragPath[] = ".\\shaders\\3D_Standard\\standard.fr
 #else
 
 #if defined(SHADOWMAP)
-const GLchar Cuboid::kStandardVsPath[] = "./shaders/3D_Standard/standard_s.vs";
-const GLchar Cuboid::kStandardFragPath[] = "./shaders/3D_Standard/standard_s.frag";
+const GLchar Cuboid::kStandardVsPath[] = "./shaders/3D_Standard/standard_shadow.vs";
+const GLchar Cuboid::kStandardFragPath[] = "./shaders/3D_Standard/standard_shadow.frag";
 #else
 const GLchar Cuboid::kStandardVsPath[] = "./shaders/3D_Standard/standard.vs";
 const GLchar Cuboid::kStandardFragPath[] = "./shaders/3D_Standard/standard.frag";
@@ -51,7 +53,7 @@ void Cuboid::render(Shader &shader)
     Camera::setMainCamera(&shader);
     Light::setLight(&shader);
 
-    setMaterial(&shader);
+	material->set(shader);
 
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -71,23 +73,14 @@ Cuboid::~Cuboid()
 //    glDeleteBuffers(1, &VBO);
 }
 
-
-void Cuboid::setMaterial(Shader *shader)
-{
-    shader->Set3f("material.ambient", material.ambient);
-    shader->Set3f("material.diffuse", material.diffuse);
-    shader->Set3f("material.specular", material.specular);
-    shader->SetFloat("material.shininess", material.shininess);
-}
-
-Cuboid::Cuboid(const Material &material,
+Cuboid::Cuboid(const boost::shared_ptr<Material> &material,
                const GLchar *vertexPath, const GLchar *fragmentPath)
                : material(material)
 {
     shader = Shader(vertexPath, fragmentPath);
 
     shader.Use();
-    setMaterial(&shader);
+	material->set(shader);
     shader.Stop();
 
     VAO = getCubeVAO();
