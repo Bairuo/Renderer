@@ -6,11 +6,13 @@ Based on opengl programmable rendering pipeline
 
 #### Rendering
 * Font rendering
+* Basic Object (Cube, Sphere)
 * Multi light source
 * Basic shadow mapping (PCF optimization)
-* MSAA
 * Forward Rendering and Deferred Rendering
 * Scene Graph
+* MSAA
+* Basic PBR Material
 
 #### Physics
 * Rough contact detection based on BVH in dynamic scene
@@ -22,6 +24,12 @@ Based on opengl programmable rendering pipeline
 ![Screenshot](https://github.com/Bairuo/renderer/raw/master/meta/contacts.jpg)
 ![Screenshot](https://github.com/Bairuo/renderer/raw/master/meta/gBuffer.jpg)
 
+PBR Material, Roughness contrast :
+![Screenshot](https://github.com/Bairuo/renderer/raw/master/meta/pbr_roughness.png)
+
+PBR Material, Metallic contrast :
+![Screenshot](https://github.com/Bairuo/renderer/raw/master/meta/pbr_metallic.png)
+
 ### Dependencies
 opengl,  glew, glfw, freetype, boost
 
@@ -32,13 +40,11 @@ note: your graphics driver have to support glsl core 330.
 If not, upgrade driver first.
 
 ### Build
-For windows, you can use cmake to generate a vs solution first(Visual Studio 2017 is suggested, which test pass).
+For windows, you can use cmake to generate a vs solution first(Visual Studio 2017 is suggested).
 
 Note you have to assign your boost path.
 
 ![Screenshot](https://github.com/Bairuo/renderer/raw/master/meta/cmake.jpg)
-
-Or if you have a codeblock on your device, you can use build/renderer-dev.workspace directly.
 
 For linux,  do just like this:
 
@@ -47,3 +53,6 @@ cd build
 cmake .
 make
 ```
+
+#### Note
+After April 2020 update, MinGW compiler is not recommended, now only vs 2017 have been tested. 
