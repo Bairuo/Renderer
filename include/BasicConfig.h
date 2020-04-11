@@ -8,7 +8,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-//#define PBRTEST
+#define PBRTEST
 
 #ifdef PBRTEST
 #define CAMERAROTATE
@@ -20,6 +20,7 @@
 #define DEFERRED
 #endif // !PBRTEST
 
+class Color;
 
 extern GLFWwindow *window;
 extern char WindowName[];
@@ -29,6 +30,10 @@ extern const GLuint WindowHeight;
 extern const float kCardRadius;
 extern const float kRefreshTime;
 extern const float kMergeBornTime;
+
+extern const Color kTitleColor;
+extern const Color kFPSColor;
+extern const Color kBackColor;
 
 extern const char ttfFile[];
 

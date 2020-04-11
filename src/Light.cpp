@@ -1,5 +1,6 @@
 #include "Light.h"
 #include "Transform.h"
+#include "BasicConfig.h"
 
 #if defined(_WIN32)
 const GLchar shadowmapVSPath[] = ".\\shaders\\3D_Standard\\shadowmap.vs";
@@ -33,7 +34,11 @@ void Light::setLight(Shader *shader)
     shader->Set3f("pointLights[0].position", pos);
     shader->Set3f("pointLights[0].ambient", 0.05f, 0.05f, 0.05f);
     shader->Set3f("pointLights[0].diffuse", 0.8f, 0.8f, 0.8f);
-    shader->Set3f("pointLights[0].specular", 1.0f, 1.0f, 1.0f);
+#ifndef PBRTEST
+	shader->Set3f("pointLights[0].specular", 1.0f, 1.0f, 1.0f);
+#else
+	shader->Set3f("pointLights[0].specular", 10.0f, 10.0f, 10.0f);
+#endif // !PBRTEST
     shader->SetFloat("pointLights[0].constant", 1.0f);
     shader->SetFloat("pointLights[0].linear", 0.09);
     shader->SetFloat("pointLights[0].quadratic", 0.032);

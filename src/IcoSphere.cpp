@@ -21,7 +21,7 @@
 
 const boost::shared_ptr<Material> IcoSphere::kDefaultMaterial(
 	new PBRMaterial(
-		glm::vec3(1.0f, 0.5f, 0.31f),	// albedo
+		glm::vec3(1.0f, 0, 0),	// albedo
 		0.03f,	// metallic
 		0.2f,	// roughness
 		0.1f	// ao

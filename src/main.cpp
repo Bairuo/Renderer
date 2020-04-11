@@ -22,11 +22,8 @@
 #include "GraphNode.h"
 #include "SceneConfig.h"
 #include "Color.h"
+#include "PBRMaterial.h"
 #include <list>
-
-static const Color kTitleColor(0.464f, 0.43f, 0.395f, 1.0f);
-static const Color kFPSColor(1, 0, 0, 1.0f);
-static const Color kBackColor(0.98f, 0.972f, 0.937f, 1.0f);
 
 #if defined(PBRTEST)
 #define OBJNUM 2
@@ -39,6 +36,22 @@ static const glm::vec3 kObjScaleConfig[OBJNUM] = {
 	glm::vec3(0.35f, 0.35f, 0.35f),
 	glm::vec3(0.35f, 0.35f, 0.35f)
 };
+
+static const boost::shared_ptr<Material> exampleMaterials[OBJNUM]{
+	boost::shared_ptr<Material>(new PBRMaterial(
+		glm::vec3(1.0f, 0, 0),	// albedo
+		0.03f,	// metallic
+		0.2f,	// roughness
+		0.1f	// ao
+	)),
+	boost::shared_ptr<Material>(new PBRMaterial(
+		glm::vec3(1.0f, 0, 0),	// albedo
+		0.03f,	// metallic
+		0.4f,	// roughness
+		0.1f	// ao
+	))
+};
+
 #else
 #define OBJNUM 8
 static const glm::vec3 kObjPosConfig[OBJNUM] = {
@@ -94,7 +107,7 @@ int main()
     {
 #if defined(PBRTEST)
 		auto obj = generateObject(new Transform(kObjPosConfig[i], kObjScaleConfig[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
-			new IcoSphere());
+			new IcoSphere(exampleMaterials[i]));
 #else
 		auto obj = generateObject(new Transform(kObjPosConfig[i], kObjScaleConfig[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
 			new Cuboid());
@@ -256,10 +269,12 @@ int main()
 
         glDisable(GL_DEPTH_TEST);
 
-        textRenderer->DrawText("Fun Renderer", -384, 358, kTitleColor, 32, true);
-        textRenderer->DrawText("FPS:" + bairuo::int2str(GameTime::GetFPS()), -384, 326, kFPSColor, 16, true);
-        textRenderer->DrawText("WASD to move ", -384, -334, kTitleColor, 16, true);
-        textRenderer->DrawText("Potential contacts: " + bairuo::uns2str(potentialDebug), -384, -358, kTitleColor, 16, true);
+#ifndef PBRTEST
+		textRenderer->DrawText("Fun Renderer", -384, 358, kTitleColor, 32, true);
+		textRenderer->DrawText("FPS:" + bairuo::int2str(GameTime::GetFPS()), -384, 326, kFPSColor, 16, true);
+		textRenderer->DrawText("WASD to move ", -384, -334, kTitleColor, 16, true);
+		textRenderer->DrawText("Potential contacts: " + bairuo::uns2str(potentialDebug), -384, -358, kTitleColor, 16, true);
+#endif // !PBRTEST
 
         glfwSwapBuffers(window);
 

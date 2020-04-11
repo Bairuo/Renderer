@@ -53,8 +53,8 @@ void main()
 
         float attenuation = 1.0 / (pointLights[i].constant + pointLights[i].linear * distance +
                  pointLights[i].quadratic * (distance * distance));
-		vec3 lightColor = (pointLights[i].ambient + pointLights[i].diffuse + pointLights[i].specular);
-        vec3 radiance     = lightColor * attenuation;        
+		//vec3 lightColor = (pointLights[i].ambient + pointLights[i].diffuse + pointLights[i].specular);
+        vec3 radiance     = pointLights[i].specular * attenuation;        
 
         // cook-torrance brdf
         float NDF = DistributionGGX(N, H, roughness);        
