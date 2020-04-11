@@ -1,8 +1,8 @@
-// Cuboid.h
+// Cube.h
 // Author: Bairuo
 
-#ifndef CUBOID_H_
-#define CUBOID_H_
+#ifndef CUBE_H_
+#define CUBE_H_
 
 #define GLEW_STATIC
 #include <GL/glew.h>
@@ -14,7 +14,7 @@
 
 class Material;
 
-class Cuboid : public Renderer
+class Cube : public Renderer
 {
 public:
     bool castShadow = true;
@@ -25,9 +25,9 @@ public:
 
     virtual void render(Shader &shader);
 
-    virtual ~Cuboid();
+    virtual ~Cube();
 
-    Cuboid(const boost::shared_ptr<Material> &material = kDefaultMaterial,
+	Cube(const boost::shared_ptr<Material> &material = kDefaultMaterial,
            const GLchar *vertexPath = kStandardVsPath, const GLchar *fragmentPath = kStandardFragPath);
 
 private:
@@ -44,4 +44,4 @@ private:
 };
 
 
-#endif // CUBOID_H_
+#endif // CUBE_H_

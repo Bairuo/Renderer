@@ -1,5 +1,5 @@
 #include "BasicConfig.h"
-#include "Cuboid.h"
+#include "Cube.h"
 #include "IcoSphere.h"
 
 GLFWwindow *window;

@@ -9,7 +9,7 @@
 #include "GameTime.h"
 #include "KeyUtilities.h"
 #include "BasicConfig.h"
-#include "Cuboid.h"
+#include "Cube.h"
 #include "IcoSphere.h"
 #include "Camera.h"
 #include "Light.h"
@@ -110,7 +110,7 @@ int main()
 			new IcoSphere(exampleMaterials[i]));
 #else
 		auto obj = generateObject(new Transform(kObjPosConfig[i], kObjScaleConfig[i], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f)),
-			new Cuboid());
+			new Cube());
 #endif
 
 		BVHTreeBuild(BVHTree, obj);
@@ -128,7 +128,7 @@ int main()
 	Objects[3]->animation->start();
 
 	// Sub object example
-	//Objects[3]->addSubObject(generateObject(new Transform(glm::vec3(0, 0.8f, 0), glm::vec3(1)), new Cuboid()));
+	//Objects[3]->addSubObject(generateObject(new Transform(glm::vec3(0, 0.8f, 0), glm::vec3(1)), new Cube()));
 
 	start = Transform(kObjPosConfig[5], kObjScaleConfig[5], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));
 	end = Transform(glm::vec3(0.4f, 0, 0), kObjScaleConfig[5], 20.0f, glm::vec3(1.0f, 0.3f, 0.5f));

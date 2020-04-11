@@ -1,4 +1,4 @@
-// Cuboid.h
+// Cube.h
 // Author: Bairuo
 
 #ifndef ICOSPHERE_H_
