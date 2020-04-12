@@ -12,7 +12,7 @@ Based on opengl programmable rendering pipeline
 * Forward Rendering and Deferred Rendering
 * Scene Graph
 * MSAA
-* Basic PBR Material
+* Basic PBR Material (Cook-Torrance BRDF)
 
 #### Physics
 * Rough contact detection based on BVH in dynamic scene
